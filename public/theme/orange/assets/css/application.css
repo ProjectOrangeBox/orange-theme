@@ -1,0 +1,92 @@
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+div.form-group label {
+	font-weight: normal;
+}
+div.form-group .required {
+	font-weight: bold;
+}
+
+h2 {
+	margin-top:10px
+}
+
+h2 small {
+	font-size: 40%;
+	padding-left: 8px;
+}
+
+hr {
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #EDEDED;
+  border-style: solid none;
+  border-width: 1px 0;
+  margin: 0 0 24px 0;
+}
+
+body {
+	position: relative;
+	padding-top: 58px;
+	-webkit-font-smoothing: antialiased;
+font-family: 'Droid Sans', sans-serif;
+}
+.container {
+	width: 98% !important;
+}
+
+/* add textarea resize classes */
+.noresize {
+	resize: none;
+}
+
+.vresize {
+	resize: vertical;
+}
+
+.hresize {
+	resize: horizontal;
+}
+
+/* patch dropdown select 3 highlighting */
+.select3 a {
+	outline: none;
+}
+
+/* make the nav a little shorter */
+.navbar .navbar-brand{ padding: 0 12px;font-size: 16px;line-height: 38px;height: 38px; }
+.navbar .navbar-nav > li > a {  padding-top: 0px; padding-bottom: 0px; line-height: 38px; }
+.navbar .navbar-toggle {  margin-top: 3px; margin-bottom: 0px; padding: 8px 9px; }
+.navbar .navbar-form { margin-top: 2px; margin-bottom: 0px }
+.navbar a.navbar-brand { font-weight: 700; }
+.navbar { min-height:38px !important; }
+
+td.actions form {
+	display: inline-block;
+}
+
+.navbar-brand {
+	color: white !important;
+}
+
+.navbar-brand:hover {
+	color: #0fff4f !important;
+}
+
+.admin .nav-pills {
+	border-bottom: 1px solid #e2e2e2;
+  padding-bottom: 4px;
+}
+
+.back-to-top {
+	text-align: right;
+	padding: 12px;
+}

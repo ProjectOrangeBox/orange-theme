@@ -1,0 +1,9 @@
+/* for the images */
+.note-editor img {
+	/*margin: 3px;*/
+}
+
+/* for the modals */
+.note-editor .modal-content {
+	padding: 4px !important;
+}
