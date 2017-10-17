@@ -4,7 +4,7 @@ class Plugin_dt_picker {
 
 	public function __construct() {
 	
-		page::html('dt_picker',function to_html($name,$value,$extra=[]) {
+		html::attach('dt_picker',function($name,$value,$extra=[]) {
 			ci()->page
 				->js(['//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js','//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js'])
 				->css('//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css');
