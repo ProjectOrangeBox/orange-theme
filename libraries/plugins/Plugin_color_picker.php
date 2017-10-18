@@ -9,18 +9,11 @@ class Plugin_color_picker {
 				->css('//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.1.0/css/bootstrap-colorpicker.min.css')
 				->js('//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.1.0/js/bootstrap-colorpicker.min.js');
 
-			$defaults = ['default'=>'#111111','hide_input'=>false];
+			$extra = array_merge(['default'=>'#111111'], $extra));
 
-			extract(array_merge($defaults, $extra));
+			$value = '#'.trim(((empty($value)) ? $extra['default'] : $value), '#');
 
-			$value = '#'.trim(((empty($value)) ? $default : $value), '#');
-
-			$html  = '<div class="input-group js-colorpicker">';
-			$html .= '<input type="text" name="'.$name.'" value="'.$value.'" class="form-control">';
-			$html .= '<span class="input-group-addon"><i></i></span>';
-			$html .= '</div>';
-
-			return $html;
+			return '<div class="input-group js-colorpicker"><input type="text" name="'.$name.'" value="'.$value.'" class="form-control"><span class="input-group-addon"><i></i></span></div>';
 		});
 	}
 
