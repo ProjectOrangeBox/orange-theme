@@ -23,7 +23,7 @@ orange.dialog.button_submit_click = function(e,that) {
 	orange.that = $(that);
 	
 	/* travel up from the submit button and find the closest <form> */
-	orange.form_obj = orange.that.closest('form.form-horizontal');
+	orange.form_obj = orange.that.closest('form');
 
 	/* is a confirm data attribute on the form element? */
 	if (orange.form_obj.data('confirm')) {
