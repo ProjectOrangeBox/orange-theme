@@ -8,6 +8,7 @@ class UsersController extends MY_Controller {
 	public $controller_titles = 'Users';
 	public $controller_path   = '/admin/users';
 	public $controller_model  = 'o_user_model';
+	public $controller_order_by = 'username';
 	public $catalogs = [
 		'roles_catalog'=>['model'=>'o_role_model','array_key'=>'id','select'=>'name'],
 	];
