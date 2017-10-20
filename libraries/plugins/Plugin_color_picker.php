@@ -9,7 +9,7 @@ class Plugin_color_picker {
 				->css('//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.1.0/css/bootstrap-colorpicker.min.css')
 				->js('//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.1.0/js/bootstrap-colorpicker.min.js');
 
-			$extra = array_merge(['default'=>'#111111'], $extra));
+			$extra = array_merge(['default'=>'#111111'], $extra);
 
 			$value = '#'.trim(((empty($value)) ? $extra['default'] : $value), '#');
 
