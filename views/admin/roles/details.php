@@ -50,7 +50,7 @@
 			<?php foreach ($tab_set as $row) { ?>
 
 				<!-- Checkbox -->
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="checkbox">
 						<label><?=html::checkbox('permissions[]', $row->id, (array_key_exists($row->id,$permissions))) ?> <?=$row->description ?></label>
 				  </div>
@@ -60,7 +60,6 @@
 		</div>
 		<? } ?>
   </div>
-
 
 	<!-- Submit Button -->
 	<div class="form-group">

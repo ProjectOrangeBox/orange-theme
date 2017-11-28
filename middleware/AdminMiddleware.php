@@ -25,7 +25,11 @@ class AdminMiddleware extends Middleware_base {
 		$key = 'url::/'.$route;
 
 		if (ENVIRONMENT == 'development') {
-			$this->o_permission_model->insert(['description' => '*'.ucwords(str_replace('/',' ',$route)), 'group' => $this->router->fetch_class(true), 'key' => $key]);
+			$this->o_permission_model->insert([
+				'description' => '*'.ucwords(str_replace('/',' ',$route)),
+				'group' => $this->router->fetch_class(true),
+				'key' => $key,
+			]);
 		}
 
 		if (user::cannot($key)) {

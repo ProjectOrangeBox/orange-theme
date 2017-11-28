@@ -23,21 +23,23 @@
 				</tr>
 			</thead>
 		<tbody class="searchable">
-	<? foreach ($records as $row) { ?>
-			<tr>
-				<td><?=e($row->username) ?></td>
-				<td><?=e($row->email) ?></td>
-				<td class="text-center"><?=html::fa_enum_icon($row->is_active) ?></td>
-				<td class="text-center actions">
-					<? if (user::has_role($row->edit_role_id)) { ?>
-						<?=html::edit_button($controller_path.'/details/'.$row->id) ?>
-					<? } ?>
-					<? if (user::has_role($row->delete_role_id)) { ?>
-						<?=html::delete_button($controller_path,['id'=>$row->id]) ?>
-					<? } ?>
-				</td>
-			</tr>
-	<? } ?>
+		<? foreach ($records as $row) { ?>
+			<? if (user::has_role($row->read_role_id)) { ?>
+				<tr>
+					<td><?=e($row->username) ?></td>
+					<td><?=e($row->email) ?></td>
+					<td class="text-center"><?=html::fa_enum_icon($row->is_active) ?></td>
+					<td class="text-center actions">
+						<? if (user::has_role($row->edit_role_id)) { ?>
+							<?=html::edit_button($controller_path.'/details/'.$row->id) ?>
+						<? } ?>
+						<? if (user::has_role($row->delete_role_id)) { ?>
+							<?=html::delete_button($controller_path,['id'=>$row->id]) ?>
+						<? } ?>
+					</td>
+				</tr>
+			<? } ?>
+		<? } ?>
 		</tbody>
 	</table>
 </div>
