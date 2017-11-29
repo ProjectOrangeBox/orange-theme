@@ -8,15 +8,22 @@ class RolesController extends MY_Controller {
 	public $controller_titles = 'Roles';
 	public $controller_path   = '/admin/roles';
 	public $controller_model  = 'o_role_model';
+	public $controller_order_by  = 'name';
 	public $catalogs = [
 		'catalog_permissions'=>['model'=>'o_permission_model','array_key'=>'id'],
 	];
 
 	/* show new / edit form */
 	public function detailsAction($id=null) {
-		((int)$id > 0) ? $this->_edit_record($id) : $this->_new_record();
+		if ((int)$id > 0) {
+			$this->_edit_record($id);
 
-		$this->data['permissions'] = o::simple_array($this->o_role_model->permissions((int)$id));
+			$this->data['permissions'] = o::simple_array($this->o_role_model->permissions((int)$id));
+		} else {
+			$this->_new_record();
+			
+			$this->data['permissions'] = [];
+		}
 
 		$this->page->data($this->data)->render();
 	}
