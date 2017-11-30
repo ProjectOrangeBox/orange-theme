@@ -11,3 +11,40 @@ var pleaseWaitDiv = $('<div class="modal fade bs-example-modal-sm" id="myPleaseW
 
 /* get the other tools */
 $.getScript('/theme/orange/assets/js/tools.min.js');
+
+function widget_minipipe(that) {
+	$.ajax({
+		type: 'POST',
+		url: $(that).data('widget'),
+		async: true,
+		data: {
+			options: $(that).data()
+		},
+		success: function(data,textStatus,jqXHR) {
+			if (data.html) {
+				widget_replace(that,data.html);			
+			} else {
+				widget_replace(that,'{{HTML Missing}}');			
+			}
+		},
+		error: function(jqXHR,textStatus,errorThrown) {
+			if ($(that).data().errors == true) {
+				widget_replace(that,'{{error}}');
+			}
+		},
+	});
+}
+
+function widget_replace(that,input) {
+	if (/^(?:area|br|col|embed|hr|img|input|link|meta|param)$/i.test($(that)[0].tagName)) {
+		$(that).replaceWith(input);
+	} else {
+		$(that).html(input);
+	}
+}
+
+document.addEventListener("DOMContentLoaded",function(e){
+	$('[data-widget]').each(function() {
+		widget_minipipe(this);
+	});
+});
