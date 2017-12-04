@@ -3,7 +3,7 @@
 class Plugin_search_sort_field {
 
 	public function __construct() {
-		html::attach('search_sort_field',function($length=222) {
+		plugin::attach('search_sort_field',function($length=222) {
 			ci()->page
 				->js([
 					'//cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js',

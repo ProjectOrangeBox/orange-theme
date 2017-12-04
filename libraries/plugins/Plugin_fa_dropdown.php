@@ -3,7 +3,7 @@
 class Plugin_fa_dropdown {
 
 		public function __construct() {
-		html::attach('fa_dropdown',function($name='',$value=null,$extra=[]) {
+		plugin::attach('fa_dropdown',function($name='',$value=null,$extra=[]) {
 			$defaults = ['name' => $name, 'style' => '', 'id' => $name, 'class' => ''];
 			$list = array_merge($defaults, $extra);
 		

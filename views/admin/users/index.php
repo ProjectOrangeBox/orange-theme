@@ -3,11 +3,11 @@
 <? page::section('section_container') ?>
 
 <div class="row">
-  <div class="col-md-6"><?=html::title($controller_titles,'user') ?></div>
+  <div class="col-md-6"><?=plugin::title($controller_titles,'user') ?></div>
   <div class="col-md-6">
   	<div class="pull-right">
-  		<?=html::search_sort_field() ?>
-			<?=html::new_button($controller_path.'/details','New '.$controller_title) ?>
+  		<?=plugin::search_sort_field() ?>
+			<?=plugin::new_button($controller_path.'/details','New '.$controller_title) ?>
   	</div>
   </div>
 </div>
@@ -28,13 +28,13 @@
 				<tr>
 					<td><?=e($row->username) ?></td>
 					<td><?=e($row->email) ?></td>
-					<td class="text-center"><?=html::fa_enum_icon($row->is_active) ?></td>
+					<td class="text-center"><?=plugin::fa_enum_icon($row->is_active) ?></td>
 					<td class="text-center actions">
 						<? if (user::has_role($row->edit_role_id)) { ?>
-							<?=html::edit_button($controller_path.'/details/'.$row->id) ?>
+							<?=plugin::edit_button($controller_path.'/details/'.$row->id) ?>
 						<? } ?>
 						<? if (user::has_role($row->delete_role_id)) { ?>
-							<?=html::delete_button($controller_path,['id'=>$row->id]) ?>
+							<?=plugin::delete_button($controller_path,['id'=>$row->id]) ?>
 						<? } ?>
 					</td>
 				</tr>

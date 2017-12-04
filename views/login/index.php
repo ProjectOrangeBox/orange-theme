@@ -1,7 +1,7 @@
 <? page::extends('_templates/orange_default') ?>
 
 <? page::section('section_container') ?>
-<?=html::form_open_multipart('/login',['method'=>'post','class'=>'form-signin']) ?>
+<?=plugin::form_open_multipart('/login',['method'=>'post','class'=>'form-signin']) ?>
   <h2 class="form-signin-heading">Please sign in</h2>
 
   <label for="inputEmail" class="sr-only">Email address</label>
@@ -24,7 +24,7 @@
 	  <a href="/forgot-password">Forgot Password</a>
 	</p>
 
-<?=html::form_close() ?>
+<?=plugin::form_close() ?>
 
 
 <? page::end() ?>

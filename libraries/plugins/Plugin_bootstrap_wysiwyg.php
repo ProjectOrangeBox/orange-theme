@@ -5,7 +5,7 @@ https://github.com/mindmup/bootstrap-wysiwyg/
 */
 class Plugin_bootstrap_wysiwyg {
 	public function __construct() {
-		html::attach('bootstrap_wysiwyg',function($name=null,$value=null,$extra=[]) {
+		plugin::attach('bootstrap_wysiwyg',function($name=null,$value=null,$extra=[]) {
 			ci()->page->js([
 				'/theme/orange/assets/plugins/bootstrap_wysiwyg/vendor/jquery.hotkeys.js',
 				'/theme/orange/assets/plugins/bootstrap_wysiwyg/vendor/bootstrap-wysiwyg.js',

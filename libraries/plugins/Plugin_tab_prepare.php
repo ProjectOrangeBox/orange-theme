@@ -3,7 +3,7 @@
 class Plugin_tab_prepare {
 
 	public function __construct() {
-		html::attach('tab_prepare',function($tabs,$records,$key,$sort_key) {
+		plugin::attach('tab_prepare',function($tabs,$records,$key,$sort_key) {
 			/* build the tabs */
 			foreach ($records as $row) {
 				$tabs[$row->$key][$row->$sort_key] = $row;
