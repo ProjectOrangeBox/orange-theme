@@ -18,7 +18,7 @@ class PermissionsController extends MY_Controller {
 			'users'=>$this->o_user_model->get_many(),
 			'roles'=>$this->o_role_model->get_many(),
 			'permissions'=>$this->o_permission_model->get_many(),
-		])->render('admin/permissions/permissions');
+		])->render('admin/permissions/debug');
 	}
 	
 } /* end class */

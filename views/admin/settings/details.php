@@ -63,31 +63,7 @@
 		</div>
 	</div>
 
-	<!-- Start Record Roles -->
-	<!-- Select Basic -->
-	<div class="form-group">
-		<?=pear::label('Read Role','read_role_id',['class'=>'col-md-3 control-label']) ?>
-		<div class="col-md-4">
-			<?=pear::role_dropdown('read_role_id',$record->read_role_id) ?>
-		</div>
-	</div>
-
-	<!-- Select Basic -->
-	<div class="form-group">
-		<?=pear::label('Edit Role','edit_role_id',['class'=>'col-md-3 control-label']) ?>
-		<div class="col-md-4">
-			<?=pear::role_dropdown('edit_role_id',$record->edit_role_id) ?>
-		</div>
-	</div>
-
-	<!-- Select Basic -->
-	<div class="form-group">
-		<?=pear::label('Delete Role','delete_role_id',['class'=>'col-md-3 control-label']) ?>
-		<div class="col-md-4">
-			<?=pear::role_dropdown('delete_role_id',$record->delete_role_id) ?>
-		</div>
-	</div>
-	<!-- End Record Roles -->
+	<?=pear::include('_templates/access') ?>
 
 	<!-- Text input-->
 	<div class="form-group">
