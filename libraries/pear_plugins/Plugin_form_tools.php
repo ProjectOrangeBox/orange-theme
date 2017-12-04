@@ -8,7 +8,7 @@ class Plugin_form_tools {
 			
 			/*
 				http://www.bootstraptoggle.com/
-				<?=plugin::checkbox('complete', 1, ($row->complete == 1), ['data-toggle'=>'toggle','data-size'=>'mini','data-on'=>'yes','data-off'=>'no']) ?>
+				<?=pear::checkbox('complete', 1, ($row->complete == 1), ['data-toggle'=>'toggle','data-size'=>'mini','data-on'=>'yes','data-off'=>'no']) ?>
 			*/
 			
 			->js('//gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js')

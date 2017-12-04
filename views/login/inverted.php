@@ -1,7 +1,7 @@
-<? page::extends('_templates/orange_default') ?>
+<? pear::extends('_templates/orange_default') ?>
 
-<? page::section('section_container') ?>
+<? pear::section('section_container') ?>
 Logged Out
 
 <a href="/login">Login</a>
-<? page::end() ?>
+<? pear::end() ?>

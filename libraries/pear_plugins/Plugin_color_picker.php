@@ -3,7 +3,7 @@
 class Plugin_color_picker {
 
 	public function __construct() {
-		plugin::attach('color_picker',function($name,$value=null,$extra=[]) {
+		pear::attach('color_picker',function($name,$value=null,$extra=[]) {
 			ci()->page
 				->domready("$('.js-colorpicker').colorpicker();")
 				->css('//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.1.0/css/bootstrap-colorpicker.min.css')

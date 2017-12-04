@@ -1,7 +1,7 @@
-<? page::extends('_templates/orange_default') ?>
+<? pear::extends('_templates/orange_default') ?>
 
-<? page::section('section_container') ?>
-<?=plugin::form_open_multipart('/login',['method'=>'post','class'=>'form-signin']) ?>
+<? pear::section('section_container') ?>
+<?=pear::form_open_multipart('/login',['method'=>'post','class'=>'form-signin']) ?>
   <h2 class="form-signin-heading">Please sign in</h2>
 
   <label for="inputEmail" class="sr-only">Email address</label>
@@ -24,13 +24,13 @@
 	  <a href="/forgot-password">Forgot Password</a>
 	</p>
 
-<?=plugin::form_close() ?>
+<?=pear::form_close() ?>
 
 
-<? page::end() ?>
+<? pear::end() ?>
 
-<? page::section('page_style') ?>
-<? page::parent() ?>
+<? pear::section('page_style') ?>
+<? pear::parent() ?>
 body {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -70,4 +70,4 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-<? page::end() ?>
+<? pear::end() ?>

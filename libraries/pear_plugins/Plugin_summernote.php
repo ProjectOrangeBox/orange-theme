@@ -7,7 +7,7 @@ http://cdnjs.com/libraries/summernote
 */
 class Plugin_summernote {
 	public function __construct() {
-		plugin::attach('summernote',function($name=null,$value=null,$extra=[]) {
+		pear::attach('summernote',function($name=null,$value=null,$extra=[]) {
 			ci()->page->js([
 					'//cdnjs.cloudflare.com/ajax/libs/codemirror/5.12.0/codemirror.min.js',
 					'//cdnjs.cloudflare.com/ajax/libs/codemirror/5.12.0/mode/xml/xml.min.js',

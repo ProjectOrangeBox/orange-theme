@@ -1,9 +1,9 @@
-<? page::extends('_templates/orange_admin') ?>
+<? pear::extends('_templates/orange_admin') ?>
 
-<? page::section('section_container') ?>
+<? pear::section('section_container') ?>
 
 <div class="row">
-  <div class="col-md-6"><?=plugin::title('Dashboard','th') ?></div>
+  <div class="col-md-6"><?=pear::title('Dashboard','th') ?></div>
   <div class="col-md-6"></div>
 </div>
 
@@ -20,4 +20,4 @@
 
 <p>Roles: <?=var_dump(user::roles()) ?></p>
 
-<?=page::end() ?>
+<?=pear::end() ?>

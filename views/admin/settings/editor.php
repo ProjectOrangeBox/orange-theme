@@ -1,13 +1,13 @@
-<? page::extends('_templates/orange_admin') ?>
+<? pear::extends('_templates/orange_admin') ?>
 
-<? page::section('section_container') ?>
+<? pear::section('section_container') ?>
 
-<?=plugin::open_multipart($controller_path,['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'],['id'=>$record->id]) ?>
+<?=pear::open_multipart($controller_path,['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'],['id'=>$record->id]) ?>
 	<div class="row">
 		<div class="col-md-6"><h3><?=$ci_title_prefix ?> <?=$controller_title ?></h3></div>
 	  <div class="col-md-6">
 	  	<div class="pull-right">
-				<?=plugin::goback_button($controller_path) ?>
+				<?=pear::goback_button($controller_path) ?>
 	  	</div>
 	  </div>
 	</div>
@@ -84,7 +84,7 @@
 		<div class="col-md-offset-3 col-md-4">
 			<div class="checkbox">
 				<label>
-					<?=plugin::checkbox('enabled', 1, ($record->enabled == 1),['class'=>'js-checker']) ?> Enabled
+					<?=pear::checkbox('enabled', 1, ($record->enabled == 1),['class'=>'js-checker']) ?> Enabled
 				</label>
 			</div>
 		</div>
@@ -95,11 +95,11 @@
 	<div class="form-group">
 		<div class="col-md-12">
 			<div class="pull-right">
-				<?=plugin::button(null,'Save',['class'=>'js-button-submit btn btn-primary']) ?>
+				<?=pear::button(null,'Save',['class'=>'js-button-submit btn btn-primary']) ?>
 			</div>
 		</div>
 	</div>
 	
-<?=plugin::close() ?>
+<?=pear::close() ?>
 
-<? page::end() ?>
+<? pear::end() ?>

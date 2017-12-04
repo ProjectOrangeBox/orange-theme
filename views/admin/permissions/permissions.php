@@ -1,6 +1,6 @@
-<? page::extends('_templates/orange_admin') ?>
+<? pear::extends('_templates/orange_admin') ?>
 
-<? page::section('section_container') ?>
+<? pear::section('section_container') ?>
 
 <h3>Users</h3>
 
@@ -103,13 +103,13 @@
 </ul>
 
 
-<? page::end() ?>
+<? pear::end() ?>
 
-<? page::section('page_style') ?>
+<? pear::section('page_style') ?>
 
 .list-group-item {
   border-radius: 0 !important;
   padding: 4px 14px !important;
 }
 
-<? page::end() ?>
+<? pear::end() ?>

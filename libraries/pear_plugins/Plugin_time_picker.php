@@ -6,11 +6,11 @@ http://eonasdan.github.io/bootstrap-datetimepicker/
 class Plugin_time_picker {
 
 	public function __construct() {
-		plugin::attach('time_picker',function($name = '',$value=null,$extra=[]){
+		pear::attach('time_picker',function($name = '',$value=null,$extra=[]){
 			$extra['format'] = ($extra['format']) ? $extra['format'] : 'MM/DD/YYYY h:mm A';
 			$extra['icon'] = ($extra['icon']) ? $extra['icon'] : 'calendar';
 	
-			return plugin::dt_picker($name,$value,$extra);
+			return pear::dt_picker($name,$value,$extra);
 		});
 	}
 

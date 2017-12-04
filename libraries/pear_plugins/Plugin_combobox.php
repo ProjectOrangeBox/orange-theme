@@ -3,7 +3,7 @@
 class Plugin_combobox {
 
 	public function __construct() {
-		plugin::attach('combobox',function($name=null,$value=null,$options=[],$extra=[]) {
+		pear::attach('combobox',function($name=null,$value=null,$options=[],$extra=[]) {
 			ci()->page
 				->js('/theme/orange/assets/plugins/combobox/bootstrap3-typeahead.min.js')
 				->css('/theme/orange/assets/plugins/combobox/o-bootstrap3-typeahead.min.css');

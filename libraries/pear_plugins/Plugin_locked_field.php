@@ -8,7 +8,7 @@ class Plugin_locked_field {
 	
 	*/
 	public function __construct() {
-		plugin::attach('locked_field',function($name=null,$value=null,$extra=[]) {
+		pear::attach('locked_field',function($name=null,$value=null,$extra=[]) {
 			ci()->page->js('/theme/orange/assets/plugins/plugin-locked-field/plugin_locked_field.js');
 	
 			$extra = array_merge(['default'=>'lock','can'=>'####','class'=>''],$extra);
