@@ -8,7 +8,9 @@
   <div class="col-md-6"><?=pear::title($controller_titles,'key') ?></div>
   <div class="col-md-6">
   	<div class="pull-right">
-			<?=pear::new_button($controller_path.'/details','New '.$controller_title) ?>
+			<? if (user::can('url::/admin/permissions/post~index')) { ?>
+				<?=pear::new_button($controller_path.'/details','New '.$controller_title) ?>
+			<? } ?>
   	</div>
   </div>
 </div>
@@ -37,20 +39,20 @@
 				</thead>
 				<tbody>
 					<? foreach ($tab_set as $row) { ?>
-					<? if (user::has_role($row->read_role_id)) { ?>
-						<tr>
-							<td><?=e($row->description) ?></td>
-							<td><?=e($row->key) ?></td>
-							<td class="text-center actions">
-								<? if (user::has_role($row->edit_role_id)) { ?>
-									<?=pear::edit_button($controller_path.'/details/'.$row->id) ?>
-								<? } ?>
-								<? if (user::has_role($row->delete_role_id)) { ?>
-									<?=pear::delete_button($controller_path,['id'=>$row->id]) ?>
-								<? } ?>
-							</td>
-						</tr>
-					<? } ?>
+						<? if (user::has_role($row->read_role_id)) { ?>
+							<tr>
+								<td><?=e($row->description) ?></td>
+								<td><?=e($row->key) ?></td>
+								<td class="text-center actions">
+									<? if (user::has_role($row->edit_role_id)) { ?>
+										<?=pear::edit_button($controller_path.'/details/'.$row->id) ?>
+									<? } ?>
+									<? if (user::has_role($row->delete_role_id)) { ?>
+										<?=pear::delete_button($controller_path,['id'=>$row->id]) ?>
+									<? } ?>
+								</td>
+							</tr>
+						<? } ?>
 					<? } ?>
 				</tbody>
 			</table>

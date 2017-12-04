@@ -10,7 +10,6 @@ class SettingsController extends MY_Controller {
 	public $controller_model  = 'o_setting_model';
 	public $controller_order_by = 'group,name'; /* auto order by on model */
 	public $catalogs = [
-		'roles_catalog'=>['model'=>'o_role_model','array_key'=>'id','select'=>'name'],
 		'settings_group_catalog'=>['model'=>'o_setting_model','array_key'=>'group','select'=>'group']
 	];
 

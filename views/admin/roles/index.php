@@ -7,7 +7,9 @@
   <div class="col-md-6">
   	<div class="pull-right">
   		<?=pear::search_sort_field() ?>
-			<?=pear::new_button($controller_path.'/details','New '.$controller_title) ?>
+			<? if (user::can('url::/admin/roles/post~index')) { ?>
+				<?=pear::new_button($controller_path.'/details','New '.$controller_title) ?>
+  		<? } ?>
   	</div>
   </div>
 </div>
