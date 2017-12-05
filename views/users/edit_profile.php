@@ -7,50 +7,51 @@
 	<div class="row">
 		<div class="col-md-6"><h2>Edit My Profile</h2></div>
 	</div>
+	
 	<hr>
 	
 	<!-- Text input-->
 	<div class="form-group">
-	<label class="col-md-3 control-label required" for="textinput">Email</label>
-	<div class="col-md-4">
-		<input name="email" type="text" value="<?=$record->email ?>" class="form-control input-md" required="" autocomplete="off">
-	</div>
+		<label class="col-md-3 control-label required" for="textinput">Email</label>
+		<div class="col-md-4">
+			<input name="email" type="text" value="<?=$record->email ?>" class="form-control input-md" required="" autocomplete="off">
+		</div>
 	</div>
 		
 	<div class="form-group">
-	<label class="col-md-3 control-label required" for="textinput">Username</label>
-	<div class="col-md-4">
-		<input name="username" type="text" value="<?=$record->username ?>" class="form-control input-md" required="" autocomplete="off">
-	</div>
+		<label class="col-md-3 control-label required" for="textinput">Username</label>
+		<div class="col-md-4">
+			<input name="username" type="text" value="<?=$record->username ?>" class="form-control input-md" required="" autocomplete="off">
+		</div>
 	</div>
 	
 	<!-- Password input-->
 	<div class="form-group">
-	<label class="col-md-3 control-label required" for="passwordinput">Password</label>
-	<div class="col-md-4">
-	<input name="password" type="password" class="form-control input-md" required="" autocomplete="off">
-  <p class="help-block"><?=config('auth.password copy') ?></p>
-	<? if ($form_method != 'post') { ?>
-	<p class="help-block">Leave blank to leave password unchanged.</p>
-	<? } ?>
-	</div>
+		<?=pear::label('Password','password',['class'=>'col-md-3 control-label '.(($form_method != 'post') ? '' : 'required')]) ?>
+		<div class="col-md-4">
+			<?=pear::password('password','',['class'=>'form-control input-md','autocomplete'=>'off']) ?>
+  		<p class="help-block"><?=config('auth.password copy') ?></p>
+		</div>
 	</div>
 
 	<!-- Password input-->
 	<div class="form-group">
-	<label class="col-md-3 control-label required" for="passwordinput">Confirm Password</label>
-	<div class="col-md-4">
-	<input name="confirm_password" type="password" class="form-control input-md" required="" autocomplete="off">
-	</div>
+		<?=pear::label('Confirm Password','confirm_password',['class'=>'col-md-3 control-label '.(($form_method != 'post') ? '' : 'required')]) ?>
+		<div class="col-md-4">
+			<?=pear::password('confirm_password','',['class'=>'form-control input-md','autocomplete'=>'off']) ?>
+			<? if ($form_method != 'post') { ?>
+			<p class="help-block">Leave password fields blank to leave password unchanged.</p>
+			<? } ?>
+		</div>
 	</div>
 
 	<!-- Button -->
 	<div class="form-group">
-	<div class="col-md-9">
-	<div class="pull-right">
-		<button class="js-button-submit btn btn-primary">Save</button>
+		<div class="col-md-9">
+			<div class="pull-right">
+				<button class="js-button-submit btn btn-primary">Save</button>
+			</div>
 		</div>
-	</div>
 	</div>
 	
 </form>
