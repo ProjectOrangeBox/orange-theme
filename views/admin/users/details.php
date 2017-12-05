@@ -16,14 +16,14 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::label('Email','email',['class'=>'col-md-3 control-label required']) ?>
+		<?=pear::field_label('o_user_model','email') ?>
 		<div class="col-md-4">
 			<?=pear::input('email',$record->email,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
 	</div>
 
 	<div class="form-group">
-		<?=pear::label('Username','username',['class'=>'col-md-3 control-label required']) ?>
+		<?=pear::field_label('o_user_model','username') ?>
 		<div class="col-md-4">
 			<?=pear::input('username',$record->username,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>

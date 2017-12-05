@@ -1,7 +1,7 @@
 <?php
 
 class SettingsController extends MY_Controller {
-	use admin_trait;
+	use admin_controller_trait;
 
 	public $controller        = 'settings';
 	public $controller_title  = 'Setting';

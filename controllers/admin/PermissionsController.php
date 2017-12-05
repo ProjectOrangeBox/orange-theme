@@ -1,7 +1,7 @@
 <?php 
 
 class PermissionsController extends MY_Controller {
-	use admin_trait;
+	use admin_controller_trait;
 
 	public $controller        = 'permissions';
 	public $controller_title  = 'Permission';

@@ -22,7 +22,7 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::label('Group','group',['class'=>'col-md-3 control-label required']) ?>
+		<?=pear::field_label('o_setting_model','group') ?>
 		<div class="col-md-4">
 			<?=pear::combobox('group',$record->group,$settings_group_catalog) ?>
 		</div>
@@ -30,7 +30,7 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::label('Name','name',['class'=>'col-md-3 control-label required']) ?>
+		<?=pear::field_label('o_setting_model','name') ?>
 		<div class="col-md-4">
 			<?=pear::input('name',$record->name,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
@@ -38,7 +38,7 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::label('Value','value',['class'=>'col-md-3 control-label']) ?>
+		<?=pear::field_label('o_setting_model','value') ?>
 		<div class="col-md-4">
 			<?=pear::input('value',$record->value,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
@@ -46,7 +46,7 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::label('Help','help',['class'=>'col-md-3 control-label']) ?>
+		<?=pear::field_label('o_setting_model','help') ?>
 		<div class="col-md-4">
 			<?=pear::input('help',$record->help,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
@@ -67,7 +67,7 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::label('Internal','internal',['class'=>'col-md-3 control-label']) ?>
+		<?=pear::field_label('o_setting_model','internal') ?>
 		<div class="col-md-4">
 			<?=pear::input('internal',$record->internal,['readonly'=>'readonly','class'=>'form-control input-md']) ?>
 		</div>

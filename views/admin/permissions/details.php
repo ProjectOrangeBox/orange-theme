@@ -16,7 +16,7 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::label('Group','group',['class'=>'col-md-3 control-label required']) ?>
+		<?=pear::field_label('o_permission_model','group') ?>
 		<div class="col-md-4">
 			<?=pear::combobox('group',$record->group,$permissions_group_catalog) ?>
 		</div>
@@ -24,7 +24,7 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::label('Key','key',['class'=>'col-md-3 control-label required']) ?>
+		<?=pear::field_label('o_permission_model','key') ?>
 		<div class="col-md-4">
 			<?=pear::input('key',$record->key,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
@@ -32,7 +32,7 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::label('Description','description',['class'=>'col-md-3 control-label required']) ?>
+		<?=pear::field_label('o_permission_model','description') ?>
 		<div class="col-md-4">
 			<?=pear::input('description',$record->description,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>

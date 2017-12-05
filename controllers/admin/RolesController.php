@@ -1,7 +1,7 @@
 <?php
 
 class RolesController extends MY_Controller {
-	use admin_trait;
+	use admin_controller_trait;
 
 	public $controller        = 'roles';
 	public $controller_title  = 'Role';

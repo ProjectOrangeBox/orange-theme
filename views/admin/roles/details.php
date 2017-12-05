@@ -16,7 +16,7 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::label('Name','name',['class'=>'col-md-3 control-label required']) ?>
+		<?=pear::field_label('o_role_model','name') ?>
 		<div class="col-md-4">
 			<?=pear::input('name',$record->name,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
@@ -24,7 +24,7 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::label('Description','description',['class'=>'col-md-3 control-label']) ?>
+		<?=pear::field_label('o_role_model','description') ?>
 		<div class="col-md-4">
 			<?=pear::input('description',$record->description,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>

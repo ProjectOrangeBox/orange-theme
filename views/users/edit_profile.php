@@ -12,14 +12,14 @@
 	
 	<!-- Text input-->
 	<div class="form-group">
-		<label class="col-md-3 control-label required" for="textinput">Email</label>
+		<?=pear::field_label('o_user_model','email') ?>
 		<div class="col-md-4">
 			<input name="email" type="text" value="<?=$record->email ?>" class="form-control input-md" required="" autocomplete="off">
 		</div>
 	</div>
 		
 	<div class="form-group">
-		<label class="col-md-3 control-label required" for="textinput">Username</label>
+		<?=pear::field_label('o_user_model','username') ?>
 		<div class="col-md-4">
 			<input name="username" type="text" value="<?=$record->username ?>" class="form-control input-md" required="" autocomplete="off">
 		</div>
