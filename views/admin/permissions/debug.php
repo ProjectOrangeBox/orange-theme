@@ -13,7 +13,7 @@
 				<ul>
 			
 				<? foreach ($user as $key=>$val) { ?>
-						<li class="list-group-item"><?=$key ?>:<img width=16 height=0><?=o::convert_to_string($val) ?></li>
+						<li class="list-group-item"><?=$key ?>:<img width=16 height=0><?=convert_to_string($val) ?></li>
 				<? } ?>
 				
 				</ul>
@@ -58,7 +58,7 @@
 			<ul>
 		
 			<? foreach ($role as $key=>$val) { ?>
-					<li class="list-group-item"><?=$key ?>:<img width=16 height=0><?=o::convert_to_string($val) ?></li>
+					<li class="list-group-item"><?=$key ?>:<img width=16 height=0><?=convert_to_string($val) ?></li>
 			<? } ?>
 			
 			</ul>
@@ -92,7 +92,7 @@
 		<ul>
 	
 		<? foreach ($permission as $key=>$val) { ?>
-				<li class="list-group-item"><?=$key ?>:<img width=16 height=0><?=o::convert_to_string($val) ?></li>
+				<li class="list-group-item"><?=$key ?>:<img width=16 height=0><?=convert_to_string($val) ?></li>
 		<? } ?>
 		
 		</ul>
