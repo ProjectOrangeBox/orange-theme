@@ -48,7 +48,7 @@
 									<?=pear::edit_button($controller_path.'/editor/'.$row->id) ?>
 								<? } ?>
 								
-								<? if (user::has_role(config('auth.admin role id'))) { /* admin view */ ?>
+								<? if (user::has_role(ADMIN_ROLE_ID)) { /* admin view */ ?>
 									<a href="<?=$controller_path ?>/details/<?=$row->id ?>"><i class="fa fa-pencil-square fa-lg"></i></a>
 								<? } ?>
 								
