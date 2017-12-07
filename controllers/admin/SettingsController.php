@@ -16,8 +16,11 @@ class SettingsController extends MY_Controller {
 	public function editorAction($id=null) {
 		$this->_edit_record($id);
 		
+		/* get the view data */
+		$record = $this->load->get_var('record');
+		
 		$this->page->data([
-			'options'=>json_decode($this->data['record']->options),
+			'options'=>json_decode($record->options,true),
 		])->render('/admin/settings/editor');
 	}
 

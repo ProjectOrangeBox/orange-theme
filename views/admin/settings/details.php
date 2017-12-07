@@ -77,10 +77,11 @@
 	<div class="form-group">
 		<?=pear::label('Options','options',['class'=>'col-md-3 control-label']) ?>
 	  <div class="col-md-7">
-			<?=pear::textarea(['name'=>'options','value'=>$record->options,'class'=>'form-control','cols'=>66,'rows'=>4]) ?>
+			<?=pear::textarea(['name'=>'options','value'=>$record->options,'class'=>'form-control fixed-font','cols'=>66,'rows'=>4]) ?>
+			<h5>Example Options:</h5>
 			<pre>{"type":"radio","options":{"1":"Red","2":"Green","3":"Yellow","4":"Blue"}}
 {"type":"textarea","rows":5}
-{"type":"checkbox","value":1,"copy":"Active"}
+{"type":"checkbox","copy":"Show","data-on":8,"data-off":9}
 {"type":"select","options":{"1":"Red","2":"Green","3":"Yellow","4":"Blue"}}
 {"type":"text","width":"50","mask":"int"}</pre>
 	  </div>

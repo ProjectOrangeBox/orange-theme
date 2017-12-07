@@ -37,13 +37,13 @@
 /*
 {"type":"radio","options":{"1":"Red","2":"Green","3":"Yellow","4":"Blue"}}
 {"type":"textarea","rows":5}
-{"type":"checkbox","value":1,"copy":"Active"}
+{"type":"checkbox","copy":"Show","data-on":8,"data-off":9}
 {"type":"select","options":{"1":"Red","2":"Green","3":"Yellow","4":"Blue"}}
 {"type":"text","width":"50","mask":"int"}
 */
-	switch($options->type) {
+	switch($options['type']) {
 		case 'radio':
-			foreach ($options->options as $value=>$copy) {
+			foreach ($options['options'] as $value=>$copy) {
 				echo '<div class="radio">';
 				echo '<label>';
 				echo '<input type="radio" name="value" '.(($record->value == $value) ? 'checked' : '').' value="'.$value.'">'.$copy;
@@ -52,24 +52,24 @@
 			}
 		break;
 		case 'textarea':
-			echo '<textarea name="value" class="form-control" rows="'.$options->rows.'">'.$record->value.'</textarea>';
+			echo '<textarea name="value" class="form-control" rows="'.$options['rows'].'">'.$record->value.'</textarea>';
 		break;
 		case 'checkbox':
 			echo '<div class="checkbox">';
 			echo '<label>';
-			echo '<input type="checkbox" class="js-checker" name="value" '.(($record->value) ? 'checked' : '').' value="'.$options->value.'"> '.$options->copy;
+			echo '<input type="checkbox" class="js-checker" name="value" '.(($record->value == $options['data-on']) ? 'checked' : '').' data-on="'.$options['data-on'].'" data-off="'.$options['data-off'].'"> '.$options['copy'];
 			echo '</label>';
 			echo '</div>';
 		break;
 		case 'select':
 	    	echo '<select name="value" class="form-control select3">';
-				foreach ($options->options as $value=>$copy) {
+				foreach ($options['options'] as $value=>$copy) {
 					echo '<option value="'.$value.'" '.(($record->value == $value) ? 'selected' : '').'>'.$copy.'</option>';
 				}			
 	    	echo '</select>';
 		break;
 		case 'text':
-		 echo '<input name="value" type="text" data-mask="'.$options->mask.'" value="'.$record->value.'" class="form-control" style="width:'.$options->width.'%" autocomplete="off">';
+		 echo '<input name="value" type="text" data-mask="'.$options['mask'].'" value="'.$record->value.'" class="form-control" style="width:'.$options['width'].'%" autocomplete="off">';
 		break;
 		default:
 		 echo '<input name="value" type="text" value="'.$record->value.'" class="form-control input-md" autocomplete="off">';

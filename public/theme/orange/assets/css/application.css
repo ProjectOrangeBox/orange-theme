@@ -90,3 +90,8 @@ td.actions form {
 	text-align: right;
 	padding: 12px;
 }
+
+.fixed-font {
+	font-family: "Courier New", Courier, mono;
+	font-weight: bold;
+}
