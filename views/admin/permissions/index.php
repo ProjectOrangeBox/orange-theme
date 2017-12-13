@@ -8,7 +8,7 @@
   <div class="col-md-6"><?=pear::title($controller_titles,'key') ?></div>
   <div class="col-md-6">
   	<div class="pull-right">
-			<? if (user::can('url::/admin/permissions/post~index')) { ?>
+			<? if (user::can('url::/admin/permissions::index~post')) { ?>
 				<?=pear::new_button($controller_path.'/details','New '.$controller_title) ?>
 			<? } ?>
   	</div>

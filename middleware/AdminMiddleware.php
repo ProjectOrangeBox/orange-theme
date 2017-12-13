@@ -20,16 +20,16 @@ class AdminMiddleware extends Middleware_base {
 	public function run() {
 		$this->load->library(['auth','user']);
 
-		$route = strtolower($this->router->fetch_directory() . $this->router->fetch_class(true) . '/' . $this->router->fetch_request_method() . '~' . $this->router->fetch_method(true));
-
-		$key = 'url::/'.$route;
+		$key = 'url::/'.strtolower($this->router->fetch_directory() . $this->router->fetch_class(true) . '::' . $this->router->fetch_method(true) .'~' . $this->router->fetch_request_method());
 
 		if (ENVIRONMENT == 'development') {
-			$this->o_permission_model->insert([
-				'description' => '*'.ucwords(str_replace('/',' ',$route)),
+			$record = [
+				'description' => ucwords(str_replace('/',' ',strtolower($this->router->fetch_directory()) . $this->router->fetch_request_method() . ' ' . $this->router->fetch_class(true) . ' ' . $this->router->fetch_method(true))),
 				'group' => $this->router->fetch_class(true),
 				'key' => $key,
-			]);
+			];
+
+			$this->o_permission_model->insert($record);
 		}
 
 		if (user::cannot($key)) {

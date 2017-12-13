@@ -8,7 +8,7 @@
   <div class="col-md-6"><?=pear::title($controller_titles,'sliders') ?></div>
   <div class="col-md-6">
   	<div class="pull-right">
-			<? if (user::can('url::/admin/settings/post~index')) { ?>
+			<? if (user::can('url::/admin/settings::index~post')) { ?>
 				<?=pear::new_button($controller_path.'/details','New '.$controller_title) ?>
   		<? } ?>
   	</div>

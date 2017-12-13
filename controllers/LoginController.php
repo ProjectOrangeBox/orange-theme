@@ -8,11 +8,21 @@ class LoginController extends MY_Controller {
 		if ($this->auto_login->test()) {
 			redirect(site_url('{dashboard}'));
 		}
+		
+		/* anti script kiddie */
+		$this->output->set_cookie('config',md5($this->input->server('REMOTE_ADDR')),3600);
 
 		$this->page->render();
 	}
 
 	public function indexPostAction() {
+		/* anti script kiddie */
+		if ($this->input->cookie('config') != md5($this->input->server('REMOTE_ADDR'))) {
+			$this->wallet->msg(config('auth.general failure error'),'red',$this->controller_path);
+		}
+
+		$this->output->set_cookie('config','');
+
 		if (!$this->auth->login($this->input->request('email'),$this->input->request('password'))) {
 			$this->wallet->msg(errors::as_html('','<br>'),'red',$this->controller_path);
 		}

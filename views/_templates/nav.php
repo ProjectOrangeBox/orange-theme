@@ -11,32 +11,16 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-						<? if (user::can('url::/backorder/index')) { ?>
-						<li><a href="/backorder">Backorder Mgr</a></li>
-						<? } ?>
-
-						<? if (user::can(['url::/admin/users/index','url::/admin/roles/index','url::/admin/permissions/index','url::/admin/settings/index'])) { ?>
+					<? if (user::has_one_permission_of(['url::/admin/users::index~get','url::/admin/roles::index~get','url::/admin/permissions::index~get','url::/admin/permissions::index~get'])) { ?>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
 						
 								<ul class="dropdown-menu">
-									<? if (user::can('url::/admin/users/index')) { ?>
-									<li><a href="<?=site_url('/admin/users') ?>">Users</a></li>
-									<? } ?>
-						
-									<? if (user::can('url::/admin/roles/index')) { ?>
-									<li><a href="<?=site_url('/admin/roles') ?>">Roles</a></li>
-									<? } ?>
-						
-									<? if (user::can('url::/admin/permissions/index')) { ?>
-									<li><a href="<?=site_url('/admin/permissions') ?>">Permissions</a></li>
-									<? } ?>
-									
-									<? if (user::can('url::/admin/settings/index')) { ?>
-									<li><a href="<?=site_url('/admin/settings') ?>">Settings</a></li>
-									<li><a href="<?=site_url('/admin/utilities/config-viewer') ?>">Config Viewer</a></li>
-									<? } ?>
-
+									<?=pear::menu_li('url::/admin/users::index~get','/admin/users','Users') ?>
+									<?=pear::menu_li('url::/admin/roles::index~get','/admin/roles/','Roles') ?>
+									<?=pear::menu_li('url::/admin/permissions::index~get','/admin/permissions','Permissions') ?>
+									<?=pear::menu_li('url::/admin/settings::index~get','/admin/settings','Settings') ?>
+									<?=pear::menu_li('url::/admin/utilities/config_viewer::index~get','/admin/utilities/config-viewer','Config Viewer') ?>
 								</ul>
 						</li>
 						<? } ?>
