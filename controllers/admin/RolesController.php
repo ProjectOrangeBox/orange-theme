@@ -60,6 +60,12 @@ class RolesController extends MY_Controller {
 		$this->_rest_output();
 	}
 
+	public function flush_aclAction() {
+		delete_cache_by_tags('acl');
+		
+		redirect($this->controller_path);
+	}
+
 	protected function _add_permissions($role_id) {
 		/* if no errors save the roles */
 		if (!errors::has()) {
