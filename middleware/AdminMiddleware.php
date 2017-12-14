@@ -22,15 +22,13 @@ class AdminMiddleware extends Middleware_base {
 
 		$key = 'url::/'.strtolower($this->router->fetch_directory() . $this->router->fetch_class(true) . '::' . $this->router->fetch_method(true) .'~' . $this->router->fetch_request_method());
 
-		if (ENVIRONMENT == 'development') {
-			$record = [
-				'description' => ucwords(str_replace('/',' ',strtolower($this->router->fetch_directory()) . $this->router->fetch_request_method() . ' ' . $this->router->fetch_class(true) . ' ' . $this->router->fetch_method(true))),
-				'group' => $this->router->fetch_class(true),
-				'key' => $key,
-			];
+		$record = [
+			'description' => ucwords(str_replace('/',' ',strtolower($this->router->fetch_directory()) . $this->router->fetch_request_method() . ' ' . $this->router->fetch_class(true) . ' ' . $this->router->fetch_method(true))),
+			'group' => $this->router->fetch_class(true),
+			'key' => $key,
+		];
 
-			$this->o_permission_model->insert($record);
-		}
+		$this->o_permission_model->insert($record);
 
 		if (user::cannot($key)) {
 			errors::display(403);
