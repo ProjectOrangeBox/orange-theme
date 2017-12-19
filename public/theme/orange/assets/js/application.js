@@ -47,4 +47,13 @@ document.addEventListener("DOMContentLoaded",function(e){
 	$('[data-widget]').each(function() {
 		widget_minipipe(this);
 	});
+
+	$('.js-get').click(function(e) {
+		e.preventDefault();
+		
+		$.get($(this).attr('href'));
+		
+		$.noticeAdd({text: $(this).data('msg'), type: 'info'});
+	});
+
 });

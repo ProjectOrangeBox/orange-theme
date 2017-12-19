@@ -12,13 +12,5 @@ class PermissionsController extends MY_Controller {
 	public $catalogs = [
 		'permissions_group_catalog'=>['model'=>'o_permission_model','array_key'=>'group','select'=>'group'],
 	];
-
-	public function debugAction() {
-		$this->page->data([
-			'users'=>$this->o_user_model->get_many(),
-			'roles'=>$this->o_role_model->get_many(),
-			'permissions'=>$this->o_permission_model->get_many(),
-		])->render('admin/permissions/debug');
-	}
 	
 } /* end class */
