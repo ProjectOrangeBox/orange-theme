@@ -48,7 +48,7 @@ class Plugin_flash_msg {
 	
 		/* add this to every page because they may want to trigger msgs client side via javascript */
 		ci()->page
-			->js_variables('messages',(array)$msgs)
+			->js_variable('messages',(array)$msgs)
 			->css('/theme/orange/assets/plugins/flash-msg/flash-msg.css')
 			->js('/theme/orange/assets/plugins/flash-msg/jquery.bootstrap.flash-msg.js');
 	

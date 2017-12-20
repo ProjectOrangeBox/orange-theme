@@ -23,8 +23,8 @@ class AdminMiddleware extends Middleware_base {
 		$key = 'url::/'.strtolower($this->router->fetch_directory() . $this->router->fetch_class(true) . '::' . $this->router->fetch_method(true) .'~' . $this->router->fetch_request_method());
 
 		$record = [
-			'description' => ucwords(str_replace('/',' ',strtolower($this->router->fetch_directory()) . $this->router->fetch_request_method() . ' ' . $this->router->fetch_class(true) . ' ' . $this->router->fetch_method(true))),
-			'group' => $this->router->fetch_class(true),
+			'group' => filter_human($this->router->fetch_class(true)),
+			'description' => filter_human($this->router->fetch_directory() . $this->router->fetch_request_method() . ' ' . $this->router->fetch_class(true) . ' ' . $this->router->fetch_method(true)),
 			'key' => $key,
 		];
 
