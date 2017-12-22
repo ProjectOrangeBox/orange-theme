@@ -2,7 +2,7 @@
 
 <? pear::section('section_container') ?>
 
-<?php $tabs = pear::tab_prepare($tabs,$records,'group','name') ?>
+<?php $tabs = pear::tab_prepare($records,'group','name') ?>
 
 <div class="row">
   <div class="col-md-6"><?=pear::title($controller_titles,'sliders') ?></div>

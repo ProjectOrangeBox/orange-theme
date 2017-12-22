@@ -2,7 +2,7 @@
 
 <? pear::section('section_container') ?>
 
-<? $tabs = pear::tab_prepare($tabs,$records,'group','description') ?>
+<? $tabs = pear::tab_prepare($records,'group','description') ?>
 
 <div class="row">
   <div class="col-md-6"><?=pear::title($controller_titles,'key') ?></div>

@@ -34,7 +34,7 @@
 
 	<!-- permissions -->
 
-	<?php $tabs = pear::tab_prepare($tabs,$catalog_permissions,'group','description') ?>
+	<?php $tabs = pear::tab_prepare($catalog_permissions,'group','description') ?>
 	
   <!-- Nav tabs -->
   <ul class="nav nav-pills js-tabs">

@@ -78,7 +78,7 @@ td.actions form {
 }
 
 .navbar-brand:hover {
-	color: #007d62 !important;
+	color: #286090 !important;
 }
 
 .admin .nav-pills {
@@ -94,4 +94,9 @@ td.actions form {
 .fixed-font {
 	font-family: "Courier New", Courier, mono;
 	font-weight: bold;
+}
+
+.col-margin-tb {
+	margin-top: 8px;
+	margin-bottom: 8px;
 }

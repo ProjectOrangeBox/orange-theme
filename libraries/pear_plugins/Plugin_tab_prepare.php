@@ -3,7 +3,8 @@
 class Plugin_tab_prepare {
 
 	public function __construct() {
-		pear::attach('tab_prepare',function($tabs,$records,$key,$sort_key) {
+		pear::attach('tab_prepare',function($records,$key,$sort_key) {
+			$tabs = [];
 
 			/* build the tabs */
 			foreach ($records as $row) {
