@@ -13,7 +13,7 @@ class Plugin_search_sort_field {
 				])
 				->css('/theme/orange/assets/plugins/search-sort/bootstrap-sortable.min.css',75);
 
-			return '<div class="form-group has-feedback" style="display:inline-block"><input type="text" id="form_search_sort" class="form-control input-sm" style="width:'.$length.'px;" placeholder="search"><i class="fa fa-search form-control-feedback"></i></div>';
+			return '<div class="form-group has-feedback" style="display:inline-block"><input type="text" id="search_sort_filter" class="form-control input-sm" style="width:'.$length.'px;" placeholder="search"><i class="fa fa-search form-control-feedback"></i></div>';
 		});
 	}
 

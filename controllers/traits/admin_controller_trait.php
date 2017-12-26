@@ -113,8 +113,10 @@ trait admin_controller_trait {
 	 * @return void
 	 */
 	protected function _new_record() {
+		$primary_key = $this->{$this->controller_model}->get_primary_key();
+
 		$this->page->data([
-			'record'          => (object) [$this->_primary_id => -1],
+			'record'          => (object) [$primary_key => -1],
 			'ci_title_prefix' => 'New',
 			'form_method'     => 'post',
 		]);
@@ -132,7 +134,10 @@ trait admin_controller_trait {
 	 */
 	protected function _edit_record($id = null) {
 		/* let's make sure the $id is in the correct format */
-		$this->validate->variable($this->{$this->controller_model}->rule($this->{$this->controller_model}->get_primary_key(), 'rules'), $id)->die_on_fail();
+		$primary_key = $this->{$this->controller_model}->get_primary_key();
+		$primary_rules = $this->{$this->controller_model}->rule($primary_key,'rules');
+		
+		$this->validate->variable($primary_rules, $id)->die_on_fail();
 
 		$this->page->data([
 			'record'          => $this->{$this->controller_model}->get($id),
