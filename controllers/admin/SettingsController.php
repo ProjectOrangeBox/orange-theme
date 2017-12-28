@@ -14,14 +14,14 @@ class SettingsController extends MY_Controller {
 	];
 
 	public function editorAction($id=null) {
-		$this->_edit_record($id);
+		/* do the standard load the record */
+		$this->_edit_record(hex2bin($id));
 		
-		/* get the view data */
+		/* grab the record data load in the previous step */
 		$record = $this->load->get_var('record');
 		
-		$this->page->data([
-			'options'=>json_decode($record->options,true),
-		])->render('/admin/settings/editor');
+		/* decode the json for the options */
+		$this->page->data(['options'=>json_decode($record->options,true)])->render('/admin/settings/editor');
 	}
 
 } /* end class */

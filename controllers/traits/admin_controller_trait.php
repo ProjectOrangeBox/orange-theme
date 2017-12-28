@@ -38,7 +38,7 @@ trait admin_controller_trait {
 	 * @return void
 	 */
 	public function detailsAction($id = null) {
-		((int) $id > 0) ? $this->_edit_record($id) : $this->_new_record();
+		($id) ? $this->_edit_record(hex2bin($id)) : $this->_new_record();
 
 		$this->page->render();
 	}
@@ -113,10 +113,8 @@ trait admin_controller_trait {
 	 * @return void
 	 */
 	protected function _new_record() {
-		$primary_key = $this->{$this->controller_model}->get_primary_key();
-
 		$this->page->data([
-			'record'          => (object) [$primary_key => -1],
+			'record'          => (object)[],
 			'ci_title_prefix' => 'New',
 			'form_method'     => 'post',
 		]);

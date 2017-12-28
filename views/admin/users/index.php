@@ -33,7 +33,7 @@
 					<td class="text-center"><?=pear::fa_enum_icon($row->is_active) ?></td>
 					<td class="text-center actions">
 						<? if (user::has_role($row->edit_role_id)) { ?>
-							<?=pear::edit_button($controller_path.'/details/'.$row->id) ?>
+							<?=pear::edit_button($controller_path.'/details/'.bin2hex($row->id)) ?>
 						<? } ?>
 						<? if (user::has_role($row->delete_role_id)) { ?>
 							<?=pear::delete_button($controller_path,['id'=>$row->id]) ?>

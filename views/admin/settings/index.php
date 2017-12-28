@@ -45,11 +45,11 @@
 							<td><?=e($row->group) ?></td>
 							<td class="text-center actions">
 								<? if (user::has_role($row->edit_role_id)) { ?>
-									<?=pear::edit_button($controller_path.'/editor/'.$row->id) ?>
+									<?=pear::edit_button($controller_path.'/editor/'.bin2hex($row->id)) ?>
 								<? } ?>
 								
 								<? if (user::has_role(ADMIN_ROLE_ID)) { /* admin view */ ?>
-									<a href="<?=$controller_path ?>/details/<?=$row->id ?>"><i class="fa fa-pencil-square fa-lg"></i></a>
+									<a href="<?=$controller_path ?>/details/<?=bin2hex($row->id) ?>"><i class="fa fa-pencil-square fa-lg"></i></a>
 								<? } ?>
 								
 								<? if (user::has_role($row->delete_role_id)) { ?>
