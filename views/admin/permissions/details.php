@@ -22,7 +22,7 @@
 		<?=pear::field_label('o_permission_model','key') ?>
 		<div class="col-md-4">
 			<?=pear::input('key',$record->key,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
-  		<p class="help-block">Use extreme caution when changing this value.</p>
+			<?=pear::form_help('Use extreme caution when changing this value.') ?>
 		</div>
 	</div>
 	<!-- Text input-->

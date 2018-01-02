@@ -12,21 +12,17 @@
 	<hr>
 	<!-- Text input-->
 	<div class="form-group">
-	  <label class="col-md-3 control-label" for="textinput">Group</label>
-		<div class="col-md-6">
-			<p class="form-control-static required"><?=$record->group ?></p>
-		</div>
+		<?=pear::field_label('o_setting_model','group') ?>
+		<div class="col-md-6"><?=pear::form_static($record->group) ?></div>
 	</div>
 	<!-- Text input-->
 	<div class="form-group">
-	  <label class="col-md-3 control-label" for="textinput">Name</label>
-		<div class="col-md-6">
-      <p class="form-control-static required"><?=$record->name ?></p>
-		</div>
+		<?=pear::field_label('o_setting_model','name') ?>
+		<div class="col-md-6"><?=pear::form_static($record->name) ?></div>
 	</div>
 	<!-- Text input-->
 	<div class="form-group">
-	  <label class="col-md-3 control-label" for="textinput">Value</label>
+		<?=pear::field_label('o_setting_model','value') ?>
 	  <div class="col-md-6">
 	<?php
 	switch($options['type']) {
@@ -63,7 +59,7 @@
 		 echo '<input name="value" type="text" value="'.$record->value.'" class="form-control input-md" autocomplete="off">';
 	}
 	?>
-	    <p class="help-block"><?=$record->help ?></p>
+			<?=pear::form_help($record->help) ?>
 	  </div>
 	</div>
 	<!-- Checkbox -->

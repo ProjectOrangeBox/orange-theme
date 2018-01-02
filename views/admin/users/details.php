@@ -28,7 +28,7 @@
 		<?=pear::label('Password','password',['class'=>'col-md-3 control-label '.(($form_method != 'post') ? '' : 'required')]) ?>
 		<div class="col-md-4">
 			<?=pear::password('password','',['class'=>'form-control input-md','autocomplete'=>'off']) ?>
-  		<p class="help-block"><?=config('auth.password copy') ?></p>
+			<?=pear::form_help(config('auth.password copy')) ?>
 		</div>
 	</div>
 	<!-- Password input-->
@@ -37,7 +37,7 @@
 		<div class="col-md-4">
 			<?=pear::password('confirm_password','',['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 			<?php if ($form_method != 'post') { ?>
-			<p class="help-block">Leave password fields blank to leave password unchanged.</p>
+				<?=pear::form_help('Leave password fields blank to leave password unchanged.') ?>
 			<? } ?>
 		</div>
 	</div>
