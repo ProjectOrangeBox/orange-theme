@@ -1,22 +1,28 @@
 <?php
+/*
+ * Orange Framework Extension
+ *
+ * @package	CodeIgniter / Orange
+ * @author Don Myers
+ * @license http://opensource.org/licenses/MIT MIT License
+ * @link https://github.com/ProjectOrangeBox
+ *
+ */
+
 class LoginController extends MY_Controller {
 	public $controller_path   = '/login';
-	//public $libraries = ['auth','auto_login'];
 
 	public function indexAction() {
-		/* are do they have a remember cookie? */
 		if (ci('auto_login')->test()) {
 			redirect(site_url('{dashboard}'));
 		}
-		
-		/* anti script kiddie */
-		ci('output')->set_cookie('config',md5(ci('input')->server('REMOTE_ADDR')),3600);
 
+		ci('output')->set_cookie('config',md5(ci('input')->server('REMOTE_ADDR')),3600);
+		
 		ci('page')->render();
 	}
 
 	public function indexPostAction() {
-		/* anti script kiddie */
 		if (ci('input')->cookie('config') != md5(ci('input')->server('REMOTE_ADDR'))) {
 			ci('wallet')->msg(config('auth.general failure error'),'red',$this->controller_path);
 		}
@@ -36,10 +42,9 @@ class LoginController extends MY_Controller {
 
 	public function invertedAction() {
 		ci('auth')->logout();
-
+		
 		ci('auto_login')->clear();
-
+		
 		ci('wallet')->msg('Your are now logged out.','blue',$this->controller_path);
 	}
-
-} /* end class */
+}

@@ -1,4 +1,13 @@
 <?php
+/*
+ * Orange Framework Extension
+ *
+ * @package	CodeIgniter / Orange
+ * @author Don Myers
+ * @license http://opensource.org/licenses/MIT MIT License
+ * @link https://github.com/ProjectOrangeBox
+ *
+ */
 
 class RolesController extends MY_Controller {
 	use admin_controller_trait;
@@ -13,63 +22,47 @@ class RolesController extends MY_Controller {
 		'catalog_permissions'=>['model'=>'o_permission_model','array_key'=>'id'],
 	];
 
-	/* show new / edit form */
 	public function detailsAction($id=null) {
 		if ((int)$id > 0) {
 			$this->_edit_record($id);
-
-			$this->data['permissions'] = simple_array($this->o_role_model->permissions((int)$id));
+			$this->data['permissions'] = simple_array(ci('o_role_model')->permissions((int)$id));
 		} else {
 			$this->_new_record();
-			
 			$this->data['permissions'] = [];
 		}
-
-		$this->page->data($this->data)->render();
+		ci('page')->data($this->data)->render();
 	}
 
-	/* create a new record - REST post */
 	public function indexPostAction() {
-		$this->data['primary_key'] = $this->o_role_model->insert($this->input->request());
-
+		$this->data['primary_key'] = ci('o_role_model')->insert(ci('input')->request());
 		$this->_add_permissions($this->data['primary_key']);
-
 		$this->_rest_output();
 	}
 
-	/* update a record - REST patch */
 	public function indexPatchAction() {
-		$data = $this->input->request();
+		$data = ci('input')->request();
 
-		$this->o_role_model->update($data);
+		ci('o_role_model')->update($data);
 
 		$this->_add_permissions($data['id']);
-
 		$this->_rest_output();
 	}
 
-	/* delete a record - REST delete */
 	public function indexDeleteAction() {
-		$this->o_role_model->delete($this->input->request());
+		ci('o_role_model')->delete(ci('input')->request());
 
 		if (!errors::has()) {
-			/* first remove all of the roles */
-			$this->o_role_model->remove_role($this->input->request('id'),array_keys($this->o_role_model->roles($this->input->request('id'))));
+			ci('o_role_model')->remove_role(ci('input')->request('id'),array_keys(ci('o_role_model')->roles(ci('input')->request('id'))));
 		}
 
 		$this->_rest_output();
 	}
 
 	protected function _add_permissions($role_id) {
-		/* if no errors save the roles */
 		if (!errors::has()) {
+			ci('o_role_model')->remove_permission($role_id,null);
 
-			/* first remove all of the roles */
-			$this->o_role_model->remove_permission($role_id,null);
-
-			/* add the new ones */
-			$this->o_role_model->add_permission($role_id,$this->input->request('permissions'));
+			ci('o_role_model')->add_permission($role_id,ci('input')->request('permissions'));
 		}
 	}
-
-} /* end class */
+}

@@ -1,7 +1,5 @@
 <? pear::extends('_templates/orange_admin') ?>
-
 <? pear::section('section_container') ?>
-
 <?=pear::open_multipart($controller_path,['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'],['id'=>$record->id]) ?>
 	<div class="row">
 		<div class="col-md-6"><h3><?=$ci_title_prefix ?> <?=$controller_title ?></h3></div>
@@ -12,35 +10,25 @@
 	  </div>
 	</div>
 	<hr>
-
 	<!-- Text input-->
 	<div class="form-group">
-	  <label class="col-md-3 control-label" for="textinput">Group</label>  
+	  <label class="col-md-3 control-label" for="textinput">Group</label>
 		<div class="col-md-6">
 			<p class="form-control-static required"><?=$record->group ?></p>
 		</div>
 	</div>
-		
 	<!-- Text input-->
 	<div class="form-group">
-	  <label class="col-md-3 control-label" for="textinput">Name</label>  
+	  <label class="col-md-3 control-label" for="textinput">Name</label>
 		<div class="col-md-6">
       <p class="form-control-static required"><?=$record->name ?></p>
 		</div>
 	</div>
-		
 	<!-- Text input-->
 	<div class="form-group">
-	  <label class="col-md-3 control-label" for="textinput">Value</label>  
+	  <label class="col-md-3 control-label" for="textinput">Value</label>
 	  <div class="col-md-6">
-	<? 
-/*
-{"type":"radio","options":{"1":"Red","2":"Green","3":"Yellow","4":"Blue"}}
-{"type":"textarea","rows":5}
-{"type":"checkbox","copy":"Show","data-on":8,"data-off":9}
-{"type":"select","options":{"1":"Red","2":"Green","3":"Yellow","4":"Blue"}}
-{"type":"text","width":"50","mask":"int"}
-*/
+	<?php
 	switch($options['type']) {
 		case 'radio':
 			foreach ($options['options'] as $value=>$copy) {
@@ -65,7 +53,7 @@
 	    	echo '<select name="value" class="form-control select3">';
 				foreach ($options['options'] as $value=>$copy) {
 					echo '<option value="'.$value.'" '.(($record->value == $value) ? 'selected' : '').'>'.$copy.'</option>';
-				}			
+				}
 	    	echo '</select>';
 		break;
 		case 'text':
@@ -78,7 +66,6 @@
 	    <p class="help-block"><?=$record->help ?></p>
 	  </div>
 	</div>
-
 	<!-- Checkbox -->
 	<div class="form-group">
 		<div class="col-md-offset-3 col-md-4">
@@ -89,8 +76,6 @@
 			</div>
 		</div>
 	</div>
-
-
 	<!-- Submit Button -->
 	<div class="form-group">
 		<div class="col-md-12">
@@ -99,7 +84,5 @@
 			</div>
 		</div>
 	</div>
-	
 <?=pear::close() ?>
-
 <? pear::end() ?>

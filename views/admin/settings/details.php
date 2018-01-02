@@ -1,7 +1,5 @@
 <? pear::extends('_templates/orange_admin') ?>
-
 <? pear::section('section_container') ?>
-
 <?=pear::open_multipart($controller_path,['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'],['id'=>$record->id]) ?>
 	<div class="row">
 		<div class="col-md-6"><h3><?=$ci_title_prefix ?> <?=$controller_title ?></h3></div>
@@ -11,15 +9,12 @@
 	  	</div>
 	  </div>
 	</div>
-
 	<hr>
-
 	<div class="form-group">
 	  <div class="col-md-offset-3 col-md-4">
 		  <h3>Administration View</h3>
 	  </div>
 	</div>
-
 	<!-- Text input-->
 	<div class="form-group">
 		<?=pear::field_label('o_setting_model','group') ?>
@@ -27,7 +22,6 @@
 			<?=pear::combobox('group',$record->group,$settings_group_catalog) ?>
 		</div>
 	</div>
-
 	<!-- Text input-->
 	<div class="form-group">
 		<?=pear::field_label('o_setting_model','name') ?>
@@ -35,7 +29,6 @@
 			<?=pear::input('name',$record->name,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
 	</div>
-
 	<!-- Text input-->
 	<div class="form-group">
 		<?=pear::field_label('o_setting_model','value') ?>
@@ -43,7 +36,6 @@
 			<?=pear::input('value',$record->value,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
 	</div>
-
 	<!-- Text input-->
 	<div class="form-group">
 		<?=pear::field_label('o_setting_model','help') ?>
@@ -51,7 +43,6 @@
 			<?=pear::input('help',$record->help,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
 	</div>
-
 	<!-- Checkbox -->
 	<div class="form-group">
 		<div class="col-md-offset-3 col-md-4">
@@ -62,9 +53,7 @@
 			</div>
 		</div>
 	</div>
-
 	<?=pear::include('_templates/access') ?>
-
 	<!-- Text input-->
 	<div class="form-group">
 		<?=pear::field_label('o_setting_model','internal') ?>
@@ -72,7 +61,6 @@
 			<?=pear::input('internal',$record->internal,['readonly'=>'readonly','class'=>'form-control input-md']) ?>
 		</div>
 	</div>
-
 	<!-- Text input-->
 	<div class="form-group">
 		<?=pear::label('Options','options',['class'=>'col-md-3 control-label']) ?>
@@ -86,7 +74,6 @@
 {"type":"text","width":"50","mask":"int"}</pre>
 	  </div>
 	</div>
-
 	<!-- Submit Button -->
 	<div class="form-group">
 		<div class="col-md-12">
@@ -95,7 +82,5 @@
 			</div>
 		</div>
 	</div>
-
 <?=pear::close() ?>
-
 <? pear::end() ?>

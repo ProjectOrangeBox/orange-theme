@@ -1,4 +1,4 @@
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -11,10 +11,9 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-					<? if (user::has_one_permission_of(['url::/admin/users::index~get','url::/admin/roles::index~get','url::/admin/permissions::index~get','url::/admin/permissions::index~get'])) { ?>
+					<?php if (user::has_one_permission_of(['url::/admin/users::index~get','url::/admin/roles::index~get','url::/admin/permissions::index~get','url::/admin/permissions::index~get'])) { ?>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
-						
 								<ul class="dropdown-menu">
 									<?=pear::menu_li('url::/admin/users::index~get','/admin/users','Users') ?>
 									<?=pear::menu_li('url::/admin/roles::index~get','/admin/roles/','Roles') ?>
@@ -25,7 +24,6 @@
 						</li>
 						<? } ?>
           </ul>
-
 					<ul class="nav navbar-nav navbar-right">
             <li>
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -48,11 +46,3 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-
-
-
-
-
-
-
-

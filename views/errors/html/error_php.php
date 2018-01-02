@@ -14,11 +14,9 @@
 		<p class="lead left">Message:  <?=$message ?></p>
 		<p class="lead left">Filename: <?=$filepath ?></p>
 		<p class="lead left">Line Number: <?=$line ?></p>
-
 		<?php if (defined('SHOW_DEBUG_BACKTRACE') && SHOW_DEBUG_BACKTRACE === TRUE): ?>
 				<p>Backtrace:</p>
 				<?php foreach (debug_backtrace() as $error): ?>
-		
 				<?php if (isset($error['file']) && strpos($error['file'], realpath(BASEPATH)) !== 0): ?>
 					<p class="lead left">
 						File: <?php echo $error['file']; ?><br />
@@ -26,9 +24,7 @@
 						Function: <?php echo $error['function']; ?>
 					</p>
 				<?php endif ?>
-		
 			<?php endforeach ?>
-		
 		<?php endif ?>
 	</div>
 </body>

@@ -1,1 +1,1 @@
-<?=$section_container?>
+<?=$section_container ?>

@@ -1,6 +1,15 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+/*
+ * Orange Framework Extension
+ *
+ * @package	CodeIgniter / Orange
+ * @author Don Myers
+ * @license http://opensource.org/licenses/MIT MIT License
+ * @link https://github.com/ProjectOrangeBox
+ *
+ */
 
+defined('BASEPATH') or exit('No direct script access allowed');
 echo "\nDatabase error: ",
 	$heading,
 	"\n\n",

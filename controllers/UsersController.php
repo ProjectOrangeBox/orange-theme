@@ -1,4 +1,13 @@
 <?php
+/*
+ * Orange Framework Extension
+ *
+ * @package	CodeIgniter / Orange
+ * @author Don Myers
+ * @license http://opensource.org/licenses/MIT MIT License
+ * @link https://github.com/ProjectOrangeBox
+ *
+ */
 
 class UsersController extends MY_Controller {
 	use admin_controller_trait;
@@ -10,18 +19,15 @@ class UsersController extends MY_Controller {
 	public $controller_model  = 'o_user_model';
 
 	public function edit_profileAction($id) {
-		/* let's make sure the $id is in the correct format */
 		ci('validate')->variable(ci('o_user_model')->rule(ci('o_user_model')->get_primary_key(),'rules'),$id)->die_on_fail();
 
-		/* is this not you? */
 		if (ci('user')->id !== $id) {
 			errors::display('general',['heading'=>'Error','message'=>'The User ID is unknown.']);
 		}
-		
+
 		ci('page')->data(['record'=>ci('o_user_model')->get($id),'form_method'=>'patch'])->render();
 	}
 
-	/* update a record - REST patch */
 	public function indexPatchAction() {
 		$data = ci('input')->request();
 
@@ -31,11 +37,9 @@ class UsersController extends MY_Controller {
 			if (empty($data['password'])) {
 				unset($data['password']);
 			}
-
 			ci('o_user_model')->update($data);
 		}
 
 		$this->_rest_output();
 	}
-
-} /* end class */
+}

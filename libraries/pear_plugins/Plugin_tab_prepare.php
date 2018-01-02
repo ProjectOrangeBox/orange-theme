@@ -1,29 +1,31 @@
-<?php 
+<?php
+/*
+ * Orange Framework Extension
+ *
+ * @package	CodeIgniter / Orange
+ * @author Don Myers
+ * @license http://opensource.org/licenses/MIT MIT License
+ * @link https://github.com/ProjectOrangeBox
+ *
+ */
 
 class Plugin_tab_prepare {
-
 	public function __construct() {
 		pear::attach('tab_prepare',function($records,$key,$sort_key) {
 			$tabs = [];
 
-			/* build the tabs */
 			foreach ($records as $row) {
 				$tabs[$row->$key][$row->$sort_key] = $row;
 			}
-			
-			/* sort the tab names */
+
 			ksort($tabs);
-		
-			/* now sort each tabs records by the sort key */
+
 			foreach ($tabs as $idx=>$ary) {
-				/* sort the tab content */
+
 				ksort($ary);
-		
 				$tabs[$idx] = $ary;
 			}
-			
 			return $tabs;
 		});
 	}
-
-} /* end class */
+}

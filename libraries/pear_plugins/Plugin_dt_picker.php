@@ -1,21 +1,24 @@
-<?php 
+<?php
+/*
+ * Orange Framework Extension
+ *
+ * @package	CodeIgniter / Orange
+ * @author Don Myers
+ * @license http://opensource.org/licenses/MIT MIT License
+ * @link https://github.com/ProjectOrangeBox
+ *
+ */
 
 class Plugin_dt_picker {
-
 	public function __construct() {
-	
 		pear::attach('dt_picker',function($name,$value,$extra=[]) {
-			ci()->page
+			ci('page')
 				->js(['//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js','//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js'])
 				->css('//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css');
-		
 			$extra['format'] = ($extra['format']) ? $extra['format'] : 'MM/DD/YYYY h:mm A';
 			$extra['icon'] = ($extra['icon']) ? $extra['icon'] : 'calendar';
-		
 			$time = strtotime($value);
-			
 			$value = ($time < 100) ? '' : date('m/d/YYYY H:i:s',$time);
-		
 			$j = "{
 					icons: {
 						time: 'fa fa-clock-o',
@@ -32,11 +35,8 @@ class Plugin_dt_picker {
 					showClear: true
 				}";
 			$j = str_replace([chr(9),chr(10)],'',$j);
-		
-			ci()->page->domready("$('#data-time-".$name."').datetimepicker(".$j.");");
-		
+			ci('page')->domready("$('#data-time-".$name."').datetimepicker(".$j.");");
 			return '<div class="input-group date" id="data-time-'.$name.'"><input type="text" name="'.$name.'" class="form-control '.$extra['class'].'" value="'.$value.'"><span class="input-group-addon" id="data-time-'.$name.'"><span class="fa fa-'.$extra['icon'].'"></span></span></div>';
 		});
 	}
-
-} /* end class */
+}
