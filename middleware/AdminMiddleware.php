@@ -16,16 +16,10 @@ class AdminMiddleware extends Middleware_base {
 		$key = 'url::/'.strtolower($this->router->fetch_directory().$this->router->fetch_class(true).'::'.$this->router->fetch_method(true).'~'.$this->router->fetch_request_method());
 
 		if (user::has_role(ADMIN_ROLE_ID)) {
-			$record = [
-				'group' => filter_human($this->router->fetch_class(true)),
-				'description' => filter_human($this->router->fetch_directory().$this->router->fetch_request_method().' '.$this->router->fetch_class(true).' '.$this->router->fetch_method(true)),
-				'key' => $key,
-				'read_role_id'=>ADMIN_ROLE_ID,
-				'edit_role_id'=>ADMIN_ROLE_ID,
-				'delete_role_id'=>ADMIN_ROLE_ID,
-			];
+			$group = filter_human($this->router->fetch_class(true));
+			$description = filter_human($this->router->fetch_directory().$this->router->fetch_request_method().' '.$this->router->fetch_class(true).' '.$this->router->fetch_method(true));
 
-			ci('o_permission_model')->insert($record);
+			ci('o_permission_model')->add($key,$group,$description);
 		}
 
 		if (user::cannot($key)) {
