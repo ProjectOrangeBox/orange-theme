@@ -23,12 +23,10 @@ class RolesController extends MY_Controller {
 	];
 
 	public function detailsAction($id=null) {
-		$id = hex2bin($id);
-
-		if ((int)$id > 0) {
+		if ($id) {
 			$this->_edit_record($id);
 
-			$this->data['permissions'] = simple_array(ci('o_role_model')->permissions((int)$id));
+			$this->data['permissions'] = simple_array(ci('o_role_model')->permissions((int)hex2bin($id)));
 		} else {
 			$this->_new_record();
 

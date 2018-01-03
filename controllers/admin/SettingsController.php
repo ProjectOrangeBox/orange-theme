@@ -23,7 +23,7 @@ class SettingsController extends MY_Controller {
 	];
 
 	public function editorAction($id=null) {
-		$this->_edit_record(hex2bin($id));
+		$this->_edit_record($id);
 
 		$record = ci('load')->get_var('record');
 
