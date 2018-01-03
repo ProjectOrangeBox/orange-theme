@@ -20,6 +20,9 @@ class AdminMiddleware extends Middleware_base {
 				'group' => filter_human($this->router->fetch_class(true)),
 				'description' => filter_human($this->router->fetch_directory().$this->router->fetch_request_method().' '.$this->router->fetch_class(true).' '.$this->router->fetch_method(true)),
 				'key' => $key,
+				'read_role_id'=>ADMIN_ROLE_ID,
+				'edit_role_id'=>ADMIN_ROLE_ID,
+				'delete_role_id'=>ADMIN_ROLE_ID,
 			];
 
 			ci('o_permission_model')->insert($record);
