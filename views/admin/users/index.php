@@ -35,6 +35,9 @@
 						<?php if (user::has_role($row->delete_role_id)) { ?>
 							<?=pear::delete_button($controller_path,['id'=>$row->id]) ?>
 						<? } ?>
+						<?php if (user::has_role(ADMIN_ROLE_ID)) { ?>
+							<a href="<?=$controller_path.'/hijack/'.bin2hex($row->id) ?>"><i class="fa fa-user-secret fa-lg"></i></a>
+						<? } ?>
 					</td>
 				</tr>
 			<? } ?>

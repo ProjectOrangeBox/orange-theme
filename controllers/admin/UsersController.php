@@ -62,6 +62,14 @@ class UsersController extends MY_Controller {
 		$this->_rest_output();
 	}
 
+	public function hijackAction($id=null) {
+		ci('validate')->variable('hex2bin|integer',$id)->die_on_fail();
+
+		ci('auth')->refresh_userdata($id);
+
+		ci('wallet')->msg('Profile Changed', 'blue',site_url('{dashboard}'));
+	}
+
 	protected function _add_roles($user_id=null) {
 		if (!errors::has()) {
 			$user_id = ($user_id) ? $user_id : (int)ci('input')->request('id');
