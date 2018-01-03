@@ -8,7 +8,6 @@
 			<?php if (user::can('url::/admin/roles::index~post')) { ?>
 				<?=pear::new_button($controller_path.'/details','New '.$controller_title) ?>
   		<? } ?>
-			<a class="btn btn-default btn-sm" href="<?=$controller_path ?>/flush-acl"><i class="fa fa-recycle" aria-hidden="true"></i> Flush ACL</a>
   	</div>
   </div>
 </div>

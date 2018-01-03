@@ -2,7 +2,7 @@
 <?php if (user::has_role(ADMIN_ROLE_ID)) { ?>
 <div class="form-group">
 	<div class="col-md-4 col-md-offset-3">
-		<h4>Record Access <span data-toggle="collapse" data-target="#record-access"><i class="fa fa-eye-slash" aria-hidden="true"></i></span></h4>
+		<h4><span data-toggle="collapse" data-target="#record-access">Record Access <i class="fa fa-eye-slash" aria-hidden="true"></i></span></h4>
 	</div>
 </div>
 <div id="record-access" class="collapse">
