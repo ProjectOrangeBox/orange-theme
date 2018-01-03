@@ -11,29 +11,29 @@
 
 trait admin_controller_trait {
 	public function indexAction() {
-		ci('page')->render(null,['records'=>(($this->controller_model) ? $this->{$this->controller_model}->index($this->controller_order_by, $this->controller_limit) : [])]);
+		ci('page')->render(null,['records'=>(($this->controller_model) ? ci($this->controller_model)->index($this->controller_order_by, $this->controller_limit) : [])]);
 	}
 
 	public function detailsAction($id = null) {
-		($id) ? $this->_edit_record(hex2bin($id)) : $this->_new_record();
+		($id) ? $this->_edit_record($id) : $this->_new_record();
 
 		ci('page')->render();
 	}
 
 	public function indexPostAction() {
-		$this->data['primary_key'] = $this->{$this->controller_model}->insert(ci('input')->request());
+		$this->data['primary_key'] = ci($this->controller_model)->insert(ci('input')->request());
 
 		$this->_rest_output();
 	}
 
 	public function indexPatchAction() {
-		$this->{$this->controller_model}->update(ci('input')->request());
+		ci($this->controller_model)->update(ci('input')->request());
 
 		$this->_rest_output();
 	}
 
 	public function indexDeleteAction() {
-		$this->{$this->controller_model}->delete(ci('input')->request());
+		ci($this->controller_model)->delete(ci('input')->request());
 
 		$this->_rest_output();
 	}
@@ -53,13 +53,10 @@ trait admin_controller_trait {
 	}
 
 	protected function _edit_record($id = null) {
-		$primary_key = $this->{$this->controller_model}->get_primary_key();
-		$primary_rules = $this->{$this->controller_model}->rule($primary_key,'rules');
-
-		ci('validate')->variable($primary_rules, $id)->die_on_fail();
+		ci('validate')->variable(ci($this->controller_model)->rule(ci($this->controller_model)->get_primary_key(),'rules'), hex2bin($id))->die_on_fail();
 
 		ci('page')->data([
-			'record'          => $this->{$this->controller_model}->get($id),
+			'record'          => ci($this->controller_model)->get(hex2bin($id)),
 			'ci_title_prefix' => 'Edit',
 			'form_method'     => 'patch',
 		]);
