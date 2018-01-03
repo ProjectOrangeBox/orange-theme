@@ -18,7 +18,7 @@ class LoginController extends MY_Controller {
 		}
 
 		ci('output')->set_cookie('config',md5(ci('input')->server('REMOTE_ADDR')),3600);
-		
+
 		ci('page')->render();
 	}
 
@@ -42,9 +42,9 @@ class LoginController extends MY_Controller {
 
 	public function invertedAction() {
 		ci('auth')->logout();
-		
+
 		ci('auto_login')->clear();
-		
+
 		ci('wallet')->msg('Your are now logged out.','blue',$this->controller_path);
 	}
 }

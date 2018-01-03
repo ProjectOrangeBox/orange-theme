@@ -27,7 +27,7 @@ class UsersController extends MY_Controller {
 			errors::add('Your Passwords do not match.');
 		} else {
 			$this->data['primary_key'] = ci('o_user_model')->insert(ci('input')->request());
-			
+
 			$this->_add_roles($this->data['primary_key']);
 		}
 
@@ -43,7 +43,7 @@ class UsersController extends MY_Controller {
 			if (empty($data['password'])) {
 				unset($data['password']);
 			}
-			
+
 			ci('o_user_model')->update($data);
 
 			$this->_add_roles();

@@ -24,7 +24,7 @@
 		<?=pear::label('Password','password',['class'=>'col-md-3 control-label '.(($form_method != 'post') ? '' : 'required')]) ?>
 		<div class="col-md-4">
 			<?=pear::password('password','',['class'=>'form-control input-md','autocomplete'=>'off']) ?>
-			<?=pear::form_help(config('auth.password copy')) ?>			
+			<?=pear::form_help(config('auth.password copy')) ?>
 		</div>
 	</div>
 	<!-- Password input-->

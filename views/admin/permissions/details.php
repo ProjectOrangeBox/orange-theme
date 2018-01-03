@@ -32,7 +32,9 @@
 			<?=pear::input('description',$record->description,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
 	</div>
+
 	<?=pear::include('_templates/access') ?>
+
 	<!-- Submit Button -->
 	<div class="form-group">
 		<div class="col-md-12">
