@@ -32,12 +32,14 @@ class RolesController extends MY_Controller {
 			$this->_new_record();
 			$this->data['permissions'] = [];
 		}
+		
 		ci('page')->data($this->data)->render();
 	}
 
 	public function indexPostAction() {
 		$this->data['primary_key'] = ci('o_role_model')->insert(ci('input')->request());
 		$this->_add_permissions($this->data['primary_key']);
+		
 		$this->_rest_output();
 	}
 
@@ -47,6 +49,7 @@ class RolesController extends MY_Controller {
 		ci('o_role_model')->update($data);
 
 		$this->_add_permissions($data['id']);
+		
 		$this->_rest_output();
 	}
 
