@@ -36,7 +36,7 @@
 							<?=pear::delete_button($controller_path,['id'=>$row->id]) ?>
 						<? } ?>
 						<?php if (user::has_role(ADMIN_ROLE_ID)) { ?>
-							<a href="<?=$controller_path.'/hijack/'.bin2hex($row->id) ?>"><i class="fa fa-user-secret fa-lg"></i></a>
+							<a href="/login/hijack/<?=bin2hex($row->id.chr(0).md5($row->id.ci()->config->item('encryption_key'))) ?>"><i class="fa fa-user-secret fa-lg"></i></a>
 						<? } ?>
 					</td>
 				</tr>

@@ -47,4 +47,21 @@ class LoginController extends MY_Controller {
 
 		ci('wallet')->msg('Your are now logged out.','blue',$this->controller_path);
 	}
+
+	public function hijackAction($key=null) {
+		$parts = explode(chr(0),hex2bin($key));
+
+		if (count($parts) != 2) {
+			errors::display(403);
+		}
+
+		if ($parts[1] !== md5($parts[0].ci()->config->item('encryption_key'))) {
+			errors::display(403);
+		}
+
+		ci('auth')->refresh_userdata((int)$parts[0]);
+
+		redirect(site_url('{dashboard}'));
+	}
+
 }
