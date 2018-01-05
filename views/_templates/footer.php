@@ -5,7 +5,6 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jStorage/0.4.12/jstorage.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js"></script><!-- https://github.com/js-cookie/js-cookie -->
 <script src="/theme/orange/assets/js/application.js"></script>
 <!-- https://cdnjs.com/ -->
 <?=$page_js ?>
