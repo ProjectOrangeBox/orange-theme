@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded",function(e){
 	key('command+s, ctrl+s', function(event){
 		event.preventDefault();
 	
-		$('.js-button-submit').trigger('click');
+		$('.keymaster-s').trigger('click');
 	});
 	
 	/* new button */
