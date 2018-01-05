@@ -41,7 +41,7 @@
 	<div class="form-group">
 		<div class="col-md-9">
 			<div class="pull-right">
-				<button class="js-button-submit btn btn-primary">Save</button>
+				<button class="js-button-submit keymaster-s btn btn-primary">Save</button>
 			</div>
 		</div>
 	</div>
