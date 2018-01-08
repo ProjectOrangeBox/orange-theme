@@ -33,7 +33,7 @@ trait admin_controller_trait {
 	}
 
 	public function indexDeleteAction() {
-		ci($this->controller_model)->delete(ci('input')->request());
+		ci($this->controller_model)->delete(hex2bin(ci('input')->request(ci($this->controller_model)->get_primary_key())));
 
 		$this->_rest_output();
 	}
@@ -61,4 +61,5 @@ trait admin_controller_trait {
 			'form_method'     => 'patch',
 		]);
 	}
+
 }

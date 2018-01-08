@@ -53,7 +53,7 @@ class UsersController extends MY_Controller {
 	}
 
 	public function indexDeleteAction() {
-		ci('o_user_model')->delete(ci('input')->request());
+		ci('o_user_model')->delete(hex2bin(ci('input')->request('id')));
 
 		if (!errors::has()) {
 			ci('o_user_model')->remove_role(ci('input')->request('id'),array_keys(ci('o_user_model')->roles(ci('input')->request('id'))));
