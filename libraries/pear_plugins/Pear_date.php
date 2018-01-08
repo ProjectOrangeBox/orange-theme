@@ -11,7 +11,7 @@
 
 class Pear_date {
 	public function __construct() {
-		pear::attach('date',function($format,$timestamp) {
+		pear::attach('date',function($timestamp,$format=null) {
 			$format = (!empty($format)) ? $format : config('application.human date');
 			$timestamp = (is_integer($timestamp)) ? $timestamp : strtotime($timestamp);
 
