@@ -58,6 +58,13 @@ class UsersController extends MY_Controller {
 		$this->_rest_output();
 	}
 
+
+	public function send_forgotAction($id=null) {
+		ci('forgot_tools_lib')->generate(ci('o_user_model')->get(hex2bin($id)));
+
+		redirect($this->controller_path);
+	}
+
 	protected function _add_roles($user_id=null) {
 		if (!errors::has()) {
 			$user_id = ($user_id) ? $user_id : (int)ci('input')->request('id');
