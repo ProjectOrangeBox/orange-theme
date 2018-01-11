@@ -11,6 +11,6 @@
 
 class PublicMiddleware extends Middleware_base {
 	public function run() {
-		$this->load->library(['auth','user']);
+		ci('load')->library(['auth','user']);
 	}
 }
