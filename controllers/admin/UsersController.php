@@ -23,31 +23,21 @@ class UsersController extends MY_Controller {
 	];
 
 	public function indexPostAction() {
-		if (ci('input')->request('confirm_password') != ci('input')->request('password')) {
-			errors::add('Your Passwords do not match.');
-		} else {
-			$this->data['primary_key'] = ci('o_user_model')->insert(ci('input')->request());
+		$posted = ci('input')->request();
 
-			$this->_add_roles($this->data['primary_key']);
-		}
+		$this->data['primary_key'] = ci('o_user_model')->insert($posted);
+
+		$this->_add_roles($this->data['primary_key']);
 
 		$this->_rest_output();
 	}
 
 	public function indexPatchAction() {
-		$data = ci('input')->request();
+		$posted = ci('input')->request();
 
-		if (ci('input')->request('confirm_password') != ci('input')->request('password')) {
-			errors::add('Your Passwords do not match.');
-		} else {
-			if (empty($data['password'])) {
-				unset($data['password']);
-			}
+		ci('o_user_model')->update($posted);
 
-			ci('o_user_model')->update($data);
-
-			$this->_add_roles();
-		}
+		$this->_add_roles($posted['id']);
 
 		$this->_rest_output();
 	}
@@ -65,10 +55,8 @@ class UsersController extends MY_Controller {
 		redirect($this->controller_path);
 	}
 
-	protected function _add_roles($user_id=null) {
+	protected function _add_roles($user_id) {
 		if (!errors::has()) {
-			$user_id = ($user_id) ? $user_id : (int)ci('input')->request('id');
-
 			ci('o_user_model')->remove_role($user_id,null);
 
 			ci('o_user_model')->add_role($user_id,ci('input')->request('roles'));
