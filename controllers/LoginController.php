@@ -29,7 +29,7 @@ class LoginController extends MY_Controller {
 
 		ci('output')->set_cookie('config','');
 
-		if (!ci('auth')->login($this->input->request('email'),ci('input')->request('password'))) {
+		if (!ci('auth')->login(ci('input')->request('email'),ci('input')->request('password'))) {
 			ci('wallet')->msg(errors::as_html('','<br>'),'red',$this->controller_path);
 		}
 
