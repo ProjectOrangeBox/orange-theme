@@ -10,13 +10,13 @@
  */
 
 class GuiMiddleware extends Middleware_base {
-	public function run() {
+	public function __construct() {
 		ci('output')->parse_exec_vars = false;
 
 		if ((int) $this->cache_page_for > 0) {
 			ci('output')->cache((int) $this->cache_page_for);
 		}
 
-		ci('page')->body_class(implode(' ',$this->controller_middleware_as_body_classes));
+		ci('page')->body_class(str_replace('Middleware','',implode(' ',middleware())));
 	}
 }

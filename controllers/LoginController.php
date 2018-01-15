@@ -51,11 +51,18 @@ class LoginController extends MY_Controller {
 	public function hijackAction($key=null) {
 		$parts = explode(chr(0),hex2bin($key));
 
-		if (count($parts) != 2) {
+		/* must be 3 parts */
+		if (count($parts) != 3) {
 			errors::display(403);
 		}
 
-		if ($parts[1] !== md5($parts[0].ci()->config->item('encryption_key'))) {
+		/* greater than 10 minutes */
+		if (date('U') - $parts[1] > 600) {
+			errors::display(403);
+		}
+
+		/* check hmac */
+		if ($parts[2] !== md5($parts[0].chr(0).$parts[1].chr(0).ci()->config->item('encryption_key'))) {
 			errors::display(403);
 		}
 

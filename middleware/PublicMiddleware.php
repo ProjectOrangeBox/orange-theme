@@ -10,7 +10,7 @@
  */
 
 class PublicMiddleware extends Middleware_base {
-	public function run() {
+	public function __construct() {
 		ci('load')->library(['auth','user']);
 	}
 }
