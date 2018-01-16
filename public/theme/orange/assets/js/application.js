@@ -56,4 +56,5 @@ document.addEventListener("DOMContentLoaded",function(e){
 		$.noticeAdd({text: $(this).data('msg'), type: 'info'});
 	});
 
+	$('body').tooltip({selector: '[title]'});	
 });

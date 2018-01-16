@@ -17,6 +17,6 @@ class GuiMiddleware extends Middleware_base {
 			ci('output')->cache((int) $this->cache_page_for);
 		}
 
-		ci('page')->body_class(str_replace('Middleware','',implode(' ',middleware())));
+		ci('page')->body_class(middleware());
 	}
 }
