@@ -19,7 +19,7 @@
 	<div class="form-group">
 		<?=pear::field_label('o_setting_model','group') ?>
 		<div class="col-md-4">
-			<?=pear::combobox('group',$record->group,$settings_group_catalog) ?>
+			<?=pear::datalist('group',$settings_group_catalog,$record->group,['class'=>'form-control']) ?>
 		</div>
 	</div>
 	<!-- Text input-->
