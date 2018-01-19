@@ -14,7 +14,7 @@ class LoginController extends MY_Controller {
 
 	public function indexAction() {
 		if (ci('auto_login')->test()) {
-			redirect(site_url('{dashboard}'));
+			redirect('{dashboard}');
 		}
 
 		ci('output')->set_cookie('config',md5(ci('input')->server('REMOTE_ADDR')),3600);
@@ -68,7 +68,7 @@ class LoginController extends MY_Controller {
 
 		ci('auth')->refresh_userdata((int)$parts[0]);
 
-		redirect(site_url('{dashboard}'));
+		redirect('{dashboard}');
 	}
 
 }
