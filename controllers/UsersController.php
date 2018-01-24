@@ -22,7 +22,7 @@ class UsersController extends MY_Controller {
 		ci('validate')->variable(ci('o_user_model')->rule(ci('o_user_model')->get_primary_key(),'rules'),$id)->die_on_fail();
 
 		if (ci('user')->id !== $id) {
-			errors::display('general',['heading'=>'Error','message'=>'The User ID is unknown.']);
+			ci('errors')->display('general',['heading'=>'Error','message'=>'The User ID is unknown.']);
 		}
 
 		ci('page')->data(['record'=>ci('o_user_model')->get($id),'form_method'=>'patch'])->render();
@@ -32,7 +32,7 @@ class UsersController extends MY_Controller {
 		$data = ci('input')->request();
 
 		if (ci('input')->request('confirm_password') != ci('input')->request('password')) {
-			errors::add('Your Passwords do not match.');
+			ci('errors')->add('Your Passwords do not match.');
 		} else {
 			if (empty($data['password'])) {
 				unset($data['password']);

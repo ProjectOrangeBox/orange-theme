@@ -57,7 +57,7 @@ class RolesController extends MY_Controller {
 	public function indexDeleteAction() {
 		ci('o_role_model')->delete(hex2bin(ci('input')->request('id')));
 
-		if (!errors::has()) {
+		if (!ci('errors')->has()) {
 			ci('o_role_model')->remove_role(ci('input')->request('id'),array_keys(ci('o_role_model')->roles(ci('input')->request('id'))));
 		}
 
@@ -65,7 +65,7 @@ class RolesController extends MY_Controller {
 	}
 
 	protected function _add_permissions($role_id) {
-		if (!errors::has()) {
+		if (!ci('errors')->has()) {
 			ci('o_role_model')->remove_permission($role_id,null);
 
 			ci('o_role_model')->add_permission($role_id,ci('input')->request('permissions'));

@@ -39,7 +39,7 @@ trait admin_controller_trait {
 	}
 
 	protected function _rest_output() {
-		$this->data['ci_errors'] = errors::as_data();
+		$this->data['ci_errors'] = ci('errors')->as_data();
 
 		ci('output')->json($this->data);
 	}

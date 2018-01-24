@@ -56,7 +56,7 @@ class UsersController extends MY_Controller {
 	}
 
 	protected function _add_roles($user_id) {
-		if (!errors::has()) {
+		if (!ci('errors')->has()) {
 			ci('o_user_model')->remove_role($user_id,null);
 
 			ci('o_user_model')->add_role($user_id,ci('input')->request('roles'));

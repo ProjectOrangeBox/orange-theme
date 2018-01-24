@@ -30,7 +30,7 @@ class LoginController extends MY_Controller {
 		ci('output')->set_cookie('config','');
 
 		if (!ci('auth')->login(ci('input')->request('email'),ci('input')->request('password'))) {
-			ci('wallet')->msg(errors::as_html('','<br>'),'red',$this->controller_path);
+			ci('wallet')->msg(ci('errors')->as_html('','<br>'),'red',$this->controller_path);
 		}
 
 		if (ci('input')->request('remember')) {
@@ -53,17 +53,17 @@ class LoginController extends MY_Controller {
 
 		/* must be 3 parts */
 		if (count($parts) != 3) {
-			errors::display(403);
+			ci('errors')->display(403);
 		}
 
 		/* greater than 10 minutes */
 		if (date('U') - $parts[1] > 600) {
-			errors::display(403);
+			ci('errors')->display(403);
 		}
 
 		/* check hmac */
 		if ($parts[2] !== md5($parts[0].chr(0).$parts[1].chr(0).ci()->config->item('encryption_key'))) {
-			errors::display(403);
+			ci('errors')->display(403);
 		}
 
 		ci('auth')->refresh_userdata((int)$parts[0]);

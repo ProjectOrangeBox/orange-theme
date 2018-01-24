@@ -23,7 +23,7 @@ class AdminMiddleware extends Middleware_base {
 		}
 
 		if (user::cannot($key)) {
-			errors::display(403);
+			ci('errors')->display(403);
 		}
 	}
 }
