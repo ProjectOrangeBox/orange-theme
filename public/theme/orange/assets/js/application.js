@@ -59,4 +59,12 @@ document.addEventListener("DOMContentLoaded",function(e){
 	$('body').tooltip({
 		selector: '.js-tooltip'
 	});
+	
+	/* handle shift in a tab group */
+	$('div.tab-content :checkbox').click(function(event) {
+		if (event.shiftKey) {
+			$('div.tab-pane.active :checkbox').prop('checked',($(this).prop('checked') || false));
+		}
+	});
+	
 });
