@@ -9,13 +9,9 @@
  *
  */
 
-class Pear_date {
-	public function __construct() {
-		pear::attach('date',function($timestamp,$format=null) {
-			$format = (!empty($format)) ? $format : config('application.human date');
-			$timestamp = (is_integer($timestamp)) ? $timestamp : strtotime($timestamp);
+pear::attach('date',function($timestamp,$format=null) {
+	$format = (!empty($format)) ? $format : config('application.human date');
+	$timestamp = (is_integer($timestamp)) ? $timestamp : strtotime($timestamp);
 
-			return ($timestamp > 1000) ? date($format,$timestamp) : '';
-		});
-	}
-}
+	return ($timestamp > 1000) ? date($format,$timestamp) : '';
+});

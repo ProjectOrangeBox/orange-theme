@@ -9,10 +9,6 @@
  *
  */
 
-class Pear_money {
-	public function __construct() {
-		pear::attach('money',function($number) {
-			return money_format('$%i',$number);
-		});
-	}
-}
+pear::attach('money',function($number) {
+	return money_format('$%i',$number);
+});

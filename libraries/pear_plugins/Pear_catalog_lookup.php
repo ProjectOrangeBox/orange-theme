@@ -9,16 +9,12 @@
  *
  */
 
-class Pear_catalog_lookup {
-	protected $catalog = false;
+pear::attach('catalog_lookup',function($model,$value,$human_column,$primary_key='id') {
+	global $pear_catalog_lookup_catalog;
 
-	public function __construct() {
-		pear::attach('catalog_lookup',function($model,$value,$human_column,$primary_key='id') {
-			if (!$this->catalog) {
-				$this->catalog = ci($model)->catalog($primary_key,$human_column);
-			}
-
-			return $this->catalog[$value];
-		});
+	if (!$pear_catalog_lookup_catalog) {
+		$pear_catalog_lookup_catalog = ci($model)->catalog($primary_key,$human_column);
 	}
-}
+
+	return $pear_catalog_lookup_catalog[$value];
+});

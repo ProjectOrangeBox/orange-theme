@@ -9,10 +9,6 @@
  *
  */
 
-class Pear_tab_id {
-	public function __construct() {
-		pear::attach('tab_id',function($value) {
-			return md5($value);
-		});
-	}
-}
+pear::attach('tab_id',function($value) {
+	return md5($value);
+});

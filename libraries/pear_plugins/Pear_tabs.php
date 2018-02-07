@@ -9,10 +9,6 @@
  *
  */
 
-class Pear_tabs {
-	public function __construct() {
-		pear::attach('tabs',function($array) {
-			return array_keys($array);
-		});
-	}
-}
+pear::attach('tabs',function($array) {
+	return array_keys($array);
+});

@@ -9,17 +9,13 @@
  *
  */
 
-class Pear_datalist {
-	public function __construct() {
-			ci('page')
-				->js('//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js')
-				->css('//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css')
-				->domready("$('.datalist').editableSelect({effects:'fade'});");
+ci('page')
+	->js('//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js')
+	->css('//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css')
+	->domready("$('.datalist').editableSelect({effects:'fade'});");
 
-		pear::attach('datalist',function($name='',$options=[],$value='',$extras=[]) {
-			$extras['class'] .= ' datalist';
+pear::attach('datalist',function($name='',$options=[],$value='',$extras=[]) {
+	$extras['class'] .= ' datalist';
 
- 			return pear::dropdown($name,$options,$value,$extras);
-		});
-	}
-}
+	return pear::dropdown($name,$options,$value,$extras);
+});

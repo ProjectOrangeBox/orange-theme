@@ -9,18 +9,14 @@
  *
  */
 
-class Pear_catalog_dropdown {
-	protected $catalog = false;
+ci('load')->helper('form');
 
-	public function __construct() {
-		ci('load')->helper('form');
+pear::attach('catalog_dropdown',function($model,$name,$value,$human_column,$primary_key='id') {
+	global $pear_catalog_dropdown_catalog;
 
-		pear::attach('catalog_dropdown',function($model,$name,$value,$human_column,$primary_key='id') {
-			if (!$this->catalog) {
-				$this->catalog = ci($model)->catalog($primary_key,$human_column);
-			}
-
-			return form_dropdown($name,$this->catalog,$value,['class'=>'form-control select3']);
-		});
+	if (!$pear_catalog_dropdown_catalog) {
+		$pear_catalog_dropdown_catalog = ci($model)->catalog($primary_key,$human_column);
 	}
-}
+
+	return form_dropdown($name,$pear_catalog_dropdown_catalog,$value,['class'=>'form-control select3']);
+});

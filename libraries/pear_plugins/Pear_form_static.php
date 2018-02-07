@@ -9,10 +9,6 @@
  *
  */
 
-class Pear_form_static {
-	public function __construct() {
-		pear::attach('form_static',function($string) {
-			return '<p class="form-control-static">'.htmlspecialchars($string, ENT_QUOTES, 'UTF-8').'</p>';
-		});
-	}
-}
+pear::attach('form_static',function($string) {
+	return '<p class="form-control-static">'.htmlspecialchars($string, ENT_QUOTES, 'UTF-8').'</p>';
+});
