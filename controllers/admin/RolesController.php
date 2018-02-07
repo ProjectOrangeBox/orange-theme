@@ -26,7 +26,7 @@ class RolesController extends MY_Controller {
 		if ($id) {
 			$this->_edit_record($id);
 
-			$this->data['permissions'] = simple_array(ci('o_role_model')->permissions((int)hex2bin($id)));
+			$this->data['permissions'] = simplify_array(ci('o_role_model')->permissions((int)hex2bin($id)));
 		} else {
 			$this->_new_record();
 
