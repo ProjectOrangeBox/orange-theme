@@ -12,11 +12,9 @@
 ci('load')->helper('form');
 
 pear::attach('catalog_dropdown',function($model,$name,$value,$human_column,$primary_key='id') {
-	global $pear_catalog_dropdown_catalog;
+	$catalog = ci('cache')->page->cache('catalog_dropdown_'.$model.$name.$human_column.$primary_key,function($ci) {
+		return ci($model)->catalog($primary_key,$human_column);
+	});
 
-	if (!$pear_catalog_dropdown_catalog) {
-		$pear_catalog_dropdown_catalog = ci($model)->catalog($primary_key,$human_column);
-	}
-
-	return form_dropdown($name,$pear_catalog_dropdown_catalog,$value,['class'=>'form-control select3']);
+	return form_dropdown($name,$catalog,$value,['class'=>'form-control select3']);
 });

@@ -10,11 +10,9 @@
  */
 
 pear::attach('catalog_lookup',function($model,$value,$human_column,$primary_key='id') {
-	global $pear_catalog_lookup_catalog;
+	$catalog = ci('cache')->page->cache('catalog_lookup'.$model.$human_column.$primary_key,function($ci) {
+		return ci($model)->catalog($primary_key,$human_column);
+	});
 
-	if (!$pear_catalog_lookup_catalog) {
-		$pear_catalog_lookup_catalog = ci($model)->catalog($primary_key,$human_column);
-	}
-
-	return $pear_catalog_lookup_catalog[$value];
+	return $catalog[$value];
 });
