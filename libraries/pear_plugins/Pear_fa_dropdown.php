@@ -11,27 +11,27 @@
 
 pear::attach('fa_dropdown',function($name='',$value=null,$extra=[]) {
 	$defaults = ['name' => $name, 'style' => '', 'id' => $name, 'class' => ''];
-	
+
 	$list = array_merge($defaults, $extra);
-	
+
 	$empty = $extra['empty'];
-	
+
 	unset($extra['empty']);
-	
+
 	$fa_list = array_combine(awesomeness(),awesomeness());
-	
+
 	$html = '<select name="'.$name.'" class="form-control select3">';
-	
+
 	if ($empty) {
 		$html .= '<option value="" selected>&nbsp;</option>';
 	}
-	
+
 	foreach ($fa_list as $fa) {
 		$html .= '<option '.(($value == $fa && $empty == FALSE) ? ' selected' : '').' value="'.$fa.'" data-icon="fa fa-'.$fa.'">'.ucwords(str_replace(['fa-', '-o'], '', $fa)).'</option>';
 	}
-	
+
 	$html .= '</select>';
-	
+
 	return $html;
 });
 
