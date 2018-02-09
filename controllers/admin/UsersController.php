@@ -48,13 +48,6 @@ class UsersController extends MY_Controller {
 		$this->_rest_output();
 	}
 
-
-	public function send_forgotAction($id=null) {
-		ci('forgot_tools_lib')->generate(ci('o_user_model')->get(hex2bin($id)));
-
-		redirect($this->controller_path);
-	}
-
 	protected function _add_roles($user_id) {
 		if (!ci('errors')->has()) {
 			ci('o_user_model')->remove_role($user_id,null);
