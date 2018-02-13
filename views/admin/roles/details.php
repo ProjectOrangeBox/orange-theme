@@ -1,5 +1,5 @@
-<? pear::extends('_templates/orange_admin') ?>
-<? pear::section('section_container') ?>
+<?php pear::extends('_templates/orange_admin') ?>
+<?php pear::section('section_container') ?>
 <?=pear::open_multipart($controller_path,['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'],['id'=>$record->id]) ?>
 	<div class="row">
 		<div class="col-md-6"><h3><?=$ci_title_prefix ?> <?=$controller_title ?></h3></div>
@@ -33,7 +33,7 @@
 		<li>
 			<a href="#<?=pear::tab_id($tn) ?>" data-toggle="pill"><?=pear::tab_title($tn) ?></a>
 		</li>
-		<? } ?>
+		<?php } ?>
   </ul>
   <!-- tab panels -->
   <div class="tab-content">
@@ -47,10 +47,10 @@
 							<label><?=pear::checkbox('permissions[]', $row->id, (array_key_exists($row->id,$permissions))) ?> <?=$row->description ?></label>
 					  </div>
 				  </div>
-			  <? } ?>
-			<? } ?>
+			  <?php } ?>
+			<?php } ?>
 		</div>
-		<? } ?>
+		<?php } ?>
   </div>
 	<!-- Submit Button -->
 	<div class="form-group">
@@ -61,4 +61,4 @@
 		</div>
 	</div>
 <?=pear::close() ?>
-<? pear::end() ?>
+<?php pear::end() ?>

@@ -1,5 +1,5 @@
-<? pear::extends('_templates/orange_admin') ?>
-<? pear::section('section_container') ?>
+<?php pear::extends('_templates/orange_admin') ?>
+<?php pear::section('section_container') ?>
 <?php $tabs = pear::tab_prepare($records,'group','description') ?>
 <div class="row">
   <div class="col-md-6"><?=pear::title($controller_titles,'key') ?></div>
@@ -7,7 +7,7 @@
   	<div class="pull-right">
 			<?php if (user::can('url::/admin/permissions::index~post')) { ?>
 				<?=pear::new_button($controller_path.'/details','New '.$controller_title) ?>
-			<? } ?>
+			<?php } ?>
   	</div>
   </div>
 </div>
@@ -18,7 +18,7 @@
 		<li>
 			<a href="#<?=pear::tab_id($tn) ?>" data-toggle="pill"><?=pear::tab_title($tn) ?></a>
 		</li>
-		<? } ?>
+		<?php } ?>
   </ul>
   <!-- tab panels -->
   <div class="tab-content">
@@ -41,17 +41,17 @@
 								<td class="text-center actions">
 									<?php if (user::has_role($row->edit_role_id)) { ?>
 										<?=pear::edit_button($controller_path.'/details/'.bin2hex($row->id)) ?>
-									<? } ?>
+									<?php } ?>
 									<?php if (user::has_role($row->delete_role_id)) { ?>
 										<?=pear::delete_button($controller_path,['id'=>$row->id]) ?>
-									<? } ?>
+									<?php } ?>
 								</td>
 							</tr>
-						<? } ?>
-					<? } ?>
+						<?php } ?>
+					<?php } ?>
 				</tbody>
 			</table>
 		</div>
-		<? } ?>
+		<?php } ?>
 </div>
-<? pear::end() ?>
+<?php pear::end() ?>

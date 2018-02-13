@@ -58,5 +58,5 @@
 	<a class="btn btn-default" data-edit="insertHorizontalRule" title="" data-original-title="Horizontal Rule">&horbar;</a>
 	<?php if (auth::access('CMS Pages::Edit Source')) { ?>
 	<a class="btn js-wysiwyg-source btn-default" title="" data-original-title="Source"><i class="fa fa-file-code-o"></i></a>
-	<? } ?>
+	<?php } ?>
 </div>

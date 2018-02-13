@@ -1,14 +1,17 @@
 <?php
-/*
- * Orange Framework Extension
+/**
+ * $color
+ * Insert description here
  *
- * @package	CodeIgniter / Orange
- * @author Don Myers
- * @license http://opensource.org/licenses/MIT MIT License
- * @link https://github.com/ProjectOrangeBox
+ * @param $with_hash
  *
+ * @return
+ *
+ * @access
+ * @static
+ * @throws
+ * @example
  */
-
 pear::attach('color_value',function($color,$with_hash=true) {
 	return(($with_hash) ? '#' : '').trim($color, '#');
 });

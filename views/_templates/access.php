@@ -28,5 +28,5 @@
 		</div>
 	</div>
 </div>
-<? } ?>
+<?php } ?>
 <!-- End Record Roles -->

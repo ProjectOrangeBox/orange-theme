@@ -1,17 +1,25 @@
 <?php
-/*
- * Orange Framework Extension
+/**
+ * PermissionsController
+ * Insert description here
  *
- * @package	CodeIgniter / Orange
+ * @package CodeIgniter / Orange
  * @author Don Myers
+ * @copyright 2018
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ProjectOrangeBox
+ * @version 2.0
+ *
+ * required
+ * core:
+ * libraries:
+ * models:
+ * helpers:
+ * functions:
  *
  */
-
 class PermissionsController extends MY_Controller {
 	use admin_controller_trait;
-
 	public $controller        = 'permissions';
 	public $controller_title  = 'Permission';
 	public $controller_titles = 'Permissions';

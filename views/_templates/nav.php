@@ -22,7 +22,7 @@
 									<?=pear::menu_li('url::/admin/utilities/config_viewer::index~get','/admin/utilities/config-viewer','Config Viewer') ?>
 								</ul>
 						</li>
-						<? } ?>
+						<?php } ?>
           </ul>
 					<ul class="nav navbar-nav navbar-right">
             <li>

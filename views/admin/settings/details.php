@@ -1,5 +1,5 @@
-<? pear::extends('_templates/orange_admin') ?>
-<? pear::section('section_container') ?>
+<?php pear::extends('_templates/orange_admin') ?>
+<?php pear::section('section_container') ?>
 <?=pear::open_multipart($controller_path,['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'],['id'=>$record->id]) ?>
 	<div class="row">
 		<div class="col-md-6"><h3><?=$ci_title_prefix ?> <?=$controller_title ?></h3></div>
@@ -83,4 +83,4 @@
 		</div>
 	</div>
 <?=pear::close() ?>
-<? pear::end() ?>
+<?php pear::end() ?>

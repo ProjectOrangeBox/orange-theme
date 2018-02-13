@@ -1,14 +1,17 @@
 <?php
-/*
- * Orange Framework Extension
+/**
+ * $name
+ * Insert description here
  *
- * @package	CodeIgniter / Orange
- * @author Don Myers
- * @license http://opensource.org/licenses/MIT MIT License
- * @link https://github.com/ProjectOrangeBox
+ * @param
  *
+ * @return
+ *
+ * @access
+ * @static
+ * @throws
+ * @example
  */
-
 pear::attach('fa_icon',function($name='') {
 	return '<i class="fa fa-'.$name.'"></i>';
 });

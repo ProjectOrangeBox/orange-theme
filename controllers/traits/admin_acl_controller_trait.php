@@ -1,15 +1,17 @@
 <?php
-/*
- * Orange Framework Extension
- *
- * @package	CodeIgniter / Orange
- * @author Don Myers
- * @license http://opensource.org/licenses/MIT MIT License
- * @link https://github.com/ProjectOrangeBox
- *
- */
-
 trait admin_acl_controller_trait {
+/**
+ * flush_aclAction
+ * Insert description here
+ *
+ *
+ * @return
+ *
+ * @access
+ * @static
+ * @throws
+ * @example
+ */
 	public function flush_aclAction() {
 		delete_cache_by_tags('acl');
 	}

@@ -1,14 +1,19 @@
 <?php
-/*
- * Orange Framework Extension
+/**
+ * $uri
+ * Insert description here
  *
- * @package	CodeIgniter / Orange
- * @author Don Myers
- * @license http://opensource.org/licenses/MIT MIT License
- * @link https://github.com/ProjectOrangeBox
+ * @param
+ * @param $attributes
+ * @param
  *
+ * @return
+ *
+ * @access
+ * @static
+ * @throws
+ * @example
  */
-
 pear::attach('delete_button',function($uri='',$attributes=[]) {
 	$name = ($attributes['primary_key']) ? $attributes['primary_key'] : 'id';
 	$html  = '<form action="'.$uri.'" method="delete" data-confirm="true" data-fadeout="tr">';

@@ -1,19 +1,16 @@
-<? pear::extends('_templates/orange_default') ?>
-
-<? pear::section('section_container') ?>
+<?php pear::extends('_templates/orange_default') ?>
+<?php pear::section('section_container') ?>
 <?=pear::form_open_multipart('/login',['method'=>'post','class'=>'form-signin']) ?>
   <h2 class="form-signin-heading">Please sign in</h2>
   <label for="inputEmail" class="sr-only">Email address</label>
   <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" autofocus>
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
-
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 <?=pear::form_close() ?>
-<? pear::end() ?>
-
-<? pear::section('page_style') ?>
-<? pear::parent() ?>
+<?php pear::end() ?>
+<?php pear::section('page_style') ?>
+<?php pear::parent() ?>
 body {
   padding-top: 40px;
   padding-bottom: 40px;
@@ -46,4 +43,4 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-<? pear::end() ?>
+<?php pear::end() ?>

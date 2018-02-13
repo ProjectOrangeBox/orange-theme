@@ -1,5 +1,5 @@
-<? pear::extends('_templates/orange_admin') ?>
-<? pear::section('section_container') ?>
+<?php pear::extends('_templates/orange_admin') ?>
+<?php pear::section('section_container') ?>
 <?=pear::open_multipart($controller_path,['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'],['id'=>$record->id]) ?>
 	<div class="row">
 		<div class="col-md-6"><?=pear::title($ci_title_prefix.' '.$controller_title,'user') ?></div>
@@ -38,7 +38,7 @@
 			<?=pear::password('confirm_password','',['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 			<?php if ($form_method != 'post') { ?>
 				<?=pear::form_help('Leave password fields blank to leave password unchanged.') ?>
-			<? } ?>
+			<?php } ?>
 		</div>
 	</div>
 	<?=pear::include('_templates/access') ?>
@@ -99,4 +99,4 @@
 		</div>
 	</div>
 <?=pear::close() ?>
-<? pear::end() ?>
+<?php pear::end() ?>

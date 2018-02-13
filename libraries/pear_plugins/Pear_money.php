@@ -1,14 +1,16 @@
 <?php
-/*
- * Orange Framework Extension
+/**
+ * $number
+ * Insert description here
  *
- * @package	CodeIgniter / Orange
- * @author Don Myers
- * @license http://opensource.org/licenses/MIT MIT License
- * @link https://github.com/ProjectOrangeBox
  *
+ * @return
+ *
+ * @access
+ * @static
+ * @throws
+ * @example
  */
-
 pear::attach('money',function($number) {
 	return money_format('$%i',$number);
 });

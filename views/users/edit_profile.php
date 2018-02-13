@@ -1,5 +1,5 @@
-<? pear::extends('_templates/orange_admin') ?>
-<? pear::section('section_container') ?>
+<?php pear::extends('_templates/orange_admin') ?>
+<?php pear::section('section_container') ?>
 <form class="form-horizontal" method="<?=$form_method ?>" action="<?=$controller_path ?>" data-success="Record Saved|blue" data-redirect="/admin/dashboard">
 	<input type="hidden" name="id" value="<?=$record->id ?>">
 	<div class="row">
@@ -34,7 +34,7 @@
 			<?=pear::password('confirm_password','',['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 			<?php if ($form_method != 'post') { ?>
 				<?=pear::form_help('Leave password fields blank to leave password unchanged.') ?>
-			<? } ?>
+			<?php } ?>
 		</div>
 	</div>
 	<!-- Button -->
@@ -46,4 +46,4 @@
 		</div>
 	</div>
 </form>
-<? pear::end() ?>
+<?php pear::end() ?>

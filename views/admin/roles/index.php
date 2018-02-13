@@ -1,5 +1,5 @@
-<? pear::extends('_templates/orange_admin') ?>
-<? pear::section('section_container') ?>
+<?php pear::extends('_templates/orange_admin') ?>
+<?php pear::section('section_container') ?>
 <div class="row">
   <div class="col-md-6"><h3><i class="fa fa-users"></i> <?=$controller_titles ?></h3></div>
   <div class="col-md-6">
@@ -7,7 +7,7 @@
   		<?=pear::search_sort_field() ?>
 			<?php if (user::can('url::/admin/roles::index~post')) { ?>
 				<?=pear::new_button($controller_path.'/details','New '.$controller_title) ?>
-  		<? } ?>
+  		<?php } ?>
   	</div>
   </div>
 </div>
@@ -29,15 +29,15 @@
 					<td class="text-center actions">
 						<?php if (user::has_role($row->edit_role_id)) { ?>
 							<?=pear::edit_button($controller_path.'/details/'.bin2hex($row->id)) ?>
-						<? } ?>
+						<?php } ?>
 						<?php if (user::has_role($row->delete_role_id)) { ?>
 							<?=pear::delete_button($controller_path,['id'=>$row->id]) ?>
-						<? } ?>
+						<?php } ?>
 					</td>
 				</tr>
-			<? } ?>
-		<? } ?>
+			<?php } ?>
+		<?php } ?>
 		</tbody>
 	</table>
 </div>
-<? pear::end() ?>
+<?php pear::end() ?>

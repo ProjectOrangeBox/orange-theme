@@ -1,6 +1,5 @@
-<? pear::extends('_templates/orange_admin') ?>
-
-<? pear::section('section_container') ?>
+<?php pear::extends('_templates/orange_admin') ?>
+<?php pear::section('section_container') ?>
 <div class="row">
   <div class="col-md-6"><?=pear::title('Dashboard','th') ?></div>
   <div class="col-md-6"></div>

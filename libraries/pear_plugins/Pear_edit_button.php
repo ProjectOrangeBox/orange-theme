@@ -1,14 +1,19 @@
 <?php
-/*
- * Orange Framework Extension
+/**
+ * $uri
+ * Insert description here
  *
- * @package	CodeIgniter / Orange
- * @author Don Myers
- * @license http://opensource.org/licenses/MIT MIT License
- * @link https://github.com/ProjectOrangeBox
+ * @param
+ * @param $attributes
+ * @param
  *
+ * @return
+ *
+ * @access
+ * @static
+ * @throws
+ * @example
  */
-
 pear::attach('edit_button',function($uri='',$attributes=[]) {
 	return anchor($uri,'<i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>',$attributes);
 });

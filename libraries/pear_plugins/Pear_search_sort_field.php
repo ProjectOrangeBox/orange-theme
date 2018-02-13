@@ -1,14 +1,19 @@
 <?php
-/*
- * Orange Framework Extension
+/**
+ * $length
+ * Insert description here
  *
- * @package	CodeIgniter / Orange
- * @author Don Myers
- * @license http://opensource.org/licenses/MIT MIT License
- * @link https://github.com/ProjectOrangeBox
+ * @param
+ * @param $id
+ * @param
  *
+ * @return
+ *
+ * @access
+ * @static
+ * @throws
+ * @example
  */
-
 pear::attach('search_sort_field',function($length=222,$id='search_sort_filter') {
 	ci('page')
 		->js([
@@ -18,6 +23,5 @@ pear::attach('search_sort_field',function($length=222,$id='search_sort_filter') 
 			'/theme/orange/assets/plugins/search-sort/o-search-sort.min.js',
 		])
 		->css('/theme/orange/assets/plugins/search-sort/bootstrap-sortable.min.css',75);
-
 	return '<div class="form-group has-feedback" style="display:inline-block"><input type="text" id="'.$id.'" class="form-control input-sm" style="width:'.$length.'px;" placeholder="search"><i class="fa fa-search form-control-feedback"></i></div>';
 });
