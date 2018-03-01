@@ -28,7 +28,7 @@
 		<?=pear::label('Password','password',['class'=>'col-md-3 control-label '.(($form_method != 'post') ? '' : 'required')]) ?>
 		<div class="col-md-4">
 			<?=pear::password('password','',['class'=>'form-control input-md','autocomplete'=>'off']) ?>
-			<?=pear::form_help(config('auth.password copy')) ?>
+			<?=pear::form_help(config('auth.password copy'),'Password must be at least: 8 characters, 1 upper, 1 lower case letter, 1 number, Less than 32 characters') ?>
 		</div>
 	</div>
 	<!-- Password input-->
