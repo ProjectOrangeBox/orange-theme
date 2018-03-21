@@ -24,6 +24,11 @@ class GuiMiddleware extends Middleware_base {
 		if ((int) $this->cache_page_for > 0) {
 			ci('output')->cache((int) $this->cache_page_for);
 		}
-		ci('page')->body_class(middleware());
+		ci('page')->body_class(middleware())->data([
+			'controller'        => $this->controller,
+			'controller_path'   => $this->controller_path,
+			'controller_title'  => $this->controller_title,
+			'controller_titles' => $this->controller_titles,
+		]);
 	}
 }
