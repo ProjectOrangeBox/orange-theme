@@ -1,22 +1,11 @@
 <?php
-/**
- * $name
- * Insert description here
- *
- * @param $value
- * @param $extra
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
+
+/* parent for other date & time pickers */
 pear::attach('dt_picker',function($name,$value,$extra=[]) {
 	ci('page')
 		->js(['//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js','//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js'])
 		->css('//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css');
+	
 	$extra['format'] = ($extra['format']) ? $extra['format'] : 'MM/DD/YYYY h:mm A';
 	$extra['icon'] = ($extra['icon']) ? $extra['icon'] : 'calendar';
 	$time = strtotime($value);
