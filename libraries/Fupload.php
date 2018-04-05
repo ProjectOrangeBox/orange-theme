@@ -79,7 +79,7 @@ class fupload {
 
 		if (is_string($user_config)) {
 			$fieldname = ($fieldname) ? $fieldname : $user_config;
-		
+
 			$user_config = config('upload.'.$user_config,[]);
 
 			$user_config['fieldname'] = $fieldname;
@@ -109,7 +109,7 @@ class fupload {
 		$data = ci('upload')->data();
 
 		$data['hash'] = md5_file($data['full_path']);
-	
+
 		/*
 		["file_name"]=> string(40) "Screen_Shot_2018-03-21_at_4_14_03_PM.png"
 		["file_type"]=> string(9) "image/png"
