@@ -1,19 +1,5 @@
 <?php
-/**
- * $length
- * Insert description here
- *
- * @param
- * @param $id
- * @param
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
+
 pear::attach('search_sort_field',function($length=222,$id='search_sort_filter') {
 	ci('page')
 		->js([

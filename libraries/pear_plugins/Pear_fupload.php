@@ -1,4 +1,5 @@
 <?php
+
 pear::attach('fupload',function($name,$controller,$class='') {
 	ci('page')->js('/theme/orange/assets/plugins/fupload/fupload.js');
 

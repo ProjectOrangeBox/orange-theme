@@ -1,19 +1,6 @@
 <?php
-/**
- * $uri
- * Insert description here
- *
- * @param
- * @param $attributes
- * @param
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
+
+/* deprecated please use button_delete */
 pear::attach('delete_button',function($uri='',$attributes=[]) {
 	$name = ($attributes['primary_key']) ? $attributes['primary_key'] : 'id';
 	$html  = '<form action="'.$uri.'" method="delete" data-confirm="true" data-fadeout="tr">';

@@ -1,21 +1,6 @@
 <?php
-/**
- * $uri
- * Insert description here
- *
- * @param
- * @param $title
- * @param
- * @param $attributes
- * @param
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
+
+/* deprecated please use button_new */
 pear::attach('new_button',function($uri='',$title='New',$attributes=[]) {
 	$default_attributes = ['class'=>'btn btn-default btn-sm js-new'];
 	$attributes = array_merge($default_attributes,(array)$attributes);

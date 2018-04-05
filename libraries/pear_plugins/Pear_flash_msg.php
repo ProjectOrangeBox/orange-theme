@@ -1,4 +1,5 @@
 <?php
+
 $msgs = [];
 $payload = (array)ci('load')->get_var('wallet_messages');
 $types = [

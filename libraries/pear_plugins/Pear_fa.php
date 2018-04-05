@@ -1,21 +1,14 @@
 <?php
-/**
- * $name
- * Insert description here
- *
- * @param
- * @param $value
- * @param
- * @param $extra
- * @param
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
+
+pear::attach('fa_icon',function($name='') {
+	return '<i class="fa fa-'.$name.'"></i>';
+});
+
+pear::attach('fa_enum_icon',function($value=-1,$string = 'circle-o|check-circle-o',$extra='fa-lg',$delimiter = '|') {
+	$enum = explode($delimiter,$string);
+	return '<i class="fa fa-'.$enum[(int)$value].' '.$extra.'"></i>';
+});
+
 pear::attach('fa_dropdown',function($name='',$value=null,$extra=[]) {
 	$defaults = ['name' => $name, 'style' => '', 'id' => $name, 'class' => ''];
 	$list = array_merge($defaults, $extra);
@@ -32,18 +25,7 @@ pear::attach('fa_dropdown',function($name='',$value=null,$extra=[]) {
 	$html .= '</select>';
 	return $html;
 });
-/**
- * awesomeness
- * Insert description here
- *
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
+
 function awesomeness() {
 	return [
 		'adjust',

@@ -1,4 +1,5 @@
 <?php
+
 /* once the plug in called this will be attached to the page */
 /* this adds the datalist method to pear */
 pear::attach('datalist',function($name='',$options=[],$value='',$extras=[]) {

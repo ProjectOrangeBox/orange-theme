@@ -1,21 +1,5 @@
 <?php
-/**
- * $name
- * Insert description here
- *
- * @param
- * @param $value
- * @param
- * @param $extra
- * @param
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
+
 pear::attach('bootstrap_wysiwyg',function($name=null,$value=null,$extra=[]) {
 	ci('page')->js([
 		'/theme/orange/assets/plugins/bootstrap_wysiwyg/vendor/jquery.hotkeys.js',

@@ -1,23 +1,5 @@
 <?php
-/**
- * $name
- * Insert description here
- *
- * @param
- * @param $value
- * @param
- * @param $options
- * @param
- * @param $extra
- * @param
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
+
 pear::attach('combobox',function($name=null,$value=null,$options=[],$extra=[]) {
 	ci('page')
 		->js('/theme/orange/assets/plugins/combobox/bootstrap3-typeahead.min.js')

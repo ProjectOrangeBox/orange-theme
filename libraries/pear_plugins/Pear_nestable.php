@@ -1,4 +1,5 @@
 <?php
+
 ci('page')
 	->js_variable('nestable_handler', ci('page')->data('nestable_handler'))
 	->domready('plugins.nestable.init();')

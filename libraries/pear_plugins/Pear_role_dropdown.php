@@ -1,17 +1,5 @@
 <?php
-/**
- * $name
- * Insert description here
- *
- * @param $value
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
+
 pear::attach('role_dropdown',function($name,$value) {
 	if ($value === null) {
 		$prop = 'user_'.explode('_',$name)[0].'_role_id';

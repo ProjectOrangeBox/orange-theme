@@ -1,21 +1,5 @@
 <?php
-/**
- * $name
- * Insert description here
- *
- * @param
- * @param $value
- * @param
- * @param $extra
- * @param
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
+
 pear::attach('locked_field',function($name=null,$value=null,$extra=[]) {
 	ci('page')->js('/theme/orange/assets/plugins/plugin-locked-field/plugin_locked_field.js');
 	$extra = array_merge(['default'=>'lock','can'=>'####','class'=>''],$extra);
