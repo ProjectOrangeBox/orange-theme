@@ -32,6 +32,7 @@
 <!-- End Record Roles -->
 
 <? pear::section('page_style') ?>
+<? pear::parent() ?>
 .toggle-collapse:after{font-family:'FontAwesome';content:"\f151";float:right}
 .toggle-collapse.collapsed:after{content:"\f150"}
 <? pear::end() ?>

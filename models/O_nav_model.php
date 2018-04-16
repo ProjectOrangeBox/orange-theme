@@ -45,7 +45,7 @@ class O_nav_model extends Database_model {
 	protected $table = 'orange_nav';
 	protected $rules = [
 		'id'           => ['field' => 'id', 'label' => 'Id', 'rules' => 'required|integer|max_length[10]|less_than[4294967295]|filter_int[10]'],
-		'url'          => ['field' => 'url', 'label' => 'URL', 'rules' => 'required|filter_uri[255]|max_length[255]|filter_input[255]|strtolower'],
+		'url'          => ['field' => 'url', 'label' => 'URL', 'rules' => 'required|is_uniquem[o_nav_model.url.id]|filter_uri[255]|max_length[255]|filter_input[255]|strtolower'],
 		'text'         => ['field' => 'text', 'label' => 'Text', 'rules' => 'required|max_length[255]|filter_input[255]'],
 		'parent_id'    => ['field' => 'parent_id', 'label' => 'Parent Id', 'rules' => 'if_empty[0]|integer|max_length[10]|less_than[4294967295]|filter_int[10]'],
 		'sort'         => ['field' => 'sort', 'label' => 'Sort', 'rules' => 'if_empty[0]|integer|max_length[10]|less_than[4294967295]|filter_int[10]'],
@@ -57,18 +57,23 @@ class O_nav_model extends Database_model {
 	];
 	protected $has_roles = true;
 	protected $has_stamps = true;
-	protected $order_by = 'url';
+	protected $order_by = 'url sort';
 
 	public function grouped_by_parents() {
-		$ary = [];
+		$that = &$this;
+	
+		return cache('nav_library.'.$this->cache_prefix.'.user'.user::id(),function() use ($that) {
+			$ary = [];
+	
+			$records = $that->as_array()->where_can_read()->order_by('parent_id, sort')->get_many();
+	
+			foreach ($records as $record) {
+				$ary[$record['parent_id']][] = $record;
+			}
+	
+			return $ary;
+		});
 
-		$records = $this->as_array()->where_can_read()->order_by('parent_id, sort')->get_many();
-
-		foreach ($records as $record) {
-			$ary[$record['parent_id']][] = $record;
-		}
-
-		return $ary;
 	}
 
 } /* end class */

@@ -64,12 +64,9 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		
 		<?=pear::field_label('o_nav_model','sort') ?>
-
-
-		<div class="col-md-1">
-			<?=pear::input('sort',$record->sort,['type'=>'range','class'=>'form-control form-control-range input-md']) ?>
+		<div class="col-md-2">
+			<?=pear::field_range('sort',$record->sort,['class'=>'input-md','max'=>100,'min'=>0,'step'=>1]) ?>
 		</div>
 	</div>
 
