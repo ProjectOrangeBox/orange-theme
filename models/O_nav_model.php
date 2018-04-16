@@ -49,6 +49,7 @@ class O_nav_model extends Database_model {
 		'text'         => ['field' => 'text', 'label' => 'Text', 'rules' => 'required|max_length[255]|filter_input[255]'],
 		'parent_id'    => ['field' => 'parent_id', 'label' => 'Parent Id', 'rules' => 'if_empty[0]|integer|max_length[10]|less_than[4294967295]|filter_int[10]'],
 		'sort'         => ['field' => 'sort', 'label' => 'Sort', 'rules' => 'if_empty[0]|integer|max_length[10]|less_than[4294967295]|filter_int[10]'],
+		'access'       => ['field' => 'access', 'label' => 'Permission', 'rules' => 'required|integer|max_length[10]|less_than[4294967295]|filter_int[10]'],
 		'class'        => ['field' => 'class', 'label' => 'Class', 'rules' => 'filter_input[32]'],
 		'active'       => ['field' => 'active', 'label' => 'Active', 'rules' => 'if_empty[0]|in_list[0,1]|filter_int[1]|max_length[1]|less_than[2]'],
 		'color'        => ['field' => 'color', 'label' => 'Color', 'rules' => 'if_empty[d28445]|filter_hex[6]|max_length[6]|filter_input[6]'],
@@ -64,8 +65,10 @@ class O_nav_model extends Database_model {
 	
 		return cache('nav_library.'.$this->cache_prefix.'.user'.user::id(),function() use ($that) {
 			$ary = [];
-	
-			$records = $that->as_array()->where_can_read()->order_by('parent_id, sort')->get_many();
+
+			$access = ['-1'] + array_keys(user::permissions());
+
+			$records = $that->as_array()->where_in('access',(array)$access)->where(['active'=>1])->order_by('parent_id, sort')->get_many();
 	
 			foreach ($records as $record) {
 				$ary[$record['parent_id']][] = $record;

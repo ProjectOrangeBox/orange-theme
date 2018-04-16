@@ -34,7 +34,7 @@
 	<div class="form-group">
 		<label class="col-md-3 control-label" for="textinput">Parent</label>
 		<div class="col-md-4">
-			<?=pear::catalog_dropdown('o_nav_model','parent_id',$record->parent_id,'url') ?>
+			<?=pear::dropdown('parent_id',ci('o_nav_model')->catalog('id','url'),$record->parent_id,['data-live-search'=>'true','class'=>'select3 form-control input-md']) ?>
 		</div>
 	</div>
 
@@ -83,6 +83,14 @@
 		<?=pear::field_label() ?>
 		<div class="col-md-9">
 			<?=pear::checkbox('active', 1,($record->active == 1),['class'=>'js-checker']) ?> <?=pear::field_human('a_tooltips_model','active') ?>
+		</div>
+	</div>
+
+	<!-- Text input-->
+	<div class="form-group">
+		<?=pear::field_label('o_nav_model','access') ?>
+		<div class="col-md-6">
+			<?=pear::dropdown('access',ci('nav_library')->nav_permission_catalog(),$record->access,['data-live-search'=>'true','class'=>'select3 form-control input-md']) ?>
 		</div>
 	</div>
 

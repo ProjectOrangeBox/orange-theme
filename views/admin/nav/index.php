@@ -22,6 +22,7 @@
 					<th class="panel-heading"><?=pear::field_human('o_nav_model','text') ?></th>
 					<th class="panel-heading"><?=pear::field_human('o_nav_model','url') ?></th>
 					<th class="panel-heading">Parent</th>
+					<th class="panel-heading"><?=pear::field_human('o_nav_model','permission') ?></th>
 					<th class="panel-heading text-center"><?=pear::field_human('o_nav_model','active') ?></th>
 					<th class="panel-heading text-center">Actions</th>
 				</tr>
@@ -33,6 +34,7 @@
 				<td><?=e($row->text) ?></td>
 				<td><?=e($row->url) ?></td>
 				<td><?=pear::catalog_lookup('o_nav_model',$row->parent_id,'url') ?></td>
+				<td><?=pear::catalog_lookup('o_permission_model',$row->access,'key') ?></td>
 				<td class="text-center"><?=pear::fa_enum_icon($row->active) ?></td>
 				<td class="text-center actions">
 					<?=pear::edit_button($controller_path.'/details/'.bin2hex($row->id)) ?>

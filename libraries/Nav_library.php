@@ -52,6 +52,10 @@ class Nav_library {
 		return $this->bindUserData($html);
 	}
 
+	public function nav_permission_catalog() {
+		return ci('o_permission_model')->catalog('id','key');
+	}
+
 	protected function outputItem($item) {
 		$output = '';
 	
@@ -70,9 +74,9 @@ class Nav_library {
 		}
 	
 		if (is_array($subItems)) {
-			$output .= $this->bindAnchor($item['url'],$item['text'],'',$this->_anchor_dropdown);
+			$output .= $this->bind_anchor($item,$this->_anchor_dropdown);
 		} else {
-			$output .= $this->bindAnchor($item['url'],$item['text']);
+			$output .= $this->bind_anchor($item);
 		}
 	
 		if (is_array($subItems)) {
@@ -101,7 +105,7 @@ class Nav_library {
 	
 			$output .= $subOutput;
 	
-			$output .= $this->bindAnchor($item['url'], $item['text']);
+			$output .= $this->bind_anchor($item);
 	
 			$output .= $this->_item_close;
 		}
@@ -122,8 +126,15 @@ class Nav_library {
 		return strtr($html,$vars);
 	}
 
-	protected function bindAnchor($url, $text, $extra = '',$isDropdown = false) {
-		$vars = ['{url}'=>$this->_base_url.$url,'{text}'=>$text,'{extra}'=>$extra];
+	protected function bind_anchor($record,$isDropdown=false) {
+		$vars = [
+			'{url}'=>$this->_base_url.$record['url'],
+			'{text}'=>$record['text'],
+			'{color}'=>$record['color'],
+			'{icon}'=>$record['icon'],
+			'{class}'=>$record['class'],
+			'{target}'=>$record['target'],
+		];
 	
 		return ($isDropdown) ? strtr($this->_anchor_dropdown,$vars) : strtr($this->_anchor,$vars);
 	}
