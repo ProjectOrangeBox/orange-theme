@@ -27,10 +27,9 @@ $(document).on('click', 'table.sortable thead th[data-defaultsort!="disabled"]',
 	document.body.style.cursor = 'default';
 });
 
+
 /* filter with debounce */
-$('#search_sort_filter').keyup(
-	$.debounce(500, search_sort_filter)
-)
+$('#search_sort_filter').on('keyup',debounce(function(){search_sort_filter();},500));
 
 function search_sort_filter() {
 	/* make info color and spin horizontal if contains content */
@@ -43,10 +42,9 @@ function search_sort_filter() {
 		$('#search_sort_filter').next().removeClass('text-info');
 	}
 	*/
-	
 	$.jStorage.set(controller_path+'saved_filter',$('#search_sort_filter').val());
 
-	var rex = new RegExp($(this).val(), 'i');
+	var rex = new RegExp($('#search_sort_filter').val(), 'i');
 
 	/* hide the tr's */
 	$('.searchable tr').hide();
@@ -55,7 +53,7 @@ function search_sort_filter() {
 	$('.searchable tr').filter(function () {
 		return rex.test($(this).text());
 	}).show(); /* show them again */
-	
+
 	search_sort_filter_count();
 }
 
@@ -64,7 +62,7 @@ function search_sort_filter_count() {
 	var all = $('table.table.orange tbody tr').length;
 	
 	var shown = (vis != all) ? vis + ' of ' + all : all;
-	
+
 	$('#search_sort_filter_records_shown').html(shown);
 }
 
@@ -82,6 +80,21 @@ document.addEventListener("DOMContentLoaded",function(e){
 		search_sort_filter_count();
 	}
 });
+
+function debounce(func, wait, immediate) {
+	var timeout;
+	return function() {
+		var context = this, args = arguments;
+		var later = function() {
+			timeout = null;
+			if (!immediate) func.apply(context, args);
+		};
+		var callNow = immediate && !timeout;
+		clearTimeout(timeout);
+		timeout = setTimeout(later, wait);
+		if (callNow) func.apply(context, args);
+	};
+};
 
 /* reload saved filter sort */
 /*

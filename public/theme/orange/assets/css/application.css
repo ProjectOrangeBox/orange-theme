@@ -100,3 +100,9 @@ td.actions form {
 	margin-top: 8px;
 	margin-bottom: 8px;
 }
+
+hr.shadow {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(150, 150, 150, 0.1), rgba(150, 150, 150, 0.7), rgba(150, 150, 150, 0.1));
+}

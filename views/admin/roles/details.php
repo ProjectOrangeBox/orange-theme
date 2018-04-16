@@ -35,6 +35,7 @@
 		</li>
 		<?php } ?>
   </ul>
+  <hr class="shadow">
   <!-- tab panels -->
   <div class="tab-content">
   	<?php foreach ($tabs as $tn=>$tab_set) { ?>

@@ -1,5 +1,9 @@
 <?php
 
-pear::attach('tabs',function($array) {
-	return array_keys($array);
-});
+class Pear_tabs extends Pear_plugin {
+
+	public function render($array=[]) {
+		return array_keys($array);
+	}
+
+}
