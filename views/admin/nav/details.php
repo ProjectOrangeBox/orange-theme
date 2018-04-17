@@ -90,7 +90,7 @@
 	<div class="form-group">
 		<?=pear::field_label('o_nav_model','access') ?>
 		<div class="col-md-6">
-			<?=pear::dropdown('access',ci('nav_library')->nav_permission_catalog(),$record->access,['data-live-search'=>'true','class'=>'select3 form-control input-md']) ?>
+			<?=pear::dropdown('access',[0=>'** Everyone'] + ci('nav_library')->nav_permission_catalog(),$record->access,['data-live-search'=>'true','class'=>'select3 form-control input-md']) ?>
 		</div>
 	</div>
 

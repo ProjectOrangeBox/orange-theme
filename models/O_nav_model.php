@@ -62,18 +62,18 @@ class O_nav_model extends Database_model {
 
 	public function grouped_by_parents() {
 		$that = &$this;
-	
+
 		return cache('nav_library.'.$this->cache_prefix.'.user'.user::id(),function() use ($that) {
 			$ary = [];
 
-			$access = ['-1'] + array_keys(user::permissions());
+			$access = [0] + array_keys(user::permissions());
 
-			$records = $that->as_array()->where_in('access',(array)$access)->where(['active'=>1])->order_by('parent_id, sort')->get_many();
-	
+			$records = $that->as_array()->where_in('access',$access)->where(['active'=>1])->order_by('parent_id, sort')->get_many();
+
 			foreach ($records as $record) {
 				$ary[$record['parent_id']][] = $record;
 			}
-	
+
 			return $ary;
 		});
 

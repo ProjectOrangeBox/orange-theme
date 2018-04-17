@@ -14,7 +14,7 @@ class Nav_library {
 	protected $_anchor_dropdown;
 	protected $_dropdown_open;
 	protected $_dropdown_close;
-	
+
 	protected $_base_url;
 
 	public function __construct() {
@@ -58,60 +58,60 @@ class Nav_library {
 
 	protected function outputItem($item) {
 		$output = '';
-	
+
 		$classes = '';
-	
+
 		$output .= $this->_item_open;
-	
+
 		$subItems = $this->catalog[$item['id']];
-	
+
 		if (is_array($subItems)) {
 			$classes .= $this->_item_open_dropdown_class.' ';
 		}
-	
+
 		if (!strcmp($classes,'') == 0) {
 			$output = str_replace('>',' class="' . $classes . '">',$output);
 		}
-	
+
 		if (is_array($subItems)) {
 			$output .= $this->bind_anchor($item,$this->_anchor_dropdown);
 		} else {
 			$output .= $this->bind_anchor($item);
 		}
-	
+
 		if (is_array($subItems)) {
 			$output .= $this->renderDropdown($subItems);
 		}
-	
+
 		$output .= $this->_item_close;
-	
+
 		return $output;
 	}
-	
+
 	protected function renderDropdown($records) {
 		$output = $this->_dropdown_open;
-	
+
 		foreach ($records as $item) {
 			$subOutput = $this->_item_open;
 			$classes = '';
-	
+
 			if (!is_null($subItems) && count($subItems->result()) > 0){
 				$classes .= $this->_item_open_dropdown_class.' ';
 			}
-	
+
 			if (!strcmp($classes,'') == 0) {
 				$subOutput = str_replace('>',' class="' . $classes . '">',$subOutput);
 			}
-	
+
 			$output .= $subOutput;
-	
+
 			$output .= $this->bind_anchor($item);
-	
+
 			$output .= $this->_item_close;
 		}
-	
+
 		$output .= $this->_dropdown_close;
-	
+
 		return $output;
 	}
 
@@ -120,9 +120,9 @@ class Nav_library {
 			'{username}'=>user::username(),
 			'{email}'=>user::email(),
 		];
-	
+
 		ci('event')->trigger('nav_library.bind',$html);
-	
+
 		return strtr($html,$vars);
 	}
 
@@ -135,7 +135,7 @@ class Nav_library {
 			'{class}'=>$record['class'],
 			'{target}'=>$record['target'],
 		];
-	
+
 		return ($isDropdown) ? strtr($this->_anchor_dropdown,$vars) : strtr($this->_anchor,$vars);
 	}
 
