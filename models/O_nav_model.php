@@ -59,6 +59,7 @@ class O_nav_model extends Database_model {
 	protected $has_roles = true;
 	protected $has_stamps = true;
 	protected $order_by = 'url sort';
+	protected $debug = true;
 
 	public function grouped_by_parents() {
 		$that = &$this;

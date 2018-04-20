@@ -43,20 +43,20 @@ class Nav_library {
 			foreach ($this->catalog[$parent_id] as $item) {
 				ci('event')->trigger('nav_library.build',$item);
 
-				$html .= $this->outputItem($item);
+				$html .= $this->output_Item($item);
 			}
 		}
 
 		$html .= $this->_navigation_close;
 
-		return $this->bindUserData($html);
+		return $this->bind_user_data($html);
 	}
 
 	public function nav_permission_catalog() {
 		return ci('o_permission_model')->catalog('id','key');
 	}
 
-	protected function outputItem($item) {
+	protected function output_Item($item) {
 		$output = '';
 
 		$classes = '';
@@ -80,7 +80,7 @@ class Nav_library {
 		}
 
 		if (is_array($subItems)) {
-			$output .= $this->renderDropdown($subItems);
+			$output .= $this->render_dropdown($subItems);
 		}
 
 		$output .= $this->_item_close;
@@ -88,11 +88,11 @@ class Nav_library {
 		return $output;
 	}
 
-	protected function renderDropdown($records) {
+	protected function render_dropdown($records) {
 		$output = $this->_dropdown_open;
 
 		foreach ($records as $item) {
-			$subOutput = $this->_item_open;
+			$sub_output = $this->_item_open;
 			$classes = '';
 
 			if (!is_null($subItems) && count($subItems->result()) > 0){
@@ -100,10 +100,10 @@ class Nav_library {
 			}
 
 			if (!strcmp($classes,'') == 0) {
-				$subOutput = str_replace('>',' class="' . $classes . '">',$subOutput);
+				$sub_output = str_replace('>',' class="' . $classes . '">',$sub_output);
 			}
 
-			$output .= $subOutput;
+			$output .= $sub_output;
 
 			$output .= $this->bind_anchor($item);
 
@@ -115,18 +115,16 @@ class Nav_library {
 		return $output;
 	}
 
-	protected function bindUserData($html) {
+	protected function bind_user_data($html) {
 		$vars = [
 			'{username}'=>user::username(),
 			'{email}'=>user::email(),
 		];
 
-		ci('event')->trigger('nav_library.bind',$html);
-
-		return strtr($html,$vars);
+		return $this->bind($html,$vars);
 	}
 
-	protected function bind_anchor($record,$isDropdown=false) {
+	protected function bind_anchor($record,$is_dropdown=false) {
 		$vars = [
 			'{url}'=>$this->_base_url.$record['url'],
 			'{text}'=>$record['text'],
@@ -136,7 +134,15 @@ class Nav_library {
 			'{target}'=>$record['target'],
 		];
 
-		return ($isDropdown) ? strtr($this->_anchor_dropdown,$vars) : strtr($this->_anchor,$vars);
+		$html = ($is_dropdown) ? $this->_anchor_dropdown : $this->_anchor;
+
+		return $this->bind($html,$vars);
+	}
+	
+	protected function bind($html,$vars) {
+		ci('event')->trigger('nav_library.bind',$html,$vars);
+	
+		return strtr($html,$vars);
 	}
 
 } /* end class */

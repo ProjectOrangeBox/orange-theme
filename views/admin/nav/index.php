@@ -16,17 +16,19 @@
 
 <div class="row">
 	<table class="table orange sortable table-hover">
-			<thead>
-				<tr class="panel-default">
-					<th class="panel-heading">Id</th>
-					<th class="panel-heading"><?=pear::field_human('o_nav_model','text') ?></th>
-					<th class="panel-heading"><?=pear::field_human('o_nav_model','url') ?></th>
-					<th class="panel-heading">Parent</th>
-					<th class="panel-heading"><?=pear::field_human('o_nav_model','permission') ?></th>
-					<th class="panel-heading text-center"><?=pear::field_human('o_nav_model','active') ?></th>
-					<th class="panel-heading text-center">Actions</th>
-				</tr>
-			</thead>
+		<thead>
+			<tr class="panel-default">
+				<th class="panel-heading">Id</th>
+				<th class="panel-heading"><?=pear::field_human('o_nav_model','text') ?></th>
+				<th class="panel-heading"><?=pear::field_human('o_nav_model','url') ?></th>
+				<th class="panel-heading">Parent</th>
+				<th class="panel-heading"><?=pear::field_human('o_nav_model','permission') ?></th>
+				<th class="panel-heading text-center"><?=pear::field_human('o_nav_model','active') ?></th>
+				<th class="panel-heading text-center">Color/Icon</th>
+				<th class="panel-heading text-center">Sort</th>
+				<th class="panel-heading text-center">Actions</th>
+			</tr>
+		</thead>
 		<tbody class="searchable">
 			<? foreach ($records as $row) { ?>
 			<tr>
@@ -36,6 +38,8 @@
 				<td><?=pear::catalog_lookup('o_nav_model',$row->parent_id,'url') ?></td>
 				<td><?=pear::catalog_lookup('o_permission_model',$row->access,'key') ?></td>
 				<td class="text-center"><?=pear::fa_enum_icon($row->active) ?></td>
+				<td class="text-center"><?=pear::color_fa_icon($row->color,$row->icon) ?></td>
+				<td class="text-center"><?=e($row->sort) ?></td>
 				<td class="text-center actions">
 					<?=pear::edit_button($controller_path.'/details/'.bin2hex($row->id)) ?>
 					<?=pear::delete_button($controller_path,['id'=>$row->id]) ?>
