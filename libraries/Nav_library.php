@@ -138,10 +138,10 @@ class Nav_library {
 
 		return $this->bind($html,$vars);
 	}
-	
+
 	protected function bind($html,$vars) {
 		ci('event')->trigger('nav_library.bind',$html,$vars);
-	
+
 		return strtr($html,$vars);
 	}
 
