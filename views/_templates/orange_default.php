@@ -4,7 +4,6 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jStorage/0.4.12/jstorage.js"></script>
 <script src="/theme/orange/assets/js/application.js"></script>
-<script src="/application/application.js"></script>
 <!-- https://cdnjs.com/ -->
 <?php pear::parent() ?>
 <?php pear::end() ?>
