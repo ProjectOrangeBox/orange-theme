@@ -9,7 +9,7 @@ class Pear_search_sort_field extends Pear_plugin {
 				'/theme/orange/assets/plugins/search-sort/bootstrap-sortable.min.js',
 				'/theme/orange/assets/plugins/search-sort/o-search-sort'.PAGE_MIN.'.js',
 			])
-			->css('/theme/orange/assets/plugins/search-sort/bootstrap-sortable.min.css',75);
+			->css('/theme/orange/assets/plugins/search-sort/bootstrap-sortable.min.css');
 	}
 
 	public function render($length=222,$id='search_sort_filter') {

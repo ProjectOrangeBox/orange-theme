@@ -20,6 +20,7 @@
  */
 class SettingsController extends MY_Controller {
 	use admin_controller_trait;
+	
 	public $controller        = 'settings';
 	public $controller_title  = 'Setting';
 	public $controller_titles = 'Settings';
@@ -44,8 +45,10 @@ class SettingsController extends MY_Controller {
  * @example
  */
 	public function editorAction($id=null) {
-		$this->_edit_record($id);
-		$record = ci('load')->get_var('record');
-		ci('page')->data(['options'=>json_decode($record->options,true)])->render('/admin/settings/editor');
+		$data = $this->_edit_record($id);
+		
+		$data['options'] = json_decode($data['record']->options,true);
+		
+		ci('page')->render(null,$data);
 	}
 }
