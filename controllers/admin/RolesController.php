@@ -20,6 +20,7 @@
  */
 class RolesController extends MY_Controller {
 	use admin_controller_trait;
+	
 	public $controller        = 'roles';
 	public $controller_title  = 'Role';
 	public $controller_titles = 'Roles';
@@ -45,10 +46,10 @@ class RolesController extends MY_Controller {
  */
 	public function detailsAction($id=null) {
 		if ($id) {
-			$this->_edit_record($id);
+			$this->data = $this->_edit_record($id);
 			$this->data['permissions'] = simplify_array(ci('o_role_model')->permissions((int)hex2bin($id)));
 		} else {
-			$this->_new_record();
+			$this->data = $this->_new_record();
 			$this->data['permissions'] = [];
 		}
 		ci('page')->data($this->data)->render();
