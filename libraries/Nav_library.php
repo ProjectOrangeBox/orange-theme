@@ -52,6 +52,20 @@ class Nav_library {
 		return $this->bind_user_data($html);
 	}
 
+	public function li($parent_id) {
+		$html = '';
+
+		if (is_array($this->catalog[$parent_id])) {
+			foreach ($this->catalog[$parent_id] as $item) {
+				ci('event')->trigger('nav_library.build',$item);
+
+				$html .= $this->output_Item($item);
+			}
+		}
+
+		return $html;
+	}
+
 	public function nav_permission_catalog() {
 		return ci('o_permission_model')->catalog('id','key');
 	}

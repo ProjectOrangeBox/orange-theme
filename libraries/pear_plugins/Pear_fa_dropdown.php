@@ -13,7 +13,7 @@ class Pear_fa_dropdown {
 		$awesome = $this->awesomeness();
 
 		$fa_list = array_combine($awesome,$awesome);
-		$html = '<select name="'.$name.'" class="form-control select3">';
+		$html = '<select name="'.$name.'" class="form-control select3" data-live-search="true">';
 
 		if ($empty) {
 			$html .= '<option value="" selected>&nbsp;</option>';

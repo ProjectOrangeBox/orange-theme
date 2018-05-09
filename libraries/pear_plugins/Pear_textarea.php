@@ -4,7 +4,7 @@ class Pear_textarea extends Pear_plugin {
 
 	public function render($name=null,$value=null,$options=null) {
 		if (is_array($name)) {
-			$value = $options['value'];					
+			$value = $options['value'];
 			$options = $name;
 			$name = $options['name'];
 
@@ -20,8 +20,6 @@ class Pear_textarea extends Pear_plugin {
 			'id'=>$name,
 		];
 
-		$attributes = array_diff_key($defaults,(array)$options) + array_intersect_key((array)$options, $defaults);
-
-		return '<textarea '.$this->_convert2attributes($attributes).'>'	.e($value)	."</textarea>\n";
+		return '<textarea '.$this->_convert2attributes(array_merge($defaults,$options)).'>'	.e($value)	."</textarea>\n";
 	}
 }
