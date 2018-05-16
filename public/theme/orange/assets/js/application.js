@@ -12,7 +12,12 @@ var pleaseWaitDiv = $('<div class="modal fade bs-example-modal-sm" id="myPleaseW
 /* get the other tools */
 $.getScript('/theme/orange/assets/js/tools.min.js');
 
-function widget_minipipe(that) {
+/*
+data-widget="url to call"
+data-template="javascript template to use"
+
+*/
+orange.widget_minipipe = function(that) {
 	$.ajax({
 		type: 'POST',
 		url: $(that).data('widget'),
@@ -22,20 +27,28 @@ function widget_minipipe(that) {
 		},
 		success: function(data,textStatus,jqXHR) {
 			if (data.html) {
-				widget_replace(that,data.html);			
+				orange.widget_replace(that,data.html);
+			} else if (data.json) {
+				var template_id = $(that).data('handlebars');
+				
+				if (document.getElementById(template_id)) {
+					orange.widget_replace(that,Handlebars.compile(document.getElementById(template_id).innerHTML)(data.json));
+				} else {
+					orange.widget_replace(that,'{{Template ID '+template_id+' Missing}}');
+				}
 			} else {
-				widget_replace(that,'{{HTML Missing}}');			
+				orange.widget_replace(that,'{{HTML Missing}}');
 			}
 		},
 		error: function(jqXHR,textStatus,errorThrown) {
 			if ($(that).data().errors == true) {
-				widget_replace(that,'{{error}}');
+				orange.widget_replace(that,'{{error}}');
 			}
 		},
 	});
 }
 
-function widget_replace(that,input) {
+orange.widget_replace = function(that,input) {
 	if (/^(?:area|br|col|embed|hr|img|input|link|meta|param)$/i.test($(that)[0].tagName)) {
 		$(that).replaceWith(input);
 	} else {
@@ -44,27 +57,30 @@ function widget_replace(that,input) {
 }
 
 document.addEventListener("DOMContentLoaded",function(e){
+	/* handle ajax widgets */
 	$('[data-widget]').each(function() {
-		widget_minipipe(this);
+		orange.widget_minipipe(this);
 	});
 
+	/* make a GET method call */
 	$('.js-get').click(function(e) {
 		e.preventDefault();
-		
+
 		$.get($(this).attr('href'));
-		
+
 		$.noticeAdd({text: $(this).data('msg'), type: 'info'});
 	});
 
+	/* setup tooltips */
 	$('body').tooltip({
 		selector: '.js-tooltip'
 	});
-	
+
 	/* handle shift in a tab group */
 	$('div.tab-content :checkbox').click(function(event) {
 		if (event.shiftKey) {
 			$('div.tab-pane.active :checkbox').prop('checked',($(this).prop('checked') || false));
 		}
 	});
-	
+
 });
