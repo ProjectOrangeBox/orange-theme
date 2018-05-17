@@ -50,7 +50,7 @@ class pear_repeatable_start_template extends Pear_plugin {
 	}
 
 	public function render($id=nill,$add_button_class=null,$remove_button_class=null,$group_class=null,$max=null,$min=null,$append_id=null) {
-		return '<div id="'.trim(trim($append_id,'#'),'.').'"></div><script id="'.$id.'" type="text/x-handlebars-template" data-add="'.$add_button_class.'" data-remove="'.$remove_button_class.'" data-group="'.$group_class.'" data-max="'.$max.'" data-min="'.$min.'" data-append="'.$append_id.'">';
+		return '<script id="'.$id.'" type="text/x-handlebars-template" data-add="'.$add_button_class.'" data-remove="'.$remove_button_class.'" data-group="'.$group_class.'" data-max="'.$max.'" data-min="'.$min.'" data-append="'.$append_id.'">';
 	}
 
 }
