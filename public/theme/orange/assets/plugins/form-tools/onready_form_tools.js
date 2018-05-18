@@ -1,5 +1,5 @@
 /* turn checkbox into text input so we always get something */
-$(".js-checker").each(function(index,value) {
+$('.js-checker').each(function(index,value) {
 	/* clear out the name and add a hidden field right after it */
 	var name = $(this).attr('name');
 	
@@ -25,7 +25,7 @@ $('.js-human-input').on('keyup blur',function(index) {
 });
 
 /* add max length to textareas pre-html5 */
-$("textarea[maxlength]").bind('input propertychange', function() {
+$('textarea[maxlength]').bind('input propertychange', function() {
 	var maxLength = $(this).attr('maxlength');
 
 	if ($(this).val().length > maxLength) {
