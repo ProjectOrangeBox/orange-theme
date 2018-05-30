@@ -6,7 +6,7 @@ class Pear_flash_msg {
 		ci('page')
 			->css('/theme/orange/assets/plugins/flash-msg/flash-msg.css')
 			->js('/theme/orange/assets/plugins/flash-msg/jquery.bootstrap.flash-msg.js');
-			
+
 		$msgs = [];
 
 		$payload = (array)ci('load')->get_var('wallet_messages');
