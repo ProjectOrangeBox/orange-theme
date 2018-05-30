@@ -10,4 +10,14 @@ class Pear_select3 extends Pear_plugin {
 			->domready("$('.select3').selectpicker();");
 	}
 
+	public function render($name=null,$options=null,$value=null,$extras=[]) {
+		if (count($options) > 20) {
+			$extras['data-live-search'] = 'true';
+		}
+
+		$extras['class'] .= ' select3';
+
+		return pear::dropdown($name,$options,$value,$extras);
+	}
+
 }
