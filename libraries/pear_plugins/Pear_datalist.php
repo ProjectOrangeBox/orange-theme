@@ -16,7 +16,7 @@ class Pear_datalist {
 		$extras['class'] .= ' datalist';
 
 		if (is_string($options)) {
-			$options = ci('cache')->page->cache('catalog_datalist_'.$options,function($ci) use ($options) {
+			$options = ci('cache')->request->cache('catalog_datalist_'.$options,function($ci) use ($options) {
 				list($model,$primary_key,$human_column) = explode('.',$options,3);
 				return ci($model)->catalog($primary_key,$human_column);
 			});

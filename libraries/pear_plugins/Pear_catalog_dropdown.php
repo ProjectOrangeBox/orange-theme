@@ -7,7 +7,7 @@ class Pear_catalog_dropdown extends Pear_plugin {
 	}
 
 	public function render($model=null,$name=null,$value=null,$human_column=null,$primary_key='id') {
-		$catalog = ci('cache')->page->cache('catalog_dropdown_'.$model.$name.$human_column.$primary_key,function($ci) use ($model,$primary_key,$human_column) {
+		$catalog = ci('cache')->request->cache('catalog_dropdown_'.$model.$name.$human_column.$primary_key,function($ci) use ($model,$primary_key,$human_column) {
 			return ci($model)->catalog($primary_key,$human_column);
 		});
 
