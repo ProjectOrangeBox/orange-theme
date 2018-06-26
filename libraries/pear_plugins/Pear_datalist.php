@@ -12,7 +12,7 @@ class Pear_datalist {
 		->domready("$('.datalist').editableSelect({effects:'fade'});");
 	}
 
-	public function render($name='',$options=[],$value='',$extras=[]) {
+	public function render($name='',$value='',$options=[],$extras=[]) {
 		$extras['class'] .= ' datalist';
 
 		if (is_string($options)) {
