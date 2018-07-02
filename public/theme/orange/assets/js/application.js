@@ -66,9 +66,18 @@ document.addEventListener("DOMContentLoaded",function(e){
 	$('.js-get').click(function(e) {
 		e.preventDefault();
 
-		$.get($(this).attr('href'));
+		$.get($(this).attr('href'), function(data) {
+			var msg_default = ($(this).data('msg')) ? $(this).data('msg') : 'Complete';
+			var type_default = ($(this).data('type')) ? $(this).data('type') : 'info';
+			var stay_default = ($(this).data('stay')) ? ($(this).data('stay') == 'true') : false;
+			
+			var msg = (data.msg) ? data.msg : msg_default;
+			var type = (data.type) ? data.type : type_default;
+			var stay = (data.stay) ? data.stay : stay_default;
 
-		$.noticeAdd({text: $(this).data('msg'), type: 'info'});
+			$.noticeAdd({text: msg, type: type, stay: stay});
+		});
+
 	});
 
 	/* setup tooltips */

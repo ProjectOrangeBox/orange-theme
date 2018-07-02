@@ -1,6 +1,6 @@
 <?php
 
-trait admin_controller_index_trait {
+trait admin_index_controller_trait {
 /**
  * Call the controllers default model index method with controllers order by and limit
  *

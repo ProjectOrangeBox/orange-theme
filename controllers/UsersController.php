@@ -20,6 +20,7 @@
  */
 class UsersController extends MY_Controller {
 	use admin_controller_trait;
+	
 	public $controller        = 'users';
 	public $controller_title  = 'User';
 	public $controller_titles = 'Users';
