@@ -1,15 +1,12 @@
 <?php pear::extends('_templates/orange_admin') ?>
+
 <?php pear::section('section_container') ?>
+
 <?php $tabs = pear::tab_prepare($records,'group','description') ?>
+
 <div class="row">
   <div class="col-md-6"><?=pear::title($controller_titles,'key') ?></div>
-  <div class="col-md-6">
-  	<div class="pull-right">
-			<?php if (user::can('url::/admin/permissions::index~post')) { ?>
-				<?=pear::new_button($controller_path.'/details','New '.$controller_title) ?>
-			<?php } ?>
-  	</div>
-  </div>
+  <div class="col-md-6"></div>
 </div>
 <div class="row">
   <!-- Nav tabs -->
@@ -29,25 +26,14 @@
 					<tr class="panel-default">
 						<th class="panel-heading">Description</th>
 						<th class="panel-heading">Key</th>
-						<th class="panel-heading text-center">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php foreach ($tab_set as $row) { ?>
-						<?php if (user::has_role($row->read_role_id)) { ?>
-							<tr>
-								<td><?=e($row->description) ?></td>
-								<td><?=e($row->key) ?></td>
-								<td class="text-center actions">
-									<?php if (user::has_role($row->edit_role_id)) { ?>
-										<?=pear::edit_button($controller_path.'/details/'.bin2hex($row->id)) ?>
-									<?php } ?>
-									<?php if (user::has_role($row->delete_role_id)) { ?>
-										<?=pear::delete_button($controller_path,['id'=>$row->id]) ?>
-									<?php } ?>
-								</td>
-							</tr>
-						<?php } ?>
+						<tr>
+							<td><?=e($row->description) ?></td>
+							<td><?=e($row->key) ?></td>
+						</tr>
 					<?php } ?>
 				</tbody>
 			</table>

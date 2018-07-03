@@ -15,13 +15,6 @@ class Pear_datalist {
 	public function render($name='',$value='',$options=[],$extras=[]) {
 		$extras['class'] .= ' datalist';
 
-		if (is_string($options)) {
-			$options = ci('cache')->request->cache('catalog_datalist_'.$options,function($ci) use ($options) {
-				list($model,$primary_key,$human_column) = explode('.',$options,3);
-				return ci($model)->catalog($primary_key,$human_column);
-			});
-		}
-
 		if (!array_key_exists($value,$options)) {
 			$options[$value] = $value;
 		}

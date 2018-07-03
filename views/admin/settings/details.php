@@ -15,13 +15,15 @@
 		  <h3>Administration View</h3>
 	  </div>
 	</div>
+
 	<!-- Text input-->
 	<div class="form-group">
 		<?=pear::field_label('o_setting_model','group') ?>
 		<div class="col-md-4">
-			<?=pear::datalist('group',$settings_group_catalog,$record->group,['class'=>'form-control']) ?>
+			<?=pear::datalist('group',$record->group,$settings_group_catalog,['class'=>'form-control']) ?>
 		</div>
 	</div>
+
 	<!-- Text input-->
 	<div class="form-group">
 		<?=pear::field_label('o_setting_model','name') ?>
@@ -29,6 +31,7 @@
 			<?=pear::input('name',$record->name,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
 	</div>
+
 	<!-- Text input-->
 	<div class="form-group">
 		<?=pear::field_label('o_setting_model','value') ?>
@@ -36,6 +39,7 @@
 			<?=pear::input('value',$record->value,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
 	</div>
+
 	<!-- Text input-->
 	<div class="form-group">
 		<?=pear::field_label('o_setting_model','help') ?>
@@ -43,6 +47,7 @@
 			<?=pear::input('help',$record->help,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
 	</div>
+
 	<!-- Checkbox -->
 	<div class="form-group">
 		<div class="col-md-offset-3 col-md-4">
@@ -53,7 +58,9 @@
 			</div>
 		</div>
 	</div>
+
 	<?=pear::include('_templates/access') ?>
+
 	<!-- Text input-->
 	<div class="form-group">
 		<?=pear::field_label('o_setting_model','internal') ?>
@@ -61,11 +68,12 @@
 			<?=pear::input('internal',$record->internal,['readonly'=>'readonly','class'=>'form-control input-md']) ?>
 		</div>
 	</div>
+
 	<!-- Text input-->
 	<div class="form-group">
 		<?=pear::label('Options','options',['class'=>'col-md-3 control-label']) ?>
 	  <div class="col-md-7">
-			<?=pear::textarea(['name'=>'options','value'=>$record->options,'class'=>'form-control fixed-font','cols'=>66,'rows'=>4]) ?>
+			<?=pear::textarea('options',$record->options,['class'=>'form-control fixed-font','cols'=>66,'rows'=>4]) ?>
 			<h5>Example Options:</h5>
 			<pre>{"type":"radio","options":{"1":"Red","2":"Green","3":"Yellow","4":"Blue"}}
 {"type":"textarea","rows":5}
@@ -74,6 +82,7 @@
 {"type":"text","width":"50","mask":"int"}</pre>
 	  </div>
 	</div>
+
 	<!-- Submit Button -->
 	<div class="form-group">
 		<div class="col-md-12">
@@ -83,4 +92,5 @@
 		</div>
 	</div>
 <?=pear::close() ?>
-<?php pear::end() ?>
+
+<? pear::end() ?>
