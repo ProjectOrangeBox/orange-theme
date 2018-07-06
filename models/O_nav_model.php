@@ -79,7 +79,7 @@ class O_nav_model extends Database_model {
 
 	}
 
-	public function add($url=null,$text=null) {
+	public function add($url=null,$text=null,$internal=null) {
 		foreach (func_get_args() as $v) {
 			if (empty($v)) {
 				throw new exception(__METHOD__.' Required Field Empty.'.chr(10));
@@ -101,7 +101,7 @@ class O_nav_model extends Database_model {
 		];
 
 		/* we already verified the key that's the "real" primary key */
-		return (!$this->exists(['url'=>$url])) ? $this->insert($default + ['url'=>$url,'text'=>$text]) : false;
+		return (!$this->exists(['internal'=>$internal])) ? $this->insert($defaults + ['url'=>$url,'text'=>$text,'internal'=>$internal]) : false;
 	}
 
 } /* end class */
