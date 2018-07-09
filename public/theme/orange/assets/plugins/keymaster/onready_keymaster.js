@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded",function(e){
 
 	/* go back button */
 	key('esc', function(){
-		window.location = $('a.js-esc').attr('href');
+		if ($('a.js-esc').attr('href') != undefined) {
+			window.location = $('a.js-esc').attr('href');
+		}
 	});
 	
 	/* save button */
