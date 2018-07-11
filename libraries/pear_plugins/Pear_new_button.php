@@ -1,11 +1,6 @@
 <?php
 
 class Pear_new_button extends Pear_plugin {
-
-	public function __construct() {
-		ci('load')->helper('url');
-	}
-
 	public function render($uri='',$title='New',$attributes=[]) {
 		$default_attributes = ['class'=>'btn btn-default btn-sm js-new'];
 		$attributes = array_merge($default_attributes,(array)$attributes);

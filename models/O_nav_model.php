@@ -79,7 +79,29 @@ class O_nav_model extends Database_model {
 
 	}
 
-	public function add($url=null,$text=null,$internal=null) {
+	public function ol_list($parent_id) {
+		return $this->_children($parent_id);
+	}
+	
+	protected function _children($parent_id) {
+		$ary = [];
+		
+		$records = $this->as_array()->where(['parent_id'=>$parent_id])->order_by('parent_id, sort')->get_many();
+	
+		foreach ($records as $record) {
+			$children = $this->_children($record['id']);
+			
+			if ($children) {
+				$record['children'] = $children;
+			}
+
+			$ary[$record['id']] = $record;
+		}
+
+		return $ary;
+	}
+
+	public function migration_add($url=null,$text=null,$migration=null) {
 		foreach (func_get_args() as $v) {
 			if (empty($v)) {
 				throw new exception(__METHOD__.' Required Field Empty.'.chr(10));
@@ -88,7 +110,7 @@ class O_nav_model extends Database_model {
 
 		$this->skip_rules = true;
 
-		$defaults = [
+		$columns = [
 			'read_role_id'=>ADMIN_ROLE_ID,
 			'edit_role_id'=>ADMIN_ROLE_ID,
 			'delete_role_id'=>ADMIN_ROLE_ID,
@@ -98,10 +120,30 @@ class O_nav_model extends Database_model {
 			'updated_on'=>date('Y-m-d H:i:s'),
 			'updated_by'=>0,
 			'updated_ip'=>'0.0.0.0',
+			'parent_id'=>1,
+			'url'=>$url,
+			'text'=>$text,
+			'migration'=>$migration,
 		];
 
 		/* we already verified the key that's the "real" primary key */
-		return (!$this->exists(['internal'=>$internal])) ? $this->insert($defaults + ['url'=>$url,'text'=>$text,'internal'=>$internal]) : false;
+		return (!$this->exists(['url'=>$url,'text'=>$text])) ? $this->insert($columns) : false;
+	}
+
+	public function migration_remove($where=null) {
+		foreach (func_get_args() as $v) {
+			if (empty($v)) {
+				throw new exception(__METHOD__.' Required Field Empty.'.chr(10));
+			}
+		}
+
+		$this->skip_rules = true;
+
+		if (!is_array($where)) {
+			$where = ['migration'=>$where];
+		}
+
+		return $this->delete_by($where);
 	}
 
 } /* end class */

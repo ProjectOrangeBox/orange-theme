@@ -1,4 +1,5 @@
 <?php pear::extends('_templates/orange_admin') ?>
+
 <?php pear::section('section_container') ?>
 <div class="row">
   <div class="col-md-6"><h3><i class="fa fa-users"></i> <?=$controller_titles ?></h3></div>
@@ -22,20 +23,14 @@
 			</thead>
 		<tbody class="searchable">
 		<?php foreach ($records as $row) { ?>
-			<?php if (user::has_role($row->read_role_id)) { ?>
-				<tr>
-					<td><?=e($row->name) ?></td>
-					<td><?=e($row->description) ?></td>
-					<td class="text-center actions">
-						<?php if (user::has_role($row->edit_role_id)) { ?>
-							<?=pear::edit_button($controller_path.'/details/'.bin2hex($row->id)) ?>
-						<?php } ?>
-						<?php if (user::has_role($row->delete_role_id)) { ?>
-							<?=pear::delete_button($controller_path,['id'=>$row->id]) ?>
-						<?php } ?>
-					</td>
-				</tr>
-			<?php } ?>
+			<tr>
+				<td><?=e($row->name) ?></td>
+				<td><?=e($row->description) ?></td>
+				<td class="text-center actions">
+					<?=pear::edit_button($controller_path.'/details/'.bin2hex($row->id)) ?>
+					<?=pear::delete_button($controller_path,['id'=>$row->id]) ?>
+				</td>
+			</tr>
 		<?php } ?>
 		</tbody>
 	</table>

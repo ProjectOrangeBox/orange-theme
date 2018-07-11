@@ -1,11 +1,6 @@
 <?php
 
 class Pear_goback_button {
-
-	public function __construct() {
-		ci('load')->helper('url');
-	}
-
 	public function render($uri='',$title='Go Back',$attributes=[]) {
 		$default_attributes = ['class'=>'btn btn-default btn-sm js-esc'];
 		$attributes = array_merge($default_attributes,(array)$attributes);

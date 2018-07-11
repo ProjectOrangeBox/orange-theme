@@ -1,4 +1,5 @@
 <?php
+
 trait admin_acl_controller_trait {
 /**
  * flush_aclAction

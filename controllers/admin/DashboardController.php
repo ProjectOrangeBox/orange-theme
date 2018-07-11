@@ -19,5 +19,5 @@
  *
  */
 class DashboardController extends MY_Controller {
-	use admin_controller_trait;
+	use admin_index_render_controller_trait;
 }

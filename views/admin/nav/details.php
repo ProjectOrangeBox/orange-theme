@@ -66,7 +66,7 @@
 	<div class="form-group">
 		<?=pear::field_label('o_nav_model','sort') ?>
 		<div class="col-md-2">
-			<?=pear::field_range('sort',$record->sort,['class'=>'input-md','max'=>100,'min'=>0,'step'=>1]) ?>
+			<?=pear::input('sort',$record->sort,['class'=>'form-control input-md']) ?>
 		</div>
 	</div>
 
