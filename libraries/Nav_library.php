@@ -17,6 +17,9 @@ class Nav_library {
 
 	protected $_base_url;
 
+	protected $list = '';
+	protected $sort = 0;
+
 	public function __construct() {
 		$this->catalog = ci('o_nav_model')->grouped_by_parents();
 
@@ -68,6 +71,44 @@ class Nav_library {
 
 	public function nav_permission_catalog() {
 		return ci('o_permission_model')->catalog('id','key');
+	}
+
+	public function gui_expand($orders,$parent_id) {
+		foreach ($orders as $order) {
+			$this->sort = $this->sort + 3;
+
+			ci('o_nav_model')->update(['id'=>$order['id'],'sort'=>$this->sort,'parent_id'=>$parent_id]);
+
+			if (isset($order['children'])) {
+				$this->gui_expand($order['children'],$order['id']);
+			}
+		}
+		
+		return true;
+	}
+
+	public function gui_compress($list) {
+		$this->_gui_compress($list);
+
+		return $this->list;
+	}
+
+	protected function _gui_compress($list) 	{
+		$this->list .= config('nav.gui_navigation_open');
+
+		foreach ($list as $value) {
+			$value['disabled'] = ($value['active'] == 0) ? config('nav.gui_disabled_class') : '';
+
+			$this->list .= ci('parser')->parse_string(config('nav.gui_item_open').config('nav.gui_drag_handle').config('nav.gui_content'),$value,true);
+
+			if (is_array($value['children'])) {
+				$this->_gui_compress($value['children']);
+			}
+
+			$this->list .= config('nav.gui_item_close');
+		}
+
+		$this->list .= config('nav.gui_navigation_close');
 	}
 
 	protected function output_Item($item) {

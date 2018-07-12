@@ -1,4 +1,5 @@
 <?php pear::extends('_templates/orange_admin') ?>
+
 <?php pear::section('section_container') ?>
 <form class="form-horizontal" method="<?=$form_method ?>" action="<?=$controller_path ?>" data-success="Record Saved|blue" data-redirect="/admin/dashboard">
 	<input type="hidden" name="id" value="<?=$record->id ?>">

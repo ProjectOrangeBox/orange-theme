@@ -5,39 +5,45 @@
 class Migration_003_add_navigation extends Migration_base {
 
 	public function up() {
-		ci('o_nav_model')->migration_add('/left-menu','Left Menu',__CLASS__);
-		ci('o_nav_model')->migration_add('/right-menu','Right Menu',__CLASS__);
-		ci('o_nav_model')->migration_add('/extra-menu','Extra Menu',__CLASS__);
+		$hash = $this->get_hash();
 
-		ci('o_nav_model')->migration_add('/admin-main-menu','Admin',__CLASS__);
+		echo $hash.' up'.chr(10);
 
-		/* Users */
-		ci('o_nav_model')->migration_add('/users','Users',__CLASS__);
-		
+		/* root menu */
+		ci()->db->query("INSERT INTO `orange_nav` (`id`, `created_on`, `created_by`, `created_ip`, `updated_on`, `updated_by`, `updated_ip`, `access`, `url`, `text`, `parent_id`, `sort`, `target`, `class`, `active`, `color`, `icon`, `read_role_id`, `edit_role_id`, `delete_role_id`, `migration`) VALUES (1,'2018-07-12 11:36:06',3,'0.0.0.0','2018-07-12 11:40:00',1,'192.168.64.1',0,'/root-menu','Root Menu',0,0,'','',1,'000000','thumbs-up',1,1,1,'packages/projectorangebox/theme-orange/003_add_navigation')");
+
+		ci('o_nav_model')->migration_add('/left-menu','Left Menu',$hash);
+		ci('o_nav_model')->migration_add('/right-menu','Right Menu',$hash);
+		ci('o_nav_model')->migration_add('/extra-menu','Extra Menu',$hash);
+
+		ci('o_nav_model')->migration_add('/admin-main-menu','Admin',$hash);
+
 		/* Admin Dashboard */
-		ci('o_nav_model')->migration_add('/admin/dashboard','Dashboard',__CLASS__);
+		ci('o_nav_model')->migration_add('/admin/dashboard','Dashboard',$hash);
 		
 		/* Admin Nav */
-		ci('o_nav_model')->migration_add('/admin/nav','Nav',__CLASS__);
+		ci('o_nav_model')->migration_add('/admin/nav','Nav',$hash);
 		
 		/* Admin Permissions */
-		ci('o_nav_model')->migration_add('/admin/permissions','Permissions',__CLASS__);
+		ci('o_nav_model')->migration_add('/admin/permissions','Permissions',$hash);
 		
 		/* Admin Roles */
-		ci('o_nav_model')->migration_add('/admin/roles','Roles',__CLASS__);
+		ci('o_nav_model')->migration_add('/admin/roles','Roles',$hash);
 		
 		/* Admin Settings */
-		ci('o_nav_model')->migration_add('/admin/settings','Settings',__CLASS__);
+		ci('o_nav_model')->migration_add('/admin/settings','Settings',$hash);
 		
 		/* Admin Users */
-		ci('o_nav_model')->migration_add('/admin/users','Users',__CLASS__);
+		ci('o_nav_model')->migration_add('/admin/users','Users',$hash);
 		
 		return true;
 	}
 
 	/* example down function */
 	public function down() {
-		ci('o_nav_model')->migration_remove(__CLASS__);
+		echo $hash.' down'.chr(10);
+
+		ci('o_nav_model')->migration_remove($hash);
 		
 		return true;
 	}

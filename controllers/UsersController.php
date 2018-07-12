@@ -19,8 +19,6 @@
  *
  */
 class UsersController extends MY_Controller {
-	use admin_controller_trait;
-	
 	public $controller        = 'users';
 	public $controller_title  = 'User';
 	public $controller_titles = 'Users';
@@ -40,11 +38,13 @@ class UsersController extends MY_Controller {
  * @throws
  * @example
  */
-	public function edit_profileAction($id) {
+	public function edit_profileAction($id=null) {
 		ci('validate')->variable(ci('o_user_model')->rule(ci('o_user_model')->get_primary_key(),'rules'),$id)->die_on_fail();
+		
 		if (ci('user')->id !== $id) {
 			ci('errors')->display('general',['heading'=>'Error','message'=>'The User ID is unknown.']);
 		}
+		
 		ci('page')->data(['record'=>ci('o_user_model')->get($id),'form_method'=>'patch'])->render();
 	}
 
@@ -62,6 +62,7 @@ class UsersController extends MY_Controller {
  */
 	public function indexPatchAction() {
 		$data = ci('input')->request();
+		
 		if (ci('input')->request('confirm_password') != ci('input')->request('password')) {
 			ci('errors')->add('Your Passwords do not match.');
 		} else {
@@ -70,6 +71,7 @@ class UsersController extends MY_Controller {
 			}
 			ci('o_user_model')->update($data);
 		}
+		
 		$this->_rest_output();
 	}
 }
