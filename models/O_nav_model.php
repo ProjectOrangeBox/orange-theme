@@ -101,7 +101,7 @@ class O_nav_model extends Database_model {
 		return $ary;
 	}
 
-	public function migration_add($url=null,$text=null,$migration=null) {
+	public function migration_add($url=null,$text=null,$migration=null,$optional=[]) {
 		foreach (func_get_args() as $v) {
 			if (empty($v)) {
 				throw new exception(__METHOD__.' Required Field Empty.'.chr(10));
@@ -124,7 +124,13 @@ class O_nav_model extends Database_model {
 			'url'=>$url,
 			'text'=>$text,
 			'migration'=>$migration,
+			'icon'=>'square',
+			'color'=>'d28445',
 		];
+		
+		foreach ($optional as $key=>$val) {
+			$columns[$key] = $val;
+		}
 
 		/* we already verified the key that's the "real" primary key */
 		return (!$this->exists(['url'=>$url,'text'=>$text])) ? $this->insert($columns) : false;
