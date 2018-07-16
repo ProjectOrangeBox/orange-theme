@@ -1,6 +1,7 @@
 <?php
 
 class Filter_fupload extends Filter_base {
+	
 	public function filter(&$field, $options) {
 		list($arg1,$arg2) = explode(',',$options,2);
 
@@ -8,4 +9,5 @@ class Filter_fupload extends Filter_base {
 			$field = $value;
 		}
 	}
+
 }

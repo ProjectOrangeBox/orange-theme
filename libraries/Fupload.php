@@ -8,7 +8,7 @@ public function uploadPostAction() {
 }
 */
 
-class fupload {
+class Fupload {
 	/*
 	this handles the background uploading
 	filenames are converted to a md5 hash and stored in a
