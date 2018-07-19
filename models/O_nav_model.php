@@ -65,8 +65,9 @@ class O_nav_model extends Database_model {
 
 		return cache('nav_library.'.$this->cache_prefix.'.user'.user::id(),function() use ($that) {
 			$ary = [];
-
-			$access = [0] + array_keys(user::permissions());
+			
+			/* everyone and your others */
+			$access = array_merge([0],array_keys(user::permissions()));
 
 			$records = $that->as_array()->where_in('access',$access)->where(['active'=>1])->order_by('parent_id, sort')->get_many();
 
