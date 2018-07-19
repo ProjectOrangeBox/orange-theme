@@ -6,7 +6,8 @@ class Pear_search_sort_field extends Pear_plugin {
 		ci('page')
 			->js([
 				'//cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js',
-				'/theme/orange/assets/plugins/search-sort/bootstrap-sortable.min.js',
+				'//cdnjs.cloudflare.com/ajax/libs/tinysort/3.1.4/tinysort.js',
+				'/theme/orange/assets/plugins/search-sort/bootstrap-sortable'.PAGE_MIN.'.js',
 				'/theme/orange/assets/plugins/search-sort/o-search-sort'.PAGE_MIN.'.js',
 			])
 			->css('/theme/orange/assets/plugins/search-sort/bootstrap-sortable.min.css');

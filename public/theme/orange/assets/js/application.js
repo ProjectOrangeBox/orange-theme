@@ -56,6 +56,10 @@ orange.widget_replace = function(that,input) {
 	}
 }
 
+orange.post = function(url,data,success) {
+	$.ajax({type:'POST',url:url,data:data,success:success,dataType:'json'});
+}
+
 document.addEventListener("DOMContentLoaded",function(e){
 	/* handle ajax widgets */
 	$('[data-widget]').each(function() {

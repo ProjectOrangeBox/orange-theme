@@ -25,6 +25,7 @@
 				<th class="panel-heading"><?=pear::field_human('o_nav_model','url') ?></th>
 				<th class="panel-heading text-center"><?=pear::field_human('o_nav_model','active') ?></th>
 				<th class="panel-heading text-center">Color/Icon</th>
+				<th class="panel-heading">Permission</th>
 				<th class="panel-heading text-center">Actions</th>
 			</tr>
 		</thead>
@@ -34,7 +35,8 @@
 				<td><?=e($row->text) ?></td>
 				<td><?=e($row->url) ?></td>
 				<td class="text-center"><?=pear::fa_enum_icon($row->active) ?></td>
-				<td class="text-center"><?=pear::color_fa_icon($row->color,$row->icon) ?></td>
+				<td class="text-center" data-value="<?=$row->icon ?>"><?=pear::color_fa_icon($row->color,$row->icon) ?></td>
+				<td><?=pear::catalog_lookup('o_permission_model',$row->access,'description') ?></td>
 				<td class="text-center actions">
 					<? if (user::has_role($row->edit_role_id)) { ?>
 						<?=pear::edit_button($controller_path.'/details/'.bin2hex($row->id)) ?>
