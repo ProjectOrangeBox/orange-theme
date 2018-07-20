@@ -10,28 +10,32 @@
 * @link	https://github.com/ProjectOrangeBox
 *
 CREATE TABLE `orange_nav` (
-	`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-	`created_on` timestamp NULL DEFAULT NULL,
-	`created_by` int(11) unsigned NOT NULL DEFAULT '1',
-	`created_ip` varchar(16) DEFAULT NULL,
-	`updated_on` timestamp NULL DEFAULT NULL,
-	`updated_by` int(11) unsigned NOT NULL DEFAULT '1',
-	`updated_ip` varchar(16) DEFAULT NULL,
-	`is_editable` tinyint(1) unsigned NOT NULL DEFAULT '1',
-	`is_deletable` tinyint(1) unsigned NOT NULL DEFAULT '1',
-	`url` varchar(255) NOT NULL DEFAULT '',
-	`text` varchar(255) NOT NULL DEFAULT '',
-	`access_id` int(11) unsigned NOT NULL DEFAULT '1',
-	`parent_id` int(11) unsigned NOT NULL DEFAULT '0',
-	`sort` int(11) unsigned NOT NULL DEFAULT '0',
-	`target` varchar(128) DEFAULT NULL,
-	`class` varchar(32) DEFAULT '',
-	`active` tinyint(1) unsigned NOT NULL DEFAULT '1',
-	`color` varchar(7) NOT NULL DEFAULT 'd28445',
-	`icon` varchar(32) NOT NULL DEFAULT 'square',
-	`internal` varchar(255) DEFAULT NULL,
-	PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `created_on` datetime DEFAULT current_timestamp(),
+  `created_by` int(11) unsigned NOT NULL DEFAULT 1,
+  `created_ip` varchar(15) DEFAULT 'NULL',
+  `updated_on` datetime DEFAULT current_timestamp(),
+  `updated_by` int(11) unsigned NOT NULL DEFAULT 1,
+  `updated_ip` varchar(15) DEFAULT 'NULL',
+  `access` int(10) unsigned DEFAULT 0,
+  `url` varchar(255) NOT NULL DEFAULT '',
+  `text` varchar(255) NOT NULL DEFAULT '',
+  `parent_id` int(11) unsigned NOT NULL DEFAULT 0,
+  `sort` int(11) unsigned NOT NULL DEFAULT 0,
+  `target` varchar(128) DEFAULT NULL,
+  `class` varchar(32) DEFAULT '',
+  `active` tinyint(1) unsigned NOT NULL DEFAULT 1,
+  `color` varchar(7) NOT NULL DEFAULT 'd28445',
+  `icon` varchar(32) NOT NULL DEFAULT 'square',
+  `read_role_id` int(10) unsigned DEFAULT 0,
+  `edit_role_id` int(10) unsigned DEFAULT 0,
+  `delete_role_id` int(10) unsigned DEFAULT 0,
+  `migration` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_parent_id` (`parent_id`) USING BTREE,
+  KEY `idx_access` (`access`) USING BTREE,
+  KEY `idx_active` (`active`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 *
 * required
 * core: session, load, input
@@ -45,7 +49,7 @@ class O_nav_model extends Database_model {
 	protected $table = 'orange_nav';
 	protected $rules = [
 		'id'           => ['field' => 'id', 'label' => 'Id', 'rules' => 'required|integer|max_length[10]|less_than[4294967295]|filter_int[10]'],
-		'url'          => ['field' => 'url', 'label' => 'URL', 'rules' => 'required|is_uniquem[o_nav_model.url.id]|filter_uri[255]|max_length[255]|filter_input[255]|strtolower'],
+		'url'          => ['field' => 'url', 'label' => 'URL', 'rules' => 'filter_uri[255]|rtrim[/]|max_length[255]|filter_input[255]|strtolower'],
 		'text'         => ['field' => 'text', 'label' => 'Text', 'rules' => 'required|max_length[255]|filter_input[255]'],
 		'parent_id'    => ['field' => 'parent_id', 'label' => 'Parent Id', 'rules' => 'if_empty[0]|integer|max_length[10]|less_than[4294967295]|filter_int[10]'],
 		'sort'         => ['field' => 'sort', 'label' => 'Sort', 'rules' => 'if_empty[0]|integer|max_length[10]|less_than[4294967295]|filter_int[10]'],
@@ -59,49 +63,52 @@ class O_nav_model extends Database_model {
 	protected $has_roles = true;
 	protected $has_stamps = true;
 	protected $order_by = 'url sort';
+	protected $access = [];
 
-	public function grouped_by_parents() {
-		$that = &$this;
+	/* get a array */
+	public function get_as_array($parent_id,$filtered=true) {
+		$key = $this->cache_prefix.'.get_as_array.'.$parent_id;
 
-		return cache('nav_library.'.$this->cache_prefix.'.user'.user::id(),function() use ($that) {
-			$ary = [];
-			
-			/* everyone and your others */
-			$access = array_merge([0],array_keys(user::permissions()));
+		if ($filtered) {
+			$this->access = array_merge([0],array_keys(user::permissions()));
 
-			$records = $that->as_array()->where_in('access',$access)->where(['active'=>1])->order_by('parent_id, sort')->get_many();
+			$key .= '.'.md5(json_encode($this->access));
+		}
 
-			foreach ($records as $record) {
-				$ary[$record['parent_id']][] = $record;
-			}
+		if (!$cache = $this->cache->get($key)) {
+			$cache = $this->_children($parent_id,$filtered,1);
 
-			return $ary;
-		});
+			$this->cache->save($key,$cache,cache_ttl());
+		}
 
+		return $cache;
 	}
 
-	public function ol_list($parent_id) {
-		return $this->_children($parent_id);
-	}
-	
-	protected function _children($parent_id) {
-		$ary = [];
-		
-		$records = $this->as_array()->where(['parent_id'=>$parent_id])->order_by('parent_id, sort')->get_many();
-	
+	protected function _children($parent_id,$filtered,$level) {
+		$array = false;
+
+		if ($filtered) {
+			$records = $this->as_array()->where_in('access',$this->access)->where(['active'=>1,'parent_id'=>$parent_id])->order_by('sort')->get_many();
+		} else {
+			$records = $this->as_array()->where(['parent_id'=>$parent_id])->order_by('sort')->get_many();
+		}
+
 		foreach ($records as $record) {
-			$children = $this->_children($record['id']);
-			
-			if ($children) {
+			if ($children = $this->_children($record['id'],$filtered,($level + 1))) {
 				$record['children'] = $children;
 			}
 
-			$ary[$record['id']] = $record;
+			$record['level'] = $level;
+
+			if (!(empty($record['url']) && !is_array($record['children']))) {
+				$array[$record['id']] = $record;
+			}
 		}
 
-		return $ary;
+		return $array;
 	}
 
+	/* migration */
 	public function migration_add($url=null,$text=null,$migration=null,$optional=[]) {
 		foreach (func_get_args() as $v) {
 			if (empty($v)) {
@@ -128,7 +135,7 @@ class O_nav_model extends Database_model {
 			'icon'=>'square',
 			'color'=>'d28445',
 		];
-		
+
 		foreach ($optional as $key=>$val) {
 			$columns[$key] = $val;
 		}

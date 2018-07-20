@@ -21,11 +21,11 @@ class NavController extends MY_Controller {
 	public $controller_order_by = 'sort';
 
 	public function sortAction() {
-		ci('page')->data(['list'=>ci('nav_library')->gui_compress(ci('o_nav_model')->ol_list(1))])->render();
+		ci('page')->data(['list'=>ci('nav_sort_library')->create_list(ci('o_nav_model')->get_as_array(1,false),config('nav.dd-list'))])->render();
 	}
 
 	public function sortPostAction() {
-		ci('nav_library')->gui_expand(ci('input')->request('tree'),1);
+		ci('nav_sort_library')->process_tree_sort(ci('input')->request('tree'),1);
 
 		ci('output')->json('html','Updated');
 	}

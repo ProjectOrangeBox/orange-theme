@@ -1,203 +1,64 @@
 <?php
 
 class Nav_library {
-	protected $catalog;
-	protected $html = '';
+	protected $base_url;
+	protected $config = [];
 
-	protected $_navigation_open;
-	protected $_navigation_close;
-	protected $_item_open;
-	protected $_item_open_active_class;
-	protected $_item_open_dropdown_class;
-	protected $_item_close;
-	protected $_anchor;
-	protected $_anchor_dropdown;
-	protected $_dropdown_open;
-	protected $_dropdown_close;
+	/* build HTML for main menu */
+	public function build_bootstrap_nav($parent_id,$config) {
+		$this->base_url = trim(base_url(),'/');
 
-	protected $_base_url;
+		$this->config = $config;
 
-	protected $list = '';
-	protected $sort = 0;
-
-	public function __construct() {
-		$this->catalog = ci('o_nav_model')->grouped_by_parents();
-
-		$this->_base_url = trim(base_url(),'/');
-
-		$config = config('nav');
-
-		$this->_navigation_open = $config['navigation_open'];
-		$this->_navigation_close = $config['navigation_close'];
-		$this->_item_open = $config['item_open'];
-		$this->_item_open_active_class = $config['item_open_active_class'];
-		$this->_item_open_dropdown_class = $config['item_open_dropdown_class'];
-		$this->_item_close = $config['item_close'];
-		$this->_anchor = $config['anchor'];
-		$this->_anchor_dropdown = $config['anchor_dropdown'];
-		$this->_dropdown_open = $config['dropdown_open'];
-		$this->_dropdown_close = $config['dropdown_close'];
-	}
-
-	public function build($parent_id) {
-		$html = $this->_navigation_open;
-
-		if (is_array($this->catalog[$parent_id])) {
-			foreach ($this->catalog[$parent_id] as $item) {
-				ci('event')->trigger('nav_library.build',$item);
-
-				$html .= $this->output_Item($item);
-			}
-		}
-
-		$html .= $this->_navigation_close;
-
-		return $this->bind_user_data($html);
-	}
-
-	public function li($parent_id) {
 		$html = '';
 
-		if (is_array($this->catalog[$parent_id])) {
-			foreach ($this->catalog[$parent_id] as $item) {
-				ci('event')->trigger('nav_library.build',$item);
+		$menus = ci('o_nav_model')->get_as_array($parent_id);
 
-				$html .= $this->output_Item($item);
-			}
+		$html = $this->config['navigation_open'];
+
+		foreach ($menus as $menu) {
+			$html .= $this->item($menu,1);
 		}
+
+		$html .= $this->config['navigation_close'];
 
 		return $html;
 	}
 
-	public function nav_permission_catalog() {
-		return ci('o_permission_model')->catalog('id','key');
-	}
-
-	public function gui_expand($orders,$parent_id) {
-		foreach ($orders as $order) {
-			$this->sort = $this->sort + 3;
-
-			ci('o_nav_model')->update(['id'=>$order['id'],'sort'=>$this->sort,'parent_id'=>$parent_id]);
-
-			if (isset($order['children'])) {
-				$this->gui_expand($order['children'],$order['id']);
-			}
-		}
+	protected function item($item,$level) {
+		$html = '';
 		
-		return true;
-	}
-
-	public function gui_compress($list) {
-		$this->_gui_compress($list);
-
-		return $this->list;
-	}
-
-	protected function _gui_compress($list) 	{
-		$this->list .= config('nav.gui_navigation_open');
-
-		foreach ($list as $value) {
-			$value['disabled'] = ($value['active'] == 0) ? config('nav.gui_disabled_class') : '';
-
-			$this->list .= ci('parser')->parse_string(config('nav.gui_item_open').config('nav.gui_drag_handle').config('nav.gui_content'),$value,true);
-
-			if (is_array($value['children'])) {
-				$this->_gui_compress($value['children']);
+		/* does this menu have any children? */
+		if (is_array($item['children'])) {
+			switch ($level) {
+				case 1:
+					$html .= $this->config['item_open_dropdown'];
+				break;
+				case 2:
+					$html .= $this->config['item_open_dropdown_sub'];
+				break;
+				default:
+					$html .= $this->config['item_open'];
 			}
 
-			$this->list .= config('nav.gui_item_close');
-		}
+			$html .= ci('parser')->parse_string($this->config['anchor_dropdown'],$item,true);
 
-		$this->list .= config('nav.gui_navigation_close');
-	}
+			$html .= $this->config['dropdown_open'];
+			
+			foreach ($item['children'] as $i) {
+				$html .= $this->item($i,($level + 1));
+			}
 
-	protected function output_Item($item) {
-		$output = '';
+			$html .= $this->config['dropdown_close'];
 
-		$classes = '';
-
-		$output .= $this->_item_open;
-
-		$subItems = $this->catalog[$item['id']];
-
-		if (is_array($subItems)) {
-			$classes .= $this->_item_open_dropdown_class.' ';
-		}
-
-		if (!strcmp($classes,'') == 0) {
-			$output = str_replace('>',' class="' . $classes . '">',$output);
-		}
-
-		if (is_array($subItems)) {
-			$output .= $this->bind_anchor($item,$this->_anchor_dropdown);
+			$html .= $this->config['item_end_dropdown'];
 		} else {
-			$output .= $this->bind_anchor($item);
+			$html .= $this->config['item_open'];
+			$html .= ci('parser')->parse_string($this->config['anchor'],$item,true);
+			$html .= $this->config['item_close'];
 		}
 
-		if (is_array($subItems)) {
-			$output .= $this->render_dropdown($subItems);
-		}
-
-		$output .= $this->_item_close;
-
-		return $output;
-	}
-
-	protected function render_dropdown($records) {
-		$output = $this->_dropdown_open;
-
-		foreach ($records as $item) {
-			$sub_output = $this->_item_open;
-			$classes = '';
-
-			if (!is_null($subItems) && count($subItems->result()) > 0){
-				$classes .= $this->_item_open_dropdown_class.' ';
-			}
-
-			if (!strcmp($classes,'') == 0) {
-				$sub_output = str_replace('>',' class="' . $classes . '">',$sub_output);
-			}
-
-			$output .= $sub_output;
-
-			$output .= $this->bind_anchor($item);
-
-			$output .= $this->_item_close;
-		}
-
-		$output .= $this->_dropdown_close;
-
-		return $output;
-	}
-
-	protected function bind_user_data($html) {
-		$vars = [
-			'{username}'=>user::username(),
-			'{email}'=>user::email(),
-		];
-
-		return $this->bind($html,$vars);
-	}
-
-	protected function bind_anchor($record,$is_dropdown=false) {
-		$vars = [
-			'{url}'=>$this->_base_url.$record['url'],
-			'{text}'=>$record['text'],
-			'{color}'=>$record['color'],
-			'{icon}'=>$record['icon'],
-			'{class}'=>$record['class'],
-			'{target}'=>$record['target'],
-		];
-
-		$html = ($is_dropdown) ? $this->_anchor_dropdown : $this->_anchor;
-
-		return $this->bind($html,$vars);
-	}
-
-	protected function bind($html,$vars) {
-		ci('event')->trigger('nav_library.bind',$html,$vars);
-
-		return strtr($html,$vars);
+		return $html;
 	}
 
 } /* end class */
