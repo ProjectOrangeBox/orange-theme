@@ -53,7 +53,7 @@
 		<div class="col-md-offset-3 col-md-4">
 			<div class="checkbox">
 				<label>
-					<?=pear::checkbox('enabled', 1, ($record->enabled == 1),['class'=>'js-checker']) ?> Enabled
+					<?=pear::checker('enabled', 1,$record->enabled) ?> Enabled
 				</label>
 			</div>
 		</div>

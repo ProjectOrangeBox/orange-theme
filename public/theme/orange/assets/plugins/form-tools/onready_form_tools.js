@@ -1,21 +1,3 @@
-/* turn checkbox into text input so we always get something */
-$('.js-checker').each(function(index,value) {
-	/* clear out the name and add a hidden field right after it */
-	var name = $(this).attr('name');
-
-	if ($(this).data('on') == undefined) {
-		$(this).data('on','1');
-	}
-
-	if ($(this).data('off') == undefined) {
-		$(this).data('off','0');
-	}
-
-	$(this).change(function(){
-		$("input[name='" + $(this).data('realname') + "']").attr('value',(($(this).is(':checked')) ? $(this).data('on') : $(this).data('off')));
-	}).data('realname',name).attr('name','').after('<input type="hidden" name="'+name+'" value="' + (($(this).is(':checked')) ? $(this).data('on') : $(this).data('off')) + '">')
-});
-
 /* handle shift when selecting group access */
 $('input').click(function(event) {
 	if (event.shiftKey) {

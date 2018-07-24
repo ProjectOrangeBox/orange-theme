@@ -32,16 +32,6 @@ $(document).on('click', 'table.sortable thead th[data-defaultsort!="disabled"]',
 $('#search_sort_filter').on('keyup',debounce(function(){search_sort_filter();},500));
 
 function search_sort_filter() {
-	/* make info color and spin horizontal if contains content */
-	/*
-	if ($('#search_sort_filter').val() != '') {
-		$('#search_sort_filter').parent().addClass('has-success');
-		$('#search_sort_filter').next().addClass('text-info');
-	} else {
-		$('#search_sort_filter').parent().removeClass('has-success')
-		$('#search_sort_filter').next().removeClass('text-info');
-	}
-	*/
 	$.jStorage.set(controller_path+'saved_filter',$('#search_sort_filter').val());
 
 	var rex = new RegExp($('#search_sort_filter').val(), 'i');
@@ -67,7 +57,6 @@ function search_sort_filter_count() {
 }
 
 document.addEventListener("DOMContentLoaded",function(e){
-
 	/* reload saved filter */
 	var saved_filter = $.jStorage.get(controller_path+'saved_filter','');
 

@@ -4,7 +4,7 @@
   <div class="col-md-6"><?=pear::title($controller_titles,'user') ?></div>
   <div class="col-md-6">
   	<div class="pull-right">
-  		<?=pear::search_sort_field() ?>
+  		<?=pear::table_search_field() ?>
 			<?php if (user::can('url::/admin/users::index~post')) { ?>
 				<?=pear::new_button($controller_path.'/details','New '.$controller_title) ?>
   		<?php } ?>
@@ -12,16 +12,16 @@
   </div>
 </div>
 <div class="row">
-	<table class="table orange sortable table-hover">
+		<table class="table table-sticky-header table-search table-sort table-hover">
 			<thead>
 				<tr class="panel-default">
 					<th class="panel-heading">Username</th>
 					<th class="panel-heading">Email</th>
-					<th class="panel-heading text-center">Active</th>
-					<th class="panel-heading text-center">Actions</th>
+					<th class="panel-heading text-center nosort">Active</th>
+					<th class="panel-heading text-center nosort">Actions</th>
 				</tr>
 			</thead>
-		<tbody class="searchable">
+		<tbody>
 		<?php foreach ($records as $row) { ?>
 			<?php if (user::has_role($row->read_role_id)) { ?>
 				<tr>

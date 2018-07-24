@@ -21,7 +21,7 @@
   <div class="tab-content">
   	<?php foreach ($tabs as $tn=>$tab_set) { ?>
 		<div class="tab-pane" id="<?=pear::tab_id($tn) ?>">
-			<table class="table table-hover orange">
+			<table class="table table-hover">
 				<thead>
 					<tr class="panel-default">
 						<th class="panel-heading">Description</th>

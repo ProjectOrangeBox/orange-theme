@@ -43,7 +43,8 @@
 				case 'checkbox':
 					echo '<div class="checkbox">';
 					echo '<label>';
-					echo '<input type="checkbox" class="js-checker" name="value" '.(($record->value == $options['data-on']) ? 'checked' : '').' data-on="'.$options['data-on'].'" data-off="'.$options['data-off'].'"> '.$options['copy'];
+					echo '<input type="hidden" name="value" value="'.$options['data-off'].'">';
+					echo '<input type="checkbox" name="value" '.(($record->value == $options['data-on']) ? 'checked' : '').' value="'.$options['data-on'].'"> '.$options['copy'];
 					echo '</label>';
 					echo '</div>';
 				break;
@@ -69,7 +70,7 @@
 		<div class="col-md-offset-3 col-md-4">
 			<div class="checkbox">
 				<label>
-					<?=pear::checkbox('enabled', 1, ($record->enabled == 1),['class'=>'js-checker']) ?> Enabled
+					<?=pear::checker('enabled', 1, $record->enabled) ?> Enabled
 				</label>
 			</div>
 		</div>

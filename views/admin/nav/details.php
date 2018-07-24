@@ -82,7 +82,7 @@
 	<div class="form-group">
 		<?=pear::field_label() ?>
 		<div class="col-md-9">
-			<?=pear::checkbox('active', 1,($record->active == 1),['class'=>'js-checker']) ?> <?=pear::field_human('a_tooltips_model','active') ?>
+			<?=pear::checker('active',1,$record->active) ?> <?=pear::field_human('a_tooltips_model','active') ?>
 		</div>
 	</div>
 

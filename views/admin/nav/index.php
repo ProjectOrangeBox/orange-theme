@@ -6,7 +6,7 @@
 	<div class="col-md-6"><h3><i class="fa fa-bars"></i> Navigation</h3></div>
 	<div class="col-md-6">
 		<div class="pull-right">
-			<?=pear::search_sort_field() ?>
+			<?=pear::table_search_field() ?>
 			<? if (user::has_permission('url::/admin/nav::sort~get')) { ?>
 				<?=pear::header_button($controller_path.'/sort','GUI Sort',['icon'=>'sitemap']) ?>
 			<? } ?>
@@ -18,18 +18,18 @@
 </div>
 
 <div class="row">
-	<table class="table orange sortable table-hover">
+	<table class="table table-sticky-header table-search table-sort table-hover">
 		<thead>
 			<tr class="panel-default">
 				<th class="panel-heading"><?=pear::field_human('o_nav_model','text') ?></th>
 				<th class="panel-heading"><?=pear::field_human('o_nav_model','url') ?></th>
-				<th class="panel-heading text-center"><?=pear::field_human('o_nav_model','active') ?></th>
+				<th class="panel-heading text-center nosort"><?=pear::field_human('o_nav_model','active') ?></th>
 				<th class="panel-heading text-center">Color/Icon</th>
 				<th class="panel-heading">Permission</th>
-				<th class="panel-heading text-center">Actions</th>
+				<th class="panel-heading text-center nosort">Actions</th>
 			</tr>
 		</thead>
-		<tbody class="searchable">
+		<tbody>
 			<? foreach ($records as $row) { ?>
 			<tr>
 				<td><?=e($row->text) ?></td>

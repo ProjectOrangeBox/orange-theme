@@ -1,4 +1,4 @@
-<?php pear::plugins('search_sort_field,confirm_dialog,flash_msg,form_tools,input_mask,keymaster,rest_form,select3,sticky_table_header,tab_save') ?>
+<?php pear::plugins('confirm_dialog,flash_msg,form_tools,input_mask,keymaster,rest_form,select3,sticky_table_header,tab_save,table_search_field,table_sort') ?>
 <?php pear::section('page_js') ?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
