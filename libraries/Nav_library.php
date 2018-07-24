@@ -12,7 +12,7 @@ class Nav_library {
 
 		$html = '';
 
-		$menus = ci('o_nav_model')->get_as_array($parent_id);
+		$menus = ci('o_nav_model')->get_as_array($parent_id,true);
 
 		$html = $this->config['navigation_open'];
 
@@ -27,24 +27,19 @@ class Nav_library {
 
 	protected function item($item,$level) {
 		$html = '';
-		
+
 		/* does this menu have any children? */
 		if (is_array($item['children'])) {
-			switch ($level) {
-				case 1:
-					$html .= $this->config['item_open_dropdown'];
-				break;
-				case 2:
-					$html .= $this->config['item_open_dropdown_sub'];
-				break;
-				default:
-					$html .= $this->config['item_open'];
+			if ($level == 1) {
+				$html .= $this->config['item_open_dropdown'];
+			} else {
+				$html .= $this->config['item_open_dropdown_sub'];
 			}
 
 			$html .= ci('parser')->parse_string($this->config['anchor_dropdown'],$item,true);
 
 			$html .= $this->config['dropdown_open'];
-			
+
 			foreach ($item['children'] as $i) {
 				$html .= $this->item($i,($level + 1));
 			}

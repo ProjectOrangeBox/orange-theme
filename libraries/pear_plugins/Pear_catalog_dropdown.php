@@ -1,5 +1,7 @@
 <?php
 
+// @show create a dropdown from a models catalog data.
+
 class Pear_catalog_dropdown extends Pear_plugin {
 
 	public function __construct() {

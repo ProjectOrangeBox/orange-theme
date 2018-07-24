@@ -10,31 +10,31 @@
 * @link	https://github.com/ProjectOrangeBox
 *
 CREATE TABLE `orange_nav` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `created_on` datetime DEFAULT current_timestamp(),
-  `created_by` int(11) unsigned NOT NULL DEFAULT 1,
-  `created_ip` varchar(15) DEFAULT 'NULL',
-  `updated_on` datetime DEFAULT current_timestamp(),
-  `updated_by` int(11) unsigned NOT NULL DEFAULT 1,
-  `updated_ip` varchar(15) DEFAULT 'NULL',
-  `access` int(10) unsigned DEFAULT 0,
-  `url` varchar(255) NOT NULL DEFAULT '',
-  `text` varchar(255) NOT NULL DEFAULT '',
-  `parent_id` int(11) unsigned NOT NULL DEFAULT 0,
-  `sort` int(11) unsigned NOT NULL DEFAULT 0,
-  `target` varchar(128) DEFAULT NULL,
-  `class` varchar(32) DEFAULT '',
-  `active` tinyint(1) unsigned NOT NULL DEFAULT 1,
-  `color` varchar(7) NOT NULL DEFAULT 'd28445',
-  `icon` varchar(32) NOT NULL DEFAULT 'square',
-  `read_role_id` int(10) unsigned DEFAULT 0,
-  `edit_role_id` int(10) unsigned DEFAULT 0,
-  `delete_role_id` int(10) unsigned DEFAULT 0,
-  `migration` varchar(128) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_parent_id` (`parent_id`) USING BTREE,
-  KEY `idx_access` (`access`) USING BTREE,
-  KEY `idx_active` (`active`) USING BTREE
+	`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+	`created_on` datetime DEFAULT current_timestamp(),
+	`created_by` int(11) unsigned NOT NULL DEFAULT 1,
+	`created_ip` varchar(15) DEFAULT 'NULL',
+	`updated_on` datetime DEFAULT current_timestamp(),
+	`updated_by` int(11) unsigned NOT NULL DEFAULT 1,
+	`updated_ip` varchar(15) DEFAULT 'NULL',
+	`access` int(10) unsigned DEFAULT 0,
+	`url` varchar(255) NOT NULL DEFAULT '',
+	`text` varchar(255) NOT NULL DEFAULT '',
+	`parent_id` int(11) unsigned NOT NULL DEFAULT 0,
+	`sort` int(11) unsigned NOT NULL DEFAULT 0,
+	`target` varchar(128) DEFAULT NULL,
+	`class` varchar(32) DEFAULT '',
+	`active` tinyint(1) unsigned NOT NULL DEFAULT 1,
+	`color` varchar(7) NOT NULL DEFAULT 'd28445',
+	`icon` varchar(32) NOT NULL DEFAULT 'square',
+	`read_role_id` int(10) unsigned DEFAULT 0,
+	`edit_role_id` int(10) unsigned DEFAULT 0,
+	`delete_role_id` int(10) unsigned DEFAULT 0,
+	`migration` varchar(128) DEFAULT NULL,
+	PRIMARY KEY (`id`),
+	KEY `idx_parent_id` (`parent_id`) USING BTREE,
+	KEY `idx_access` (`access`) USING BTREE,
+	KEY `idx_active` (`active`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 *
 * required
@@ -63,38 +63,44 @@ class O_nav_model extends Database_model {
 	protected $has_roles = true;
 	protected $has_stamps = true;
 	protected $order_by = 'url sort';
-	protected $access = [];
 
 	/* get a array */
-	public function get_as_array($parent_id,$filtered=true) {
+	public function get_as_array($parent_id,$access=true) {
+		/* the cache key based on the menu parent id */
 		$key = $this->cache_prefix.'.get_as_array.'.$parent_id;
 
-		if ($filtered) {
-			$this->access = array_merge([0],array_keys(user::permissions()));
+		if ($access) {
+			/* merge 0 (everyone) and the rest of your permissions */
+			$access = array_merge([0],array_keys(user::permissions()));
 
-			$key .= '.'.md5(json_encode($this->access));
+			/* append on your permissions to the key */
+			$key .= '.'.md5(json_encode($access));
 		}
 
+		/* is this cached? */
 		if (!$cache = $this->cache->get($key)) {
-			$cache = $this->_children($parent_id,$filtered,1);
+			/* no - therefore we need to create the cache */
+			$cache = $this->_children($parent_id,$access,1);
 
+			/* save the cache */
 			$this->cache->save($key,$cache,cache_ttl());
 		}
 
+		/* return the cached array */
 		return $cache;
 	}
 
-	protected function _children($parent_id,$filtered,$level) {
+	protected function _children($parent_id,$access,$level) {
 		$array = false;
 
-		if ($filtered) {
-			$records = $this->as_array()->where_in('access',$this->access)->where(['active'=>1,'parent_id'=>$parent_id])->order_by('sort')->get_many();
-		} else {
-			$records = $this->as_array()->where(['parent_id'=>$parent_id])->order_by('sort')->get_many();
+		if ($access) {
+			$this->where_in('access',$access);
 		}
 
+		$records = $this->as_array()->where(['parent_id'=>$parent_id])->order_by('sort')->get_many();
+
 		foreach ($records as $record) {
-			if ($children = $this->_children($record['id'],$filtered,($level + 1))) {
+			if ($children = $this->_children($record['id'],$access,($level + 1))) {
 				$record['children'] = $children;
 			}
 
