@@ -5,9 +5,9 @@ Tyson|Dog - tyson or dog
 Tyson(.*)Dog - tyson and dog (anything between)
 
 Note:
-table must have searchable classes on it
-a element with a id of search_sort_filter_records_shown will show the x of x text
-the search field must have the id of search_sort_filter
+table must have table-search classes on it
+a element with a id of table-search-field-count will show the x of x text
+the search field must have the id of table-search-field
 
 */
 
@@ -17,10 +17,9 @@ table_search_field.table_class = 'table.table-search tbody tr';
 table_search_field.field = $('#table-search-field');
 table_search_field.count_element = $('#table-search-field-count');
 
-table_search_field.search_sort_filter = function(search_term) {
-	$.jStorage.set(controller_path+'saved_filter',search_term);
-
+table_search_field.search = function(search_term) {
 	if (search_term.length > 0) {
+		/* run filter */
 		var rex = new RegExp(search_term, 'i');
 	
 		/* hide the tr's */
@@ -31,6 +30,7 @@ table_search_field.search_sort_filter = function(search_term) {
 			return rex.test($(this).text());
 		}).show(); /* show them again */
 	} else {
+		/* show all */
 		$(table_search_field.table_class).show();
 	}
 
@@ -40,36 +40,46 @@ table_search_field.search_sort_filter = function(search_term) {
 	var shown = (vis != all) ? vis + ' of ' + all : all;
 
 	table_search_field.count_element.html(shown);
+	
+	table_search_field.save(search_term);
 }
 
-table_search_field.debounce = function(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		var later = function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		};
-		var callNow = immediate && !timeout;
-		clearTimeout(timeout);
-		timeout = setTimeout(later, wait);
-		if (callNow) func.apply(context, args);
-	};
-};
+table_search_field.load = function() {
+	var saved = $.jStorage.get(controller_path+'saved_filter','');
+	
+	/* put it back in the field */
+	table_search_field.set_field(saved);
+	
+	/* do the search */
+	table_search_field.search(saved);
+}
 
+table_search_field.save = function(search_term) {
+	$.jStorage.set(controller_path+'saved_filter',search_term);
+
+	if (search_term.length > 0) {
+		table_search_field.field.addClass('bg-info');
+		table_search_field.field.next().addClass('text-info');
+	} else {
+		table_search_field.field.removeClass('bg-info')
+		table_search_field.field.next().removeClass('text-info');
+	}
+}
+
+table_search_field.set_field = function(search_term) {
+	table_search_field.field.val(search_term);
+}
+
+table_search_field.get_field = function() {
+	return table_search_field.field.val();
+}
 
 /* text field search with debounce */
-table_search_field.field.on('keyup',table_search_field.debounce(function(){
-	table_search_field.search_sort_filter(table_search_field.field.val());
+table_search_field.field.on('keyup',debounce(function(){
+	table_search_field.search(table_search_field.get_field());
 },500));
 
 /* add listener to handle putting back in the search term on page ready */
 document.addEventListener("DOMContentLoaded",function(e){
-	var saved_filter = $.jStorage.get(controller_path+'saved_filter','');
-	
-	/* put it back in the field */
-	table_search_field.field.val(saved_filter);
-	
-	/* do the search */
-	table_search_field.search_sort_filter(saved_filter);
+	table_search_field.load();
 });
