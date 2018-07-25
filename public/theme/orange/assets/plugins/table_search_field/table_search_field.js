@@ -16,8 +16,38 @@ var table_search_field = {};
 table_search_field.table_class = 'table.table-search tbody tr';
 table_search_field.field = $('#table-search-field');
 table_search_field.count_element = $('#table-search-field-count');
+table_search_field.tbody = $('table.table-search tbody');
+
 
 table_search_field.search = function(search_term) {
+	var url = table_search_field.field.data('url');
+	
+	if (url) {
+		table_search_field.manual_search(search_term,url);
+	} else {
+		table_search_field.regular_expression_search(search_term);
+	}
+
+	table_search_field.update_count();
+	table_search_field.save(search_term);
+}
+
+table_search_field.update_count = function() {
+	var vis = $(table_search_field.table_class+':visible').length;
+	var all = $(table_search_field.table_class).length;
+	var shown = (vis != all) ? vis + ' of ' + all : all;
+
+	table_search_field.count_element.html(shown);
+}
+
+table_search_field.manual_search = function(search_term,url) {
+	orange.post(url,{search:search_term},function(data){
+		table_search_field.tbody.html(data.tbody);
+		table_search_field.update_count();
+	});
+}
+
+table_search_field.regular_expression_search = function(search_term) {
 	if (search_term.length > 0) {
 		/* run filter */
 		var rex = new RegExp(search_term, 'i');
@@ -33,15 +63,6 @@ table_search_field.search = function(search_term) {
 		/* show all */
 		$(table_search_field.table_class).show();
 	}
-
-	var vis = $(table_search_field.table_class+':visible').length;
-	var all = $(table_search_field.table_class).length;
-	
-	var shown = (vis != all) ? vis + ' of ' + all : all;
-
-	table_search_field.count_element.html(shown);
-	
-	table_search_field.save(search_term);
 }
 
 table_search_field.load = function() {
@@ -58,10 +79,10 @@ table_search_field.save = function(search_term) {
 	$.jStorage.set(controller_path+'saved_filter',search_term);
 
 	if (search_term.length > 0) {
-		table_search_field.field.addClass('bg-info');
+		table_search_field.field.css({'background-color':'#F0F2F7'});
 		table_search_field.field.next().addClass('text-info');
 	} else {
-		table_search_field.field.removeClass('bg-info')
+		table_search_field.field.css({'background-color':''});
 		table_search_field.field.next().removeClass('text-info');
 	}
 }
