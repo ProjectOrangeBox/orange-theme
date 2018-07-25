@@ -1,3 +1,6 @@
+/* get the other tools */
+$.getScript('/theme/orange/assets/js/tools.min.js');
+
 var orange = (orange) || {};
 var messages = (messages) || [];
 var plugins = (plugins) || [];
@@ -23,9 +26,6 @@ pleaseWaitDiv.modal('show');
 pleaseWaitDiv.modal('hide');
 */
 var pleaseWaitDiv = $('<div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"role="dialog" aria-hidden="true" data-backdrop="static"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-time"></span> Processing</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only"></span></div></div></div></div></div></div>');
-
-/* get the other tools */
-$.getScript('/theme/orange/assets/js/tools.min.js');
 
 /*
 data-widget="url to call"
@@ -75,6 +75,20 @@ orange.post = function(url,data,success) {
 	$.ajax({type:'POST',url:url,data:data,success:success,dataType:'json'});
 }
 
+orange.get = function(that) {
+	$.get($(that).attr('href'), function(data) {
+		var msg_default = ($(that).data('msg')) ? $(that).data('msg') : 'Complete';
+		var type_default = ($(that).data('type')) ? $(that).data('type') : 'info';
+		var stay_default = ($(that).data('stay')) ? ($(that).data('stay') == 'true') : false;
+		
+		var msg = (data.msg) ? data.msg : msg_default;
+		var type = (data.type) ? data.type : type_default;
+		var stay = (data.stay) ? data.stay : stay_default;
+	
+		$.noticeAdd({text: msg, type: type, stay: stay});
+	});
+}
+
 document.addEventListener("DOMContentLoaded",function(e){
 	/* handle ajax widgets */
 	$('[data-widget]').each(function() {
@@ -85,30 +99,6 @@ document.addEventListener("DOMContentLoaded",function(e){
 	$('.js-get').click(function(e) {
 		e.preventDefault();
 
-		$.get($(this).attr('href'), function(data) {
-			var msg_default = ($(this).data('msg')) ? $(this).data('msg') : 'Complete';
-			var type_default = ($(this).data('type')) ? $(this).data('type') : 'info';
-			var stay_default = ($(this).data('stay')) ? ($(this).data('stay') == 'true') : false;
-			
-			var msg = (data.msg) ? data.msg : msg_default;
-			var type = (data.type) ? data.type : type_default;
-			var stay = (data.stay) ? data.stay : stay_default;
-
-			$.noticeAdd({text: msg, type: type, stay: stay});
-		});
-
+		orange.get(this);
 	});
-
-	/* setup tooltips */
-	$('body').tooltip({
-		selector: '.js-tooltip'
-	});
-
-	/* handle shift in a tab group */
-	$('div.tab-content :checkbox').click(function(event) {
-		if (event.shiftKey) {
-			$('div.tab-pane.active :checkbox').prop('checked',($(this).prop('checked') || false));
-		}
-	});
-
 });

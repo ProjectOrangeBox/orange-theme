@@ -1,4 +1,4 @@
-<?php pear::plugins('flash_msg,form_tools,rest_form') ?>
+<?php pear::plugins('flash_msg,form_helpers,rest_form') ?>
 <?php pear::section('page_js') ?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

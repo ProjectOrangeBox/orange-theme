@@ -148,3 +148,7 @@ hr.shadow {
     -moz-border-radius:6px 0 6px 6px;
     border-radius:6px 0 6px 6px;
 }
+thead th.panel-heading {
+  white-space: nowrap;
+  font-size: 96%;
+}
