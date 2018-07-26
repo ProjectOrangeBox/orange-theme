@@ -11,7 +11,7 @@
 	</div>
 </div>
 
-<div class="row">
+<div class="row hide-until-domready">
 	<div class="col-md-6 col-md-offset-3">
 		<div class="dd">
 			<?=$list ?>

@@ -152,3 +152,6 @@ thead th.panel-heading {
   white-space: nowrap;
   font-size: 96%;
 }
+.hide-until-domready {
+	display: none;
+}

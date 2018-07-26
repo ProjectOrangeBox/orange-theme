@@ -101,4 +101,6 @@ document.addEventListener("DOMContentLoaded",function(e){
 
 		orange.get(this);
 	});
+	
+	$('.hide-until-domready').show();
 });
