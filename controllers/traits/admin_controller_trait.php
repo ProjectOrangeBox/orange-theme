@@ -6,7 +6,17 @@ trait admin_controller_trait {
  *
  */
 	public function indexAction() {
-		ci('page')->render(null,['records'=>(($this->controller_model) ? ci($this->controller_model)->index($this->controller_order_by, $this->controller_limit) : [])]);
+		$records = [];
+	
+		if (isset($this->controller_model)) {
+			$limit = (isset($this->controller_limit)) ? $this->controller_limit : null;
+			$order_by = (isset($this->controller_order_by)) ? $this->controller_order_by : null;
+
+			$records =ci($this->controller_model)->index($order_by,$limit);
+		}
+	
+	
+		ci('page')->render(null,['records'=>$records]);
 	}
 
 /**

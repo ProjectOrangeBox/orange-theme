@@ -29,7 +29,7 @@ class Nav_library {
 		$html = '';
 
 		/* does this menu have any children? */
-		if (is_array($item['children'])) {
+		if (isset($item['children'])) {
 			if ($level == 1) {
 				$html .= $this->config['item_open_dropdown'];
 			} else {
@@ -46,7 +46,7 @@ class Nav_library {
 
 			$html .= $this->config['dropdown_close'];
 
-			$html .= $this->config['item_end_dropdown'];
+			$html .= $this->config['item_close_dropdown'];
 		} else {
 			$html .= $this->config['item_open'];
 			$html .= ci('parser')->parse_string($this->config['anchor'],$item,true);
