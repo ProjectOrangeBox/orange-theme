@@ -10,11 +10,12 @@ data-fadeout="tr" - closest element to fade out on success
 ...>
 
 */
-
+/* create our empty classes */
 var orange = (orange) || {};
 
 orange.dialog = (orange.dialog) || {};
 
+/* handler for the submit button click */
 orange.dialog.button_submit_click = function(e,that) {
 	/* prevent the default action */
 	e.preventDefault();
@@ -44,13 +45,13 @@ orange.dialog.button_submit_click = function(e,that) {
 	}
 }
 
-/* on ajax fail */
+/* when Form Ajax Fails Hard */
 orange.dialog.request_fail = function() {
 	/* pop up a fail message */
 	orange.flash_msg('Action Failed','red',false);
 }
 
-/* on ajax success */
+/*when Form Ajax Success - but could have errors */
 orange.dialog.request_done = function(reply) {
 	/* hide all of the notices */
 	$.noticeRemoveAll();
