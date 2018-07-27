@@ -6,8 +6,14 @@ table_sort.sort = function(index,dir) {
 	/* remove all previous arrows and such */
 	$('table.table-sort thead tr th i').removeClass('fa-sort-asc').removeClass('fa-sort-desc').addClass('fa-sort');
 
+	/* remove previous highlighted column */
+	$('table.table-sort thead tr th').removeClass('active');
+
 	/* add the correct classes to the header */
 	$('table.table-sort thead tr th:nth-child('+index+') i').addClass('fa-sort-'+dir).removeClass('fa-sort');
+
+	$('table.table-sort thead tr th:nth-child('+index+')').addClass('active');
+
 
 	/* do sort */
 	tinysort('table.table-sort tbody tr',{selector:'td:nth-child('+index+')',order:dir,data:'value'},{selector:'td:nth-child('+index+')',order:dir});

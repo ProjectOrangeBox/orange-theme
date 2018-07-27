@@ -21,13 +21,25 @@ class NavController extends MY_Controller {
 	public $controller_order_by = 'sort';
 
 	public function sortAction() {
-		ci('page')->data(['list'=>ci('nav_sort_library')->create_list(ci('o_nav_model')->get_as_array(1,false),config('nav.dd-list'))])->render();
+		ci('page')->data(['list'=>ci('nav_sort_library')->create_list(ci('o_nav_model')->get_as_array(1,false,false),config('nav.dd-list'))])->render();
 	}
 
 	public function sortPostAction() {
 		ci('nav_sort_library')->process_tree_sort(ci('input')->request('tree'),1);
 
 		ci('output')->json('html','Updated');
+	}
+	
+	public function detailsAction($id = null) {
+		foreach (ci('o_nav_model')->catalog('id','*',null,'text') as $rec_id=>$obj) {
+			$nav_options[$rec_id] = $obj->text.' ~ '.$obj->url;
+		}
+		
+		ci('page')->data('nav_options',$nav_options);
+	
+		$data = ($id) ? $this->_edit_record($id) : $this->_new_record();
+
+		ci('page')->render(null,(array)$data);
 	}
 
 

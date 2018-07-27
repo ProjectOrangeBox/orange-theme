@@ -34,7 +34,7 @@
 	<div class="form-group">
 		<label class="col-md-3 control-label" for="textinput">Parent</label>
 		<div class="col-md-4">
-			<?=pear::dropdown('parent_id',ci('o_nav_model')->catalog('id','url'),$record->parent_id,['data-live-search'=>'true','class'=>'select3 form-control input-md']) ?>
+			<?=pear::dropdown('parent_id',$nav_options,$record->parent_id,['data-live-search'=>'true','class'=>'select3 form-control input-md']) ?>
 		</div>
 	</div>
 

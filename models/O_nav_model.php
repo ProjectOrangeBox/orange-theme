@@ -65,7 +65,7 @@ class O_nav_model extends Database_model {
 	protected $order_by = 'url sort';
 
 	/* get a array */
-	public function get_as_array($parent_id,$access=true) {
+	public function get_as_array($parent_id,$access=true,$remove_empty_parents=true) {
 		/* the cache key based on the menu parent id */
 		$key = $this->cache_prefix.'.get_as_array.'.$parent_id;
 
@@ -80,7 +80,7 @@ class O_nav_model extends Database_model {
 		/* is this cached? */
 		if (!$cache = $this->cache->get($key)) {
 			/* no - therefore we need to create the cache */
-			$cache = $this->_children($parent_id,$access,1);
+			$cache = $this->_children($parent_id,$access,1,$remove_empty_parents);
 
 			/* save the cache */
 			$this->cache->save($key,$cache,cache_ttl());
@@ -90,7 +90,7 @@ class O_nav_model extends Database_model {
 		return $cache;
 	}
 
-	protected function _children($parent_id,$access,$level) {
+	protected function _children($parent_id,$access,$level,$remove_empty_parents) {
 		$array = false;
 
 		if ($access) {
@@ -100,13 +100,17 @@ class O_nav_model extends Database_model {
 		$records = $this->as_array()->where(['parent_id'=>$parent_id])->order_by('sort')->get_many();
 
 		foreach ($records as $record) {
-			if ($children = $this->_children($record['id'],$access,($level + 1))) {
+			if ($children = $this->_children($record['id'],$access,($level + 1),$remove_empty_parents)) {
 				$record['children'] = $children;
 			}
 
 			$record['level'] = $level;
 
-			if (!(empty($record['url']) && !is_array($record['children']))) {
+			if ($remove_empty_parents) {
+				if (!(empty($record['url']) && !is_array($record['children']))) {
+					$array[$record['id']] = $record;
+				}
+			} else {
 				$array[$record['id']] = $record;
 			}
 		}
@@ -140,6 +144,8 @@ class O_nav_model extends Database_model {
 			'migration'=>$migration,
 			'icon'=>'square',
 			'color'=>'d28445',
+			'access'=>0,
+			'active'=>0,
 		];
 
 		foreach ($optional as $key=>$val) {

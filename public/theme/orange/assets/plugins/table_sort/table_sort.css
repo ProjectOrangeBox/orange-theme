@@ -1,15 +1,11 @@
-table.table-sort th i.fa-sort {
-	color: #b5b5b5;
+table.table-sort th i {
+	color: #c0c0c0;
 }
 
-table.table-sort th i.fa-desc {
+table.table-sort th i.fa-sort-asc, table.table-sort th i.fa-sort-desc {
 	color: #111;
 }
 
-table.table-sort th i.fa-desc {
-	color: #111;
-}
-
-table.table-sort thead th:hover:not(.nosort) {
-	background: #efefef;
+table.table-sort th:hover:not(.nosort), table.table-sort th.active.panel-heading {
+	background-color: #efefef;
 }
