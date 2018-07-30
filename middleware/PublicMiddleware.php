@@ -18,8 +18,8 @@
  * functions:
  *
  */
-class PublicMiddleware extends Middleware_base {
-	public function __construct() {
+class PublicMiddleware {
+	public static function request() {
 		ci('load')->library(['auth','user']);
 	}
 }

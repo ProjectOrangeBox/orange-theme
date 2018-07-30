@@ -7,6 +7,5 @@ table.table-sort th i.fa-sort-asc, table.table-sort th i.fa-sort-desc {
 }
 
 table.table-sort th:hover:not(.nosort), table.table-sort th.active.panel-heading {
-  background-color: rgba(0,0,0,.075);
-  background-blend-mode: multiply;
+  background-color: #efefef;
 }

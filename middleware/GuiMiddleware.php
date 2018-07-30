@@ -18,17 +18,19 @@
  * functions:
  *
  */
-class GuiMiddleware extends Middleware_base {
-	public function __construct() {
+class GuiMiddleware {
+	public static function request() {
 		ci('output')->parse_exec_vars = false;
-		if ((int) $this->cache_page_for > 0) {
-			ci('output')->cache((int) $this->cache_page_for);
+
+		if ((int) ci()->cache_page_for > 0) {
+			ci('output')->cache((int) ci()->cache_page_for);
 		}
-		ci('page')->body_class(orange_middleware::get())->data([
-			'controller'        => $this->controller,
-			'controller_path'   => $this->controller_path,
-			'controller_title'  => $this->controller_title,
-			'controller_titles' => $this->controller_titles,
+
+		ci('page')->body_class(orange_middleware::requests())->data([
+			'controller'        => ci()->controller,
+			'controller_path'   => ci()->controller_path,
+			'controller_title'  => ci()->controller_title,
+			'controller_titles' => ci()->controller_titles,
 		]);
 	}
 }
