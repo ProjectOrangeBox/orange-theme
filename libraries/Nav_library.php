@@ -7,26 +7,26 @@ class Nav_library {
 	/* build HTML for main menu */
 	public function build_bootstrap_nav($parent_id,$config,$filter=true) {
 		$cache_key = (ci('o_nav_model')->get_cache_prefix()).'.build_bootstrap_nav.'.md5(json_encode(func_get_args()));
-		
+
 		if (!$html = ci('cache')->get($cache_key)) {
 			$this->base_url = trim(base_url(),'/');
-	
+
 			$this->config = $config;
-	
+
 			$html = '';
-	
+
 			$html = $this->config['navigation_open'];
-	
+
 			$user_permissions = array_keys(user::permissions());
-			
+
 			$menus = ($filter) ? ci('o_nav_model')->get_filtered($parent_id,$user_permissions) : ci('o_nav_model')->get_unfiltered($parent_id);
-	
+
 			if (is_array($menus)) {
 				foreach ($menus as $menu) {
 					$html .= $this->item($menu,1);
 				}
 			}
-	
+
 			$html .= $this->config['navigation_close'];
 
 			ci('cache')->save($cache_key,$html,cache_ttl());
