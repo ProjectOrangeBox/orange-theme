@@ -31,6 +31,8 @@ class NavController extends MY_Controller {
 	}
 	
 	public function detailsAction($id = null) {
+		$nav_options[1] = '~ Root';
+		
 		foreach (ci('o_nav_model')->catalog('id','*',null,'text') as $rec_id=>$obj) {
 			$nav_options[$rec_id] = $obj->text.' ~ '.$obj->url;
 		}

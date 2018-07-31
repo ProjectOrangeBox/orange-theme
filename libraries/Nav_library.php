@@ -5,22 +5,32 @@ class Nav_library {
 	protected $config = [];
 
 	/* build HTML for main menu */
-	public function build_bootstrap_nav($parent_id,$config) {
-		$this->base_url = trim(base_url(),'/');
+	public function build_bootstrap_nav($parent_id,$config,$filter=true) {
+		$cache_key = (ci('o_nav_model')->get_cache_prefix()).'.build_bootstrap_nav.'.md5(json_encode(func_get_args()));
+		
+		if (!$html = ci('cache')->get($cache_key)) {
+			$this->base_url = trim(base_url(),'/');
+	
+			$this->config = $config;
+	
+			$html = '';
+	
+			$html = $this->config['navigation_open'];
+	
+			$user_permissions = array_keys(user::permissions());
+			
+			$menus = ($filter) ? ci('o_nav_model')->get_filtered($parent_id,$user_permissions) : ci('o_nav_model')->get_unfiltered($parent_id);
+	
+			if (is_array($menus)) {
+				foreach ($menus as $menu) {
+					$html .= $this->item($menu,1);
+				}
+			}
+	
+			$html .= $this->config['navigation_close'];
 
-		$this->config = $config;
-
-		$html = '';
-
-		$menus = ci('o_nav_model')->get_filtered($parent_id,array_keys(user::permissions()));
-
-		$html = $this->config['navigation_open'];
-
-		foreach ($menus as $menu) {
-			$html .= $this->item($menu,1);
+			ci('cache')->save($cache_key,$html,cache_ttl());
 		}
-
-		$html .= $this->config['navigation_close'];
 
 		return $html;
 	}
@@ -48,9 +58,13 @@ class Nav_library {
 
 			$html .= $this->config['item_close_dropdown'];
 		} else {
-			$html .= $this->config['item_open'];
-			$html .= ci('parser')->parse_string($this->config['anchor'],$item,true);
-			$html .= $this->config['item_close'];
+			if ($item['text'] == '{hr}') {
+				$html .= $this->config['hr'];
+			} else {
+				$html .= $this->config['item_open'];
+				$html .= ci('parser')->parse_string($this->config['anchor'],$item,true);
+				$html .= $this->config['item_close'];
+			}
 		}
 
 		return $html;

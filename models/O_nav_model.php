@@ -66,7 +66,7 @@ class O_nav_model extends Database_model {
 
 	public function get_all() {
 		/* starting at root (1) get all */
-		return $this->_children(1,false,1,false,true);
+		return $this->_children(1,false,1,false,false);
 	}
 	
 	public function get_filtered($parent_id,$access) {
@@ -74,12 +74,12 @@ class O_nav_model extends Database_model {
 		$access = (is_array($access)) ? array_merge([0],$access) : [0];
 
 		/* the cache key based on the menu parent id & permissions */
-		$key = $this->cache_prefix.'.get_as_array.'.md5(json_encode(func_get_args()));
+		$key = $this->cache_prefix.'.get_filtered.'.md5(json_encode(func_get_args()));
 
 		/* is this cached? */
 		if (!$cache = $this->cache->get($key)) {
 			/* no - therefore we need to create the cache */
-			$cache = $this->_children($parent_id,$access,1,true,false);
+			$cache = $this->_children($parent_id,$access,1,true,true);
 
 			/* save the cache */
 			$this->cache->save($key,$cache,cache_ttl());
@@ -89,19 +89,36 @@ class O_nav_model extends Database_model {
 		return $cache;
 	}
 
-	protected function _children($parent_id,$access,$level,$remove_empty_parents,$all) {
+	public function get_unfiltered($parent_id) {
+		/* the cache key based on the menu parent id & permissions */
+		$key = $this->cache_prefix.'.get_unfiltered.'.$parent_id;
+
+		/* is this cached? */
+		if (!$cache = $this->cache->get($key)) {
+			/* no - therefore we need to create the cache */
+			$cache = $this->_children($parent_id,false,1,false,true);
+
+			/* save the cache */
+			$this->cache->save($key,$cache,cache_ttl());
+		}
+
+		/* return the cached array */
+		return $cache;
+	}
+
+	protected function _children($parent_id,$access,$level,$remove_empty_parents,$active) {
 		$array = false;
 
 		if ($access) {
 			$this->where_in('access',$access);
 		}
 
-		$where_clause = ($all) ? ['parent_id'=>$parent_id] : ['parent_id'=>$parent_id,'active'=>1];
+		$where_clause = ($active) ? ['parent_id'=>$parent_id,'active'=>1] : ['parent_id'=>$parent_id];
 
 		$records = $this->as_array()->where($where_clause)->order_by('sort')->get_many();
 
 		foreach ($records as $record) {
-			if ($children = $this->_children($record['id'],$access,($level + 1),$remove_empty_parents,$all)) {
+			if ($children = $this->_children($record['id'],$access,($level + 1),$remove_empty_parents,$active)) {
 				$record['children'] = $children;
 			}
 
