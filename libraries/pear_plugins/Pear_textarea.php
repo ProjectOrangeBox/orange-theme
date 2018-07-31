@@ -19,6 +19,6 @@ class Pear_textarea extends Pear_plugin {
 			'id'=>$name,
 		];
 
-		return '<textarea '.$this->_convert2attributes(array_merge($defaults,$options)).'>'.$value."</textarea>\n";
+		return '<textarea '._stringify_attributes(array_merge($defaults,$options)).'>'.$value."</textarea>\n";
 	}
 }

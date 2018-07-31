@@ -18,7 +18,7 @@ class Pear_field_range extends Pear_plugin {
 		autocomplete, list, max, min, and step
 		*/
 
-		return '<input type="range" oninput="'.$extra['name'].'OutputId.value = '.$extra['id'].'.value" '.$this->_convert2attributes($extra).'>
+		return '<input type="range" oninput="'.$extra['name'].'OutputId.value = '.$extra['id'].'.value" '._stringify_attributes($extra).'>
 		</div><div class="col-md-1"><output class="" name="'.$extra['name'].'" id="'.$extra['name'].'OutputId">'.$extra['value'].'</output>';
 	}
 

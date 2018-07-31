@@ -11,7 +11,7 @@ class Pear_checker extends Pear_plugin {
 			$checked = ($value == $checked);
 		}
 
-		return '<input type="hidden" name="'.$name.'" value="'.$unchecked.'"><input type="checkbox" name="'.$name.'" value="'.$value.'" '.$this->_convert2attributes($extra).' '.(($checked) ? 'checked' : '').'>';
+		return '<input type="hidden" name="'.$name.'" value="'.$unchecked.'"><input type="checkbox" name="'.$name.'" value="'.$value.'" '._stringify_attributes($extra).' '.(($checked) ? 'checked' : '').'>';
 	}
 
 }

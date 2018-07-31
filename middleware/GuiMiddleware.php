@@ -20,6 +20,7 @@
  */
 class GuiMiddleware {
 	public static function request() {
+		/* this will speed it up a little bit */
 		ci('output')->parse_exec_vars = false;
 
 		if ((int) ci()->cache_page_for > 0) {
