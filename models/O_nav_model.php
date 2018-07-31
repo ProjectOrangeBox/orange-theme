@@ -64,23 +64,22 @@ class O_nav_model extends Database_model {
 	protected $has_stamps = true;
 	protected $order_by = 'url sort';
 
-	/* get a array */
-	public function get_as_array($parent_id,$access=true,$remove_empty_parents=true) {
-		/* the cache key based on the menu parent id */
-		$key = $this->cache_prefix.'.get_as_array.'.$parent_id;
+	public function get_all() {
+		/* starting at root (1) get all */
+		return $this->_children(1,false,1,false,true);
+	}
+	
+	public function get_filtered($parent_id,$access) {
+		/* merge 0 (everyone) and the rest of your permissions */
+		$access = (is_array($access)) ? array_merge([0],$access) : [0];
 
-		if ($access) {
-			/* merge 0 (everyone) and the rest of your permissions */
-			$access = array_merge([0],array_keys(user::permissions()));
-
-			/* append on your permissions to the key */
-			$key .= '.'.md5(json_encode($access));
-		}
+		/* the cache key based on the menu parent id & permissions */
+		$key = $this->cache_prefix.'.get_as_array.'.md5(json_encode(func_get_args()));
 
 		/* is this cached? */
 		if (!$cache = $this->cache->get($key)) {
 			/* no - therefore we need to create the cache */
-			$cache = $this->_children($parent_id,$access,1,$remove_empty_parents);
+			$cache = $this->_children($parent_id,$access,1,true,false);
 
 			/* save the cache */
 			$this->cache->save($key,$cache,cache_ttl());
@@ -90,17 +89,19 @@ class O_nav_model extends Database_model {
 		return $cache;
 	}
 
-	protected function _children($parent_id,$access,$level,$remove_empty_parents) {
+	protected function _children($parent_id,$access,$level,$remove_empty_parents,$all) {
 		$array = false;
 
 		if ($access) {
 			$this->where_in('access',$access);
 		}
 
-		$records = $this->as_array()->where(['parent_id'=>$parent_id])->order_by('sort')->get_many();
+		$where_clause = ($all) ? ['parent_id'=>$parent_id] : ['parent_id'=>$parent_id,'active'=>1];
+
+		$records = $this->as_array()->where($where_clause)->order_by('sort')->get_many();
 
 		foreach ($records as $record) {
-			if ($children = $this->_children($record['id'],$access,($level + 1),$remove_empty_parents)) {
+			if ($children = $this->_children($record['id'],$access,($level + 1),$remove_empty_parents,$all)) {
 				$record['children'] = $children;
 			}
 

@@ -12,7 +12,7 @@ class Nav_library {
 
 		$html = '';
 
-		$menus = ci('o_nav_model')->get_as_array($parent_id,true);
+		$menus = ci('o_nav_model')->get_filtered($parent_id,array_keys(user::permissions()));
 
 		$html = $this->config['navigation_open'];
 

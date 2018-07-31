@@ -21,7 +21,7 @@ class NavController extends MY_Controller {
 	public $controller_order_by = 'sort';
 
 	public function sortAction() {
-		ci('page')->data(['list'=>ci('nav_sort_library')->create_list(ci('o_nav_model')->get_as_array(1,false,false),config('nav.dd-list'))])->render();
+		ci('page')->data(['list'=>ci('nav_sort_library')->create_list(ci('o_nav_model')->get_all(),config('nav.dd-list'))])->render();
 	}
 
 	public function sortPostAction() {
