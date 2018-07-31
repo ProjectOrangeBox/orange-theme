@@ -10,8 +10,8 @@ class Migration_005_add_nav_menu_settings extends Migration_base {
 
 		echo $hash.' up'.chr(10);
 		
-		ci('o_setting_model')->migration_add('Right Protected','nav',58,'','{"type":"text","width":"8","mask":"int"}',$hash);
-		ci('o_setting_model')->migration_add('Right Public','nav',57,'','{"type":"text","width":"8","mask":"int"}',$hash);
+		ci('o_setting_model')->migration_add('Right Protected','nav',0,'','{"type":"text","width":"8","mask":"int"}',$hash);
+		ci('o_setting_model')->migration_add('Right Public','nav',0,'','{"type":"text","width":"8","mask":"int"}',$hash);
 
 		return true;
 	}
