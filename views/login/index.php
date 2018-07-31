@@ -1,11 +1,12 @@
-<?php pear::extends('_templates/orange_default') ?>
+<? pear::extends('_templates/orange_default') ?>
+<? pear::plugins('flash_msg,form_helpers') ?>
 
-<?php pear::section('section_container') ?>
+<? pear::section('section_container') ?>
 
 	<?=pear::open_multipart('/login',['method'=>'post','class'=>'form-signin']) ?>
-  <h2 class="form-signin-heading">Please Login</h2>
-  <label for="inputEmail" class="sr-only">Email address</label>
-  <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" autofocus>
+  <h2><?=config('auth.login h2') ?></h2>
+  <label for="inputEmail" class="sr-only"><?=config('auth.username field') ?></label>
+  <input type="email" name="email" id="inputEmail" class="form-control" placeholder="<?=config('auth.username field') ?>" autofocus>
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
   <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
@@ -25,7 +26,8 @@ body {
   padding: 15px;
   margin: 0 auto;
 }
-.form-signin .form-signin-heading, .form-signin .form-control {
+.form-signin .form-signin-heading,
+.form-signin .form-control {
   position: relative;
   height: auto;
   -webkit-box-sizing: border-box;
@@ -47,4 +49,4 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-<?php pear::end() ?>
+<? pear::end() ?>
