@@ -9,6 +9,10 @@ table must have table-search classes on it
 a element with a id of table-search-field-count will show the x of x text
 the search field must have the id of table-search-field
 
+<input type="text" id="table-search-field" data-url="/admin/backorder/search">
+<input type="text" id="table-search-field">
+
+
 */
 
 var table_search_field = {};
@@ -44,6 +48,8 @@ table_search_field.manual_search = function(search_term,url) {
 	orange.post(url,{search:search_term},function(data){
 		table_search_field.tbody.html(data.tbody);
 		table_search_field.update_count();
+		
+		$(document).trigger('orange_table_updated',table_search_field.tbody);
 	});
 }
 
