@@ -27,11 +27,37 @@ class GuiMiddleware {
 			ci('output')->cache((int) ci()->cache_page_for);
 		}
 
-		ci('page')->body_class(orange_middleware::requests())->data([
-			'controller'        => ci()->controller,
-			'controller_path'   => ci()->controller_path,
-			'controller_title'  => ci()->controller_title,
-			'controller_titles' => ci()->controller_titles,
-		]);
+		$controller_path = '/'.str_replace('/index','',ci('router')->fetch_route());
+		$base_url = trim(base_url(),'/');		
+				
+		$uid = 'guest';
+		$is = 'not-active';
+
+		/* this is a variable test */
+		if (isset(ci()->user)) {
+			$uid = md5(ci('user')->id.config('config.encryption_key'));
+			
+			if (ci('user')->logged_in()) {
+				$is = 'active';
+			}
+		}
+
+		$body_classes[] = trim(str_replace('/',' uri-',str_replace('_','-',$controller_path))).' uid-'.$uid.' is-'.$is;
+		$body_classes[] = orange_middleware::requests();
+
+		ci('page')
+			->body_class($body_classes)
+			->js_variables([
+				'base_url'				=> $base_url,
+				'app_id'					=> md5($base_url),
+				'controller_path' => $controller_path,
+				'user_id'					=> $uid,
+			])
+			->data([
+				'controller'        => ci()->controller,
+				'controller_path'   => ci()->controller_path,
+				'controller_title'  => ci()->controller_title,
+				'controller_titles' => ci()->controller_titles,
+			]);
 	}
 }
