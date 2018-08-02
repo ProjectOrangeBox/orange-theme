@@ -1,1 +1,1 @@
-<?=pear::section('section_container') ?>
+<?=$section_container ?>

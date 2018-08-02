@@ -1,5 +1,5 @@
 <!-- Start Record Roles -->
-<?php if (user::has_role(ADMIN_ROLE_ID)) { ?>
+<? if (user::has_role(ADMIN_ROLE_ID)) { ?>
 <div class="form-group">
 	<div class="col-md-4 col-md-offset-3">
 		<h4><span class="toggle-collapse collapsed" data-toggle="collapse" data-target="#record-access">Record Access</span></h4>
@@ -28,7 +28,7 @@
 		</div>
 	</div>
 </div>
-<?php } ?>
+<? } ?>
 <!-- End Record Roles -->
 
 <? pear::section('page_style') ?>
