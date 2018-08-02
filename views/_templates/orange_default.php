@@ -1,4 +1,5 @@
 <?php pear::plugins('flash_msg,form_helpers,rest_form') ?>
+
 <?php pear::section('page_js') ?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -8,6 +9,7 @@
 <!-- https://cdnjs.com/ -->
 <?php pear::parent() ?>
 <?php pear::end() ?>
+
 <?php pear::section('page_css') ?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -16,8 +18,9 @@
 <link href="/assets/application/application.css" rel="stylesheet">
 <?php pear::parent() ?>
 <?php pear::end() ?>
+
 <?=pear::include('_templates/header') ?>
-<div class="container">
-<?=$section_container ?>
-</div>
+	<div class="container">
+	<?=pear::variable('section_container') ?>
+	</div>
 <?=pear::include('_templates/footer') ?>
