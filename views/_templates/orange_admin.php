@@ -21,6 +21,6 @@
 <?php pear::include('_templates/header') ?>
 <?php pear::include('_templates/nav.php') ?>
 	<div class="container">
-	<?=pear::variable('section_container') ?>
+	<?=pear::section('section_container') ?>
 	</div>
 <?php pear::include('_templates/footer') ?>

@@ -9,6 +9,6 @@
 	<?=pear::variable('page_css') ?>
 	<?=pear::variable('page_style','<style>','</style>') ?>
 	<?=pear::variable('page_icon') ?>
-	<?=pear::variable('section_head') ?>
+	<?=pear::section('section_head') ?>
 </head>
 <body class="<?=pear::variable('page_body_class') ?>">
