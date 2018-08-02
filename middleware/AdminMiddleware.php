@@ -21,12 +21,12 @@
 class AdminMiddleware {
 	public static function request() {
 		$key = 'url::/'.strtolower(ci()->router->fetch_directory().ci()->router->fetch_class(true).'::'.ci()->router->fetch_method(true).'~'.ci()->router->fetch_request_method());
-		
+
 		if (user::cannot($key)) {
 			ci('errors')->display(403);
 		}
 	}
-	
+
 	public static function responds($output) {
 		return $output;
 	}

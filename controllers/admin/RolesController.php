@@ -106,7 +106,6 @@ class RolesController extends MY_Controller {
  */
 	public function indexDeleteAction() {
 		ci('o_role_model')->delete(hex2bin(ci('input')->request('id')));
-
 		$this->_rest_output();
 	}
 
