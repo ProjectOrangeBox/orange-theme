@@ -69,6 +69,8 @@ table_search_field.regular_expression_search = function(search_term) {
 		/* show all */
 		$(table_search_field.table_class).show();
 	}
+
+	$(document).trigger('orange_table_updated',table_search_field.tbody);
 }
 
 table_search_field.load = function() {

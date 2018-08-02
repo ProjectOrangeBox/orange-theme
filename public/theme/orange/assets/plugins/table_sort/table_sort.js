@@ -14,10 +14,9 @@ table_sort.sort = function(index,dir) {
 
 	$('table.table-sort thead tr th:nth-child('+index+')').addClass('active');
 
-
 	/* do sort */
 	tinysort('table.table-sort tbody tr',{selector:'td:nth-child('+index+')',order:dir,data:'value'},{selector:'td:nth-child('+index+')',order:dir});
-	
+
 	table_sort.save(index,dir);
 }
 
@@ -26,7 +25,7 @@ table_sort.load = function() {
 
 	if (saved != '') {
 		parts = saved.split("\t");
-		
+
 		table_sort.sort(parts[0],parts[1]);
 	}
 }
@@ -44,7 +43,7 @@ $('table.table-sort thead tr th:not(.nosort)').prepend('<i class="fa fa-sort"></
 	table_sort.sort($('table.table-sort thead tr th').index(this) + 1,table_sort.dir);
 });
 
-/* add listener to handle putting back in the sort column on page ready */
-document.addEventListener("DOMContentLoaded",function(e){
+/* or sort if it's dynamically loaded */
+$(document).on('orange_table_updated',{},function(tbody){
 	table_sort.load();
 });
