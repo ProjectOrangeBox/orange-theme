@@ -18,8 +18,7 @@
  * functions:
  *
  */
-class PublicMiddleware {
-	public static function request() {
-		ci('load')->library(['auth','user']);
+class PublicMiddleware extends Middleware_base {
+	public function request() {
 	}
 }

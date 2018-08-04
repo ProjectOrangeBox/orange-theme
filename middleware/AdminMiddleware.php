@@ -18,16 +18,14 @@
  * functions:
  *
  */
-class AdminMiddleware {
-	public static function request() {
-		$key = 'url::/'.strtolower(ci()->router->fetch_directory().ci()->router->fetch_class(true).'::'.ci()->router->fetch_method(true).'~'.ci()->router->fetch_request_method());
+class AdminMiddleware extends Middleware_base {
+	public function request() {
+		$this->load->library('auth');
 
-		if (user::cannot($key)) {
-			ci('errors')->display(403);
+		$key = 'url::/'.strtolower($this->router->fetch_directory().$this->router->fetch_class(true).'::'.$this->router->fetch_method(true).'~'.$this->router->fetch_request_method());
+
+		if ($this->user->cannot($key)) {
+			$this->errors->display(403);
 		}
-	}
-
-	public static function responds($output) {
-		return $output;
 	}
 }

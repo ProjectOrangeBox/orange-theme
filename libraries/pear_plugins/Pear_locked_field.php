@@ -19,7 +19,7 @@ class Pear_locked_field extends Pear_plugin {
 		$html = '<input type="text" '.(($extra['default'] == 'lock') ? 'readonly' : '').' id="'.$name.'" name="'.$name.'" value="'.$value.'" class="'.$extra['class'].'" style="width:100%; display:inline">';
 
 		if ($show_lock) {
-			if (user::can($extra['can'])) {
+			if (ci('user)->can($extra['can'])) {
 				$html .= '<a style="margin-left: -24px" class="js-locked-field-lock" href="#" data-lock="true"><i class="fa fa-'.(($show_lock) ? 'lock' : 'unlock').'"></i></a>';
 			}
 		}

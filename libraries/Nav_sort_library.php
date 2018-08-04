@@ -4,6 +4,9 @@ class Nav_sort_library {
 	protected $sort = 0;
 	protected $config = [];
 
+	public function __construct(&$config,&$ci) {
+	}
+
 	/* convert tree into sort values */
 	public function process_tree_sort($orders,$parent_id) {
 		foreach ($orders as $order) {

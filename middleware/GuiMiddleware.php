@@ -18,35 +18,35 @@
  * functions:
  *
  */
-class GuiMiddleware {
-	public static function request() {
-		/* this will speed it up a little bit */
-		ci('output')->parse_exec_vars = false;
+class GuiMiddleware extends Middleware_base {
+	public function request() {
+		$this->load->library('page');
 
-		if ((int) ci()->cache_page_for > 0) {
-			ci('output')->cache((int) ci()->cache_page_for);
+		/* this will speed it up a little bit */
+		$this->output->parse_exec_vars = false;
+
+		if ((int)$this->cache_page_for > 0) {
+			$this->output->cache((int) $this->cache_page_for);
 		}
 
-		$controller_path = '/'.str_replace('/index','',ci('router')->fetch_route());
+		$controller_path = '/'.str_replace('/index','',$this->router->fetch_route());
 		$base_url = trim(base_url(),'/');		
 				
 		$uid = 'guest';
 		$is = 'not-active';
 
 		/* this is a variable test */
-		if (isset(ci()->user)) {
-			$uid = md5(ci('user')->id.config('config.encryption_key'));
+		if (isset($this->user)) {
+			$uid = md5($this->user->id.config('config.encryption_key'));
 			
-			if (ci('user')->logged_in()) {
+			if ($this->user->logged_in()) {
 				$is = 'active';
 			}
 		}
 
 		$body_classes[] = trim(str_replace('/',' uri-',str_replace('_','-',$controller_path))).' uid-'.$uid.' is-'.$is;
-		$body_classes[] = orange_middleware::requests();
-
-		ci('page')
-			->body_class($body_classes)
+		
+		$this->page->body_class($body_classes)
 			->js_variables([
 				'base_url'				=> $base_url,
 				'app_id'					=> md5($base_url),
@@ -54,10 +54,10 @@ class GuiMiddleware {
 				'user_id'					=> $uid,
 			])
 			->data([
-				'controller'        => ci()->controller,
-				'controller_path'   => ci()->controller_path,
-				'controller_title'  => ci()->controller_title,
-				'controller_titles' => ci()->controller_titles,
+				'controller'        => $this->controller,
+				'controller_path'   => $this->controller_path,
+				'controller_title'  => $this->controller_title,
+				'controller_titles' => $this->controller_titles,
 			]);
 	}
 }

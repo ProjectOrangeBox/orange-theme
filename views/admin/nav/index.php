@@ -7,10 +7,10 @@
 	<div class="col-md-6">
 		<div class="pull-right">
 			<?=pear::table_search_field() ?>
-			<? if (user::has_permission('url::/admin/nav::sort~get')) { ?>
+			<? if (pear::user('has_permission','url::/admin/nav::sort~get')) { ?>
 				<?=pear::header_button($controller_path.'/sort','GUI Sort',['icon'=>'sitemap']) ?>
 			<? } ?>
-			<? if (user::has_permission('url::/admin/nav::index~post')) { ?>
+			<? if (pear::user('has_permission','url::/admin/nav::index~post')) { ?>
 				<?=pear::new_button($controller_path.'/details','New '.$controller_title) ?>
 			<? } ?>
 		</div>
@@ -38,10 +38,10 @@
 				<td class="text-center" data-value="<?=$row->icon ?>"><?=pear::color_fa_icon($row->color,$row->icon) ?></td>
 				<td><?=pear::catalog_lookup('o_permission_model',$row->access,'description') ?></td>
 				<td class="text-center actions">
-					<? if (user::has_role($row->edit_role_id)) { ?>
+					<? if (pear::user('has_role',$row->edit_role_id)) { ?>
 						<?=pear::edit_button($controller_path.'/details/'.bin2hex($row->id)) ?>
 					<? } ?>
-					<? if (user::has_role($row->delete_role_id)) { ?>
+					<? if (pear::user('has_role',$row->delete_role_id)) { ?>
 						<?=pear::delete_button($controller_path,['id'=>$row->id]) ?>
 					<? } ?>
 				</td>

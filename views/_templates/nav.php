@@ -17,13 +17,13 @@
 		
 			<ul class="nav navbar-nav navbar-right">
 				
-				<? if (user::has_permission('url::/orange_user_msgs::index~get')) { ?>
+				<? if (pear::user('has_permission','url::/orange_user_msgs::index~get')) { ?>
 				<li>
-					<a href="/admin/msgs"><i class="fa fa-envelope"></i> <span class="badge"><?=pear::user_messages(user::id()) ?></span></a>
+					<a href="/admin/msgs"><i class="fa fa-envelope"></i> <span class="badge"><?=pear::user_messages(pear::user('id')) ?></span></a>
 				</li>
 				<? } ?>
 				
-				<? if (user::logged_in()) { ?>
+				<? if (pear::user('logged_in')) { ?>
 					<?=ci('nav_library')->build_bootstrap_nav(config('nav.right protected'),config('nav.bootstrap nav icons'),false) ?>
 				<? } else { ?>
 					<?=ci('nav_library')->build_bootstrap_nav(config('nav.right public'),config('nav.bootstrap nav icons'),false) ?>

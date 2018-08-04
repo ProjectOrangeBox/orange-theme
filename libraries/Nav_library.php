@@ -4,11 +4,14 @@ class Nav_library {
 	protected $base_url;
 	protected $config = [];
 
+	public function __construct(&$config,&$ci) {
+	}
+
 	/* build HTML for main menu */
 	public function build_bootstrap_nav($parent_id,$config,$filter=true) {
 		$cache_key = (ci('o_nav_model')->get_cache_prefix()).'.build_bootstrap_nav.'.md5(json_encode(func_get_args()));
 
-		$user_permissions = array_keys(user::permissions());
+		$user_permissions = array_keys(ci('user')->permissions());
 
 		if ($filter) {
 			$cache_key .= '.'.md5(json_encode($user_permissions));
@@ -16,7 +19,7 @@ class Nav_library {
 
 		if (!$html = ci('cache')->get($cache_key)) {
 			$this->config = $config;
-	
+
 			$this->base_url = trim(base_url(),'/');
 
 			$html = $this->config['navigation_open'];
