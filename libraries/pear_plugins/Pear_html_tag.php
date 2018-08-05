@@ -16,7 +16,7 @@ class Pear_html_tag extends Pear_plugin {
 
 			/* construct the HTML */
 			$html = '<'.$tag;
-			$html .= (!empty($attr)) ? (is_array($attr) ? ci('page')->convert2attributes($attr) : ' '.$attr) : '';
+			$html .= (!empty($attr)) ? (is_array($attr) ? _stringify_attributes($attr) : ' '.$attr) : '';
 
 			/* a void element? */
 			if (in_array(strtolower($tag), $void_elements)) {

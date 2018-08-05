@@ -5,6 +5,7 @@ class Nav_library {
 	protected $config = [];
 
 	public function __construct(&$config,&$ci) {
+		$this->config = &$config;
 	}
 
 	/* build HTML for main menu */
@@ -37,7 +38,7 @@ class Nav_library {
 			ci('cache')->save($cache_key,$html,cache_ttl());
 		}
 
-		ci('event')->trigger('nav_library.html',$html);
+		ci('event')->trigger('nav.library.html',$html);
 
 		return $html;
 	}

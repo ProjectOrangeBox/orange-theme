@@ -25,28 +25,24 @@ class GuiMiddleware extends Middleware_base {
 		/* this will speed it up a little bit */
 		$this->output->parse_exec_vars = false;
 
-		if ((int)$this->cache_page_for > 0) {
-			$this->output->cache((int) $this->cache_page_for);
-		}
+		$route = $this->router->fetch_route();
 
-		$controller_path = '/'.str_replace('/index','',$this->router->fetch_route());
-		$base_url = trim(base_url(),'/');		
+		$controller_path = '/'.str_replace('/index','',$route);
 				
-		$uid = 'guest';
-		$is = 'not-active';
-
-		/* this is a variable test */
-		if (isset($this->user)) {
-			$uid = md5($this->user->id.config('config.encryption_key'));
-			
-			if ($this->user->logged_in()) {
-				$is = 'active';
-			}
+		/* is the user object setup? */
+		if (is_object($this->user)) {
+			$uid = 'uid-'.md5($this->user->id.config('config.encryption_key'));
+			$is = ($this->user->logged_in()) ? 'is-logged-in' : 'is-not-logged-in';
+		} else {
+			$uid = 'uid-guest';
+			$is = 'is-not-logged-in';
 		}
 
-		$body_classes[] = trim(str_replace('/',' uri-',str_replace('_','-',$controller_path))).' uid-'.$uid.' is-'.$is;
+		$base_url = trim(base_url(),'/');		
 		
-		$this->page->body_class($body_classes)
+		$this->page
+			->route(str_replace('-', '_',$route))
+			->body_class([str_replace('/',' uri-',str_replace('_','-',$controller_path)).' '.$uid.' '.$is])
 			->js_variables([
 				'base_url'				=> $base_url,
 				'app_id'					=> md5($base_url),

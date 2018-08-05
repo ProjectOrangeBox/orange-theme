@@ -19,7 +19,7 @@ class Pear_summernote extends Pear_plugin {
 	public function render($name=null,$value=null,$extra=[]) {
 		$extra['class'] .= ' form-control summernote';
 
-		return '<textarea id="'.$name.'" name="'.$name.'" '.ci('page')->convert2attributes($extra).'>'.$value.'</textarea>';
+		return '<textarea id="'.$name.'" name="'.$name.'" '._stringify_attributes($extra).'>'.$value.'</textarea>';
 	}
 
 }
