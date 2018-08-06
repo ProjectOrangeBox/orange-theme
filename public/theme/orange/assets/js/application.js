@@ -1,6 +1,3 @@
-/* get the other tools */
-$.getScript('/theme/orange/assets/js/tools.min.js');
-
 var orange = (orange) || {};
 var messages = (messages) || [];
 var plugins = (plugins) || [];

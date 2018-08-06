@@ -13,4 +13,4 @@
 	<?=$page_icon ?>
 	<?=$section_head ?>
 </head>
-<body class="<?=$page_body_class ?>">
+<body class="<?=pear::trim($page_body_class) ?>">
