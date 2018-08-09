@@ -4,7 +4,7 @@ class Nav_sort_library {
 	protected $sort = 0;
 	protected $config = [];
 
-	public function __construct(&$config,&$ci) {
+	public function __construct(&$config) {
 	}
 
 	/* convert tree into sort values */

@@ -4,7 +4,7 @@ class Nav_library {
 	protected $base_url;
 	protected $config = [];
 
-	public function __construct(&$config,&$ci) {
+	public function __construct(&$config) {
 		$this->config = &$config;
 	}
 
