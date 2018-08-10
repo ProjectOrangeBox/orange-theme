@@ -14,6 +14,6 @@ trait admin_acl_controller_trait {
  * @example
  */
 	public function flush_aclAction() {
-		delete_cache_by_tags('acl');
+		ci('cache')->delete_by_tags('acl');
 	}
 }

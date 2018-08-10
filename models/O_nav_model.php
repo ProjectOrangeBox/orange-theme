@@ -82,7 +82,7 @@ class O_nav_model extends Database_model {
 			$cache = $this->_children($parent_id,$access,1,true,true);
 
 			/* save the cache */
-			$this->cache->save($key,$cache,cache_ttl());
+			$this->cache->save($key,$cache,ci('cache')->ttl());
 		}
 
 		/* return the cached array */
@@ -99,7 +99,7 @@ class O_nav_model extends Database_model {
 			$cache = $this->_children($parent_id,false,1,false,true);
 
 			/* save the cache */
-			$this->cache->save($key,$cache,cache_ttl());
+			$this->cache->save($key,$cache,ci('cache')->ttl());
 		}
 
 		/* return the cached array */

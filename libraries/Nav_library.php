@@ -35,7 +35,7 @@ class Nav_library {
 
 			$html .= $this->config['navigation_close'];
 
-			ci('cache')->save($cache_key,$html,cache_ttl());
+			ci('cache')->save($cache_key,$html,ci('cache')->ttl());
 		}
 
 		ci('event')->trigger('nav.library.html',$html);
