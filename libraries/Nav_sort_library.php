@@ -35,7 +35,7 @@ class Nav_sort_library {
 		foreach ($list as $value) {
 			$value['disabled'] = ($value['active'] == 0) ? $this->config['item_inactive_class'] : $this->config['item_active_class'];
 
-			$html .= ci('parser')->parse_string($this->config['item_open'].$this->config['content'],$value,true);
+			$html .= quick_merge($this->config['item_open'].$this->config['content'],$value);
 
 			if (is_array($value['children'])) {
 				$html .= $this->level($value['children'],($level + 1));
