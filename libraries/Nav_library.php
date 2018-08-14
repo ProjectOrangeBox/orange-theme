@@ -12,9 +12,9 @@ class Nav_library {
 	public function build_bootstrap_nav($parent_id,$config,$filter=true) {
 		$cache_key = (ci('o_nav_model')->get_cache_prefix()).'.build_bootstrap_nav.'.md5(json_encode(func_get_args()));
 
-		$user_permissions = array_keys(ci('user')->permissions());
-
 		if ($filter) {
+			$user_permissions = array_keys(ci('user')->permissions());
+
 			$cache_key .= '.'.md5(json_encode($user_permissions));
 		}
 
@@ -54,7 +54,7 @@ class Nav_library {
 				$html .= $this->config['item_open_dropdown_sub'];
 			}
 
-			$html .= ci('parser')->parse_string($this->config['anchor_dropdown'],$item,true);
+			$html .= quick_merge($this->config['anchor_dropdown'],$item);
 
 			$html .= $this->config['dropdown_open'];
 
@@ -70,12 +70,16 @@ class Nav_library {
 				$html .= $this->config['hr'];
 			} else {
 				$html .= $this->config['item_open'];
-				$html .= ci('parser')->parse_string($this->config['anchor'],$item,true);
+				$html .= quick_merge($this->config['anchor'],$item);
 				$html .= $this->config['item_close'];
 			}
 		}
 
 		return $html;
+	}
+
+	protected function merge($html,$items) {
+
 	}
 
 } /* end class */
