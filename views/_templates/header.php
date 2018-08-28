@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8"/>
-	<title><?=$page_title ?></title>
+	<title><?=pear::page_var('title') ?></title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
-	<?=$page_meta ?>
-	<?=$page_css ?>
+	<?=pear::page_var('meta') ?>
+	<?=pear::page_var('css') ?>
 	<style>
-	<?=$page_style ?>
+	<?=pear::page_var('style') ?>
 	</style>
-	<?=$page_icon ?>
+	<?=pear::page_var('page_icon') ?>
 	<?=$section_head ?>
 </head>
-<body class="<?=pear::trim($page_body_class) ?>">
+<body class="<?=pear::page_var('body_class') ?>">
