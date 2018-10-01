@@ -41,7 +41,7 @@ class GuiMiddleware extends Middleware_base {
 		$base_url = trim(base_url(),'/');		
 		
 		$this->page
-			->route(str_replace('-', '_',$route))
+			->set_default_template(str_replace('-','_',$route))
 			->body_class([str_replace('/',' uri-',str_replace('_','-',$controller_path)).' '.$uid.' '.$is])
 			->js_variables([
 				'base_url'				=> $base_url,
