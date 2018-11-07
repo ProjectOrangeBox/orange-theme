@@ -24,6 +24,8 @@ class AdminMiddleware extends Middleware_base {
 
 		$key = 'url::/'.strtolower($this->router->fetch_directory().$this->router->fetch_class(true).'::'.$this->router->fetch_method(true).'~'.$this->router->fetch_request_method());
 
+		log_message('debug',$key);
+
 		if ($this->user->cannot($key)) {
 			$this->errors->display(403);
 		}
