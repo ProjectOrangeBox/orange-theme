@@ -4,7 +4,8 @@ class Pear_date_picker_main {
 
 	public function __construct() {
 		ci('page')
-			->js(['//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js','//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js'])
+			->js('//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js',EVENT_PRIORITY_HIGHEST)
+			->js(['//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js'])
 			->css('//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css');
 	}
 
