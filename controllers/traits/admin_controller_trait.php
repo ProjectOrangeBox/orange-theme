@@ -87,7 +87,7 @@ trait admin_controller_trait {
  *
  */
 	protected function _rest_output() {
-		$this->data['ci_errors'] = ci('errors')->as_data();
+		$this->data['ci_errors'] = ci('errors')->as_array();
 
 		ci('event')->trigger('admin.controller.trait.rest.output.'.$this->controller_model,$this->data);
 
