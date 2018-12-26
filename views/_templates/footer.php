@@ -1,12 +1,12 @@
-<?=$section_footer ?>
+<?=pear::page('section_footer') ?>
 <script>
-<?=pear::page_var('js_variables') ?>
+<?=pear::page('js_variables') ?>
 </script>
-<?=pear::page_var('js') ?>
+<?=pear::page('js') ?>
 <script>
-<?=pear::page_var('script') ?>
-document.addEventListener("DOMContentLoaded",function(e){<?=pear::page_var('domready') ?>});
+<?=pear::page('script') ?>
+document.addEventListener("DOMContentLoaded",function(e){<?=pear::page('domready') ?>});
 </script>
-<?=$section_end ?>
+<?=pear::page('section_end') ?>
 </body>
 </html>

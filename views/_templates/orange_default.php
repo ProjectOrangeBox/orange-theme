@@ -18,6 +18,6 @@
 
 <?=pear::include('_templates/header') ?>
 	<div class="container">
-		<?=$section_container ?>
+		<?=pear::page('section_container') ?>
 	</div>
 <?=pear::include('_templates/footer') ?>

@@ -19,6 +19,6 @@
 <? pear::include('_templates/header') ?>
 <? pear::include('_templates/nav.php') ?>
 	<div class="container">
-		<?=$section_container ?>
+		<?=pear::page('section_container') ?>
 	</div>
 <? pear::include('_templates/footer') ?>
