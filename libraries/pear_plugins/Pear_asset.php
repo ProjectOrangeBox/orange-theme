@@ -8,27 +8,29 @@ class Pear_asset extends Pear_plugin {
 	{
 		$html = '';
 
-		$pathinfo = pathinfo($url);
-
-		$attr = $this->attributes($attributes);
-
-		switch ($pathinfo['extension']) {
+		switch (pathinfo($url,PATHINFO_EXTENSION)) {
 			case 'jpg':
 			case 'jpeg':
 			case 'png':
 			case 'gif':
-			case 'jpg':
-				$html = '<img src="'.$url.'"'.$attr.'>';
+				$html = '<img src="'.$url.'"'.$this->attributes($attributes).'>';
 			break;
 			case 'css':
-				$html = '<link rel="stylesheet" href="'.$url.'"'.$attr.'>';
+				$html = ($attributes === true) ? '<style>'.$this->get_content($url).'</style>' : '<link rel="stylesheet" href="'.$url.'"'.$this->attributes($attributes).'>';
 			break;
 			case 'js':
-				$html = '<script src="'.$url.'"'.$attr.'></script>';
+				$html = ($attributes === true) ? '<script type="text/javascript">'.$this->get_content($url).'</script>' : '<script type="text/javascript" src="'.$url.'"'.$this->attributes($attributes).'></script>';
 			break;
 		}
 
 		return $html;
+	}
+
+	protected function get_content($url)
+	{
+		$file_path = WWW.$url;
+
+		return (file_exists($file_path)) ? file_get_contents($file_path) : '<!-- '.$url.' not found -->';
 	}
 
 	protected function attributes($attributes)
