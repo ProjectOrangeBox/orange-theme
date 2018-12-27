@@ -1,5 +1,9 @@
 <?php
+/*
 
+@help move browser back to the top of the page.
+
+*/
 class Pear_bootstrap_wysiwyg extends Pear_plugin {
 
 	public function __construct() {

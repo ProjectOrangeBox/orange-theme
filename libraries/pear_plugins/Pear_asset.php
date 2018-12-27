@@ -1,7 +1,18 @@
 <?php
+/*
 
-// @show auto asset url generator
+@help auto asset url generator
 
+@details
+pear::asset('/folder/folder/image.png') will return <img src="/folder/folder/image.png">
+pear::asset('/folder/folder/script.js') will return <script type="text/javascript" src="/folder/folder/script.js"></script>
+pear::asset('/folder/folder/styles.css') will return <link rel="stylesheet" href="/folder/folder/styles.css">
+
+pear::asset('/folder/folder/styles.css',['extra'=>'foobar']) will return <link rel="stylesheet" href="/folder/folder/styles.css" extra="foobar">
+pear::asset('/folder/folder/styles.css',['extra'=>'foobar']) will return <link rel="stylesheet" href="/folder/folder/styles.css" extra="foobar">
+@details
+
+*/
 class Pear_asset extends Pear_plugin {
 
 	public function render($url=null,$attributes=null)

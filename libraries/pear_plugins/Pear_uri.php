@@ -1,6 +1,6 @@
 <?php
 
-// @show The URI extension is designed to make URI checks within templates easier. http://platesphp.com/v3/extensions/uri/
+// @help The URI extension is designed to make URI checks within templates easier. http://platesphp.com/v3/extensions/uri/
 
 class Pear_uri  extends Pear_plugin {
 	protected $uri;
