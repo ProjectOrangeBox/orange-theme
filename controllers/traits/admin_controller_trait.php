@@ -7,15 +7,15 @@ trait admin_controller_trait {
  */
 	public function indexAction() {
 		$records = [];
-	
+
 		if (isset($this->controller_model)) {
 			$limit = (isset($this->controller_limit)) ? $this->controller_limit : null;
 			$order_by = (isset($this->controller_order_by)) ? $this->controller_order_by : null;
 
 			$records =ci($this->controller_model)->index($order_by,$limit);
 		}
-	
-	
+
+
 		ci('page')->render(null,['records'=>$records]);
 	}
 
@@ -70,6 +70,7 @@ trait admin_controller_trait {
 	public function indexDeleteAction() {
 		$request = ci('input')->request();
 		$primary_key = ci($this->controller_model)->get_primary_key();
+
 		$id = hex2bin($request[$primary_key]);
 
 		ci('event')->trigger('admin.controller.trait.index.delete.'.$this->controller_model,$request,$primary_key,$id,$this->controller_model);

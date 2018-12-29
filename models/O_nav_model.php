@@ -1,14 +1,14 @@
 <?php
 /**
-* Orange Framework Extension
-*
-* This content is released under the MIT License (MIT)
-*
-* @package	CodeIgniter / Orange
-* @author	Don Myers
-* @license http://opensource.org/licenses/MIT MIT License
-* @link	https://github.com/ProjectOrangeBox
-*
+ * Orange Framework Extension
+ *
+ * This content is released under the MIT License (MIT)
+ *
+ * @package	CodeIgniter / Orange
+ * @author	Don Myers
+ * @license http://opensource.org/licenses/MIT MIT License
+ * @link	https://github.com/ProjectOrangeBox
+ *
 CREATE TABLE `orange_nav` (
 	`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
 	`created_on` datetime DEFAULT current_timestamp(),
@@ -36,15 +36,15 @@ CREATE TABLE `orange_nav` (
 	KEY `idx_access` (`access`) USING BTREE,
 	KEY `idx_active` (`active`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-*
-* required
-* core: session, load, input
-* libraries: event
-* models:
-* helpers:
-* functions: setting
-*
-*/
+ *
+ * required
+ * core: session, load, input
+ * libraries: event
+ * models:
+ * helpers:
+ * functions: setting
+ *
+ */
 class O_nav_model extends Database_model {
 	protected $table = 'orange_nav';
 	protected $rules = [
@@ -60,15 +60,24 @@ class O_nav_model extends Database_model {
 		'icon'         => ['field' => 'icon', 'label' => 'Icon', 'rules' => 'if_empty[square]|max_length[32]|filter_input[32]'],
 		'target'       => ['field' => 'target', 'label' => 'Target', 'rules' => 'filter_input[128]'],
 	];
-	protected $has_roles = true;
-	protected $has_stamps = true;
+	protected $has = [
+		'read_role'=>'read_role_id',
+		'edit_role'=>'edit_role_id',
+		'delete_role'=>'delete_role_id',
+		'created_by'=>'created_by',
+		'created_on'=>'created_on',
+		'created_ip'=>'created_ip',
+		'updated_by'=>'updated_by',
+		'updated_on'=>'updated_on',
+		'updated_ip'=>'updated_ip',
+	];
 	protected $order_by = 'url sort';
 
 	public function get_all() {
 		/* starting at root (1) get all */
 		return $this->_children(1,false,1,false,false);
 	}
-	
+
 	public function get_filtered($parent_id,$access) {
 		/* merge 0 (everyone) and the rest of your permissions */
 		$access = (is_array($access)) ? array_merge([0],$access) : [0];

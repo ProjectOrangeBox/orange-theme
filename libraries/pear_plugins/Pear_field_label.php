@@ -2,21 +2,18 @@
 
 class Pear_field_label {
 
-	public function render($model=null,$field=null,$required=null) {
-		if (!$field) {
-			$rule = [
-				'rules'=>'',
-				'label'=>$model,
-			];
+	public function render($model=null,$field=null,$override_text=null) {
+		$rule = (class_exists($model,false)) ? ci($model)->rule($field) : [];
+
+		$required = ((strpos('|'.$rule['rules'].'|','|required|') !== false) ? ' required' : '');
+
+		if ($override_text) {
+			$text = $override_text;
 		} else {
-			$rule = (class_exists($model,false)) ? ci($model)->rule($field) : [];
+			$text = ((empty($rule['label'])) ? ucwords(strtolower($field)) : $rule['label']);
 		}
 
-		if ($required === null) {
-			$required = ((strpos('|'.$rule['rules'].'|','|required|') !== false) ? ' required' : '');
-		}
-
-		return '<label class="col-md-3 control-label'.$required.'" for="textinput">'.((empty($rule['label'])) ? ucwords(strtolower($field)) : $rule['label']).'&nbsp;</label>';
+		return '<label class="col-md-3 control-label'.$required.'">'.$text.'</label>';
 	}
 
 }
