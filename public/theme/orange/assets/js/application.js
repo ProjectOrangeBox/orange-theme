@@ -71,6 +71,12 @@ orange.widget_replace = function(that,input) {
 orange.post = function(url,data,success) {
 	$.ajax({type:'POST',url:url,data:data,success:success,dataType:'json'});
 }
+orange.patch = function(url,data,success) {
+	$.ajax({type:'PATCH',url:url,data:data,success:success,dataType:'json'});
+}
+orange.put = function(url,data,success) {
+	$.ajax({type:'PUT',url:url,data:data,success:success,dataType:'json'});
+}
 
 orange.get = function(that) {
 	$.get($(that).attr('href'), function(data) {
