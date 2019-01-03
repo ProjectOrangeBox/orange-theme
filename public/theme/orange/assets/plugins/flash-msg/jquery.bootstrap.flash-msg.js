@@ -4,7 +4,7 @@ var plugins = (plugins) || [];
 
 /*
 	# add a notice
-	$.noticeAdd({text:'abc',type:'success|danger|warning|info',stay:true|false,stayTime:0});
+	$.noticeAdd({text:'abc',type:'success|danger|warning|info',stay:true|false,stayTime:0(milliseconds)});
 
 	# animate a removal
 	$.noticeRemove($('#something'));
@@ -13,7 +13,7 @@ var plugins = (plugins) || [];
 	$.noticeRemoveAll();
 
 	# msg stored until the next page reload
-	$.noticeReloadAdd(({text:'abc',type:'success|danger|warning|info',stay:true|false,stayTime:0});
+	$.noticeReloadAdd(({text:'abc',type:'success|danger|warning|info',stay:true|false,stayTime:0(milliseconds)});
 */
 
 /* how long flash msgs stay on screen */
@@ -28,16 +28,22 @@ modified to do a bootstrap growl notice
 		noticeAdd: function(options){
 			var defaults = {
 				inEffect: 			  {opacity: 'show'},	/* in effect */
-				inEffectDuration: 600,				        /* in effect duration in miliseconds */
-				stayTime: 			  3000,				        /* time in miliseconds before the item has to disappear */
+				inEffectDuration: 600,				        /* in effect duration in milliseconds */
+				stayTime: 			  3000,				        /* time in milliseconds before the item has to disappear */
 				text: 				    '',					        /* content of the item */
 				stay: 				    false,				      /* should the notice item stay or not? */
 				type: 				    'info' 			        /* could also be error, success, info */
+			}
+			
+			/* does it look like they send in seconds? */
+			if (options.stayTime < 15) {
+				options.stayTime = options.stayTime * 1000;
 			}
 
 			var options, noticeWrapAll, noticeItemOuter, noticeItemInner, noticeItemClose;
 
 			options = jQuery.extend({}, defaults, options);
+			
 			noticeWrapAll	= (!jQuery('.notice-wrap').length) ? jQuery('<div></div>').addClass('notice-wrap').appendTo('body') : jQuery('.notice-wrap');
 			noticeItemOuter	= jQuery('<div></div>').addClass('notice-item-wrapper');
 			noticeItemInner	= jQuery('<div></div>').hide().addClass('notice-item alert alert-' + options.type).attr('data-dismiss','alert').appendTo(noticeWrapAll).html(options.text).animate(options.inEffect, options.inEffectDuration).wrap(noticeItemOuter);
