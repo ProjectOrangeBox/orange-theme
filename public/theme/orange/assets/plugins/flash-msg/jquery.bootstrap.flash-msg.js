@@ -138,6 +138,53 @@ orange.flash_msg = function(text,type,redirect) {
 	}
 }
 
+orange.get_length = function(object,only) {
+	if (only) {
+		if (object.hasOwnProperty(only)) {
+			return object[only].length > 0;
+		}
+		
+		return 0;
+	}
+		
+	/* all */
+	var total = 0;
+	
+	for (var prop in object) {
+		if (object.hasOwnProperty(prop)) {
+			total = total + object[prop].length;
+		}
+	}
+	
+	return total;
+}
+
+orange.get_errors = function(object,lineending,only) {
+	/* only */
+	if (only) {
+		if (object.hasOwnProperty(only)) {
+			if (object[only].length > 0) {
+				return object[only].join(lineending);
+			}
+		}
+		
+		return '';
+	}
+	
+	/* all */
+	var groups = [];
+
+	for (var prop in object) {
+		if (object.hasOwnProperty(prop)) {
+			if (object[prop].length > 0) {
+				groups.push(object[prop].join(lineending));
+			}
+		}
+	}
+
+	return groups.join(lineending);
+}
+
 /* any message in cold storage? */
 var flash_msg = $.jStorage.get('flash_msg',null);
 
@@ -151,8 +198,11 @@ if (flash_msg) {
 
 /* any in message attached to the javascript variable message? */
 if (messages) {
-	/* loop over them and show them */
-	for (var i = 0, len = messages.length; i < len; i++) {
-		$.noticeAdd(messages[i]);
+	console.log(orange.get_length(messages));
+	console.log(orange.get_errors(messages,'<br>'));
+	
+	if (orange.get_length(messages)) {
+		$.noticeAdd({text: orange.get_errors(messages,'<br>')});
 	}
 }
+
