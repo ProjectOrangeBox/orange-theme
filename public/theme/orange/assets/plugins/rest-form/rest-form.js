@@ -51,63 +51,20 @@ orange.dialog.request_fail = function() {
 	orange.flash_msg('Action Failed','red',false);
 }
 
-orange.get_length = function(object,only) {
-	if (only) {
-		if (object.hasOwnProperty(only)) {
-			return object[only].length > 0;
-		}
-		
-		return 0;
-	}
-		
-	/* all */
-	var total = 0;
-	
-	for (var prop in object) {
-		if (object.hasOwnProperty(prop)) {
-			total = total + object[prop].length;
-		}
-	}
-	
-	return total;
-}
-
-orange.get_errors = function(object,lineending,only) {
-	/* only */
-	if (only) {
-		if (object.hasOwnProperty(only)) {
-			if (object[only].length > 0) {
-				return object[only].join(lineending);
-			}
-		}
-		
-		return '';
-	}
-	
-	/* all */
-	var groups = [];
-
-	for (var prop in object) {
-		if (object.hasOwnProperty(prop)) {
-			if (object[prop].length > 0) {
-				groups.push(object[prop].join(lineending));
-			}
-		}
-	}
-
-	return groups.join(lineending);
-}
-
 /*when Form Ajax Success - but could have errors */
 orange.dialog.request_done = function(reply) {
 	/* hide all of the notices */
 	$.noticeRemoveAll();
 
-	var total_errors = orange.get_length(reply.ci_errors,orange.form.errors_for);
-
 	/* show any errors */
-	if (total_errors > 0) {
-		$.noticeAdd({text: orange.get_errors(reply.ci_errors,'<br>',orange.form.errors_for), type: 'danger', stay: true});
+	if (reply.ci_errors.count > 0) {
+		var error_group = '';
+
+		for (var i = 0, len = reply.ci_errors.records.length; i < len; i++) {
+			error_group += reply.ci_errors.records[i]+'<br>';
+		}
+
+		$.noticeAdd({text: error_group, type: 'danger', stay: true});
 	} else {
 		/* no errors so continue with work */
 
@@ -201,28 +158,27 @@ $('.js-button-submit').on('click',function(e) {
 /* generic form submit */
 orange.form = {};
 
-/* set this to only show errors from 1 error group */
-if (!orange.form.errors_for) {
-	orange.form.errors_for = false;
-}
-
 orange.form.success = function(reply) {
 	var success = true;
 	
 	/* hide all of the notices */
 	$.noticeRemoveAll();
 
-	var total_errors = orange.get_length(reply.ci_errors,orange.form.errors_for);
-
 	/* show any errors */
-	if (total_errors > 0) {
-		$.noticeAdd({text: orange.get_errors(reply.ci_errors,'<br>',orange.form.errors_for), type: 'danger', stay: true});
+	if (reply.ci_errors.count > 0) {
+		var error_group = '';
+
+		for (var i = 0, len = reply.ci_errors.records.length; i < len; i++) {
+			error_group += reply.ci_errors.records[i]+'<br>';
+		}
+
+		$.noticeAdd({text: error_group, type: 'danger', stay: true});
 		
 		success = false;
 	}
 	
 	return success;
-}
+} /* end orange.form.success */
 
 orange.form.request_done = function(reply,success){}; /* place holder for user to extend as needed */
 
@@ -247,9 +203,7 @@ orange.form.submit = function(method,url,data) {
 			/* beats me what happened? Show a flash msg. */
 			orange.flash_msg('Unknown Reply','yellow',false);
 		} else {
-			var success = orange.form.success(reply);
-			
-			orange.form.request_done(reply,success);
+			orange.form.request_done(reply,orange.form.success(reply));
 		}
 	})
 } /* end orange.form.submit */
