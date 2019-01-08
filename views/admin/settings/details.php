@@ -59,7 +59,7 @@
 		</div>
 	</div>
 
-	<?=pear::include('_templates/access') ?>
+	<?=pear::include('_templates/access',['record'=>$record]) ?>
 
 	<!-- Text input-->
 	<div class="form-group">

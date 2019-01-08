@@ -94,7 +94,7 @@
 		</div>
 	</div>
 
-	<? pear::include('_templates/access') ?>
+	<? pear::include('_templates/access',['record'=>$record]) ?>
 
 	<!-- Submit Button -->
 	<div class="form-group">

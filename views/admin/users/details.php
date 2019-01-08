@@ -41,7 +41,7 @@
 			<?php } ?>
 		</div>
 	</div>
-	<?=pear::include('_templates/access') ?>
+	<?=pear::include('_templates/access',['record'=>$record]) ?>
 	<div class="form-group">
 		<div class="col-md-4 col-md-offset-3">
 			<h4>Save Record Roles <small>(umask)</small></h4>
