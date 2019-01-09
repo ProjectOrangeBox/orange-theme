@@ -28,16 +28,22 @@ modified to do a bootstrap growl notice
 		noticeAdd: function(options){
 			var defaults = {
 				inEffect: 			  {opacity: 'show'},	/* in effect */
-				inEffectDuration: 600,				        /* in effect duration in miliseconds */
-				stayTime: 			  3000,				        /* time in miliseconds before the item has to disappear */
+				inEffectDuration: 600,				        /* in effect duration in milliseconds */
+				stayTime: 			  3000,				        /* time in milliseconds before the item has to disappear */
 				text: 				    '',					        /* content of the item */
 				stay: 				    false,				      /* should the notice item stay or not? */
 				type: 				    'info' 			        /* could also be error, success, info */
 			}
 
 			var options, noticeWrapAll, noticeItemOuter, noticeItemInner, noticeItemClose;
+			
+			/* time sent in seconds not milliseconds */
+			if (options.stayTime < 15) {
+				options.stayTime = options.stayTime * 1000;
+			}
 
 			options = jQuery.extend({}, defaults, options);
+
 			noticeWrapAll	= (!jQuery('.notice-wrap').length) ? jQuery('<div></div>').addClass('notice-wrap').appendTo('body') : jQuery('.notice-wrap');
 			noticeItemOuter	= jQuery('<div></div>').addClass('notice-item-wrapper');
 			noticeItemInner	= jQuery('<div></div>').hide().addClass('notice-item alert alert-' + options.type).attr('data-dismiss','alert').appendTo(noticeWrapAll).html(options.text).animate(options.inEffect, options.inEffectDuration).wrap(noticeItemOuter);

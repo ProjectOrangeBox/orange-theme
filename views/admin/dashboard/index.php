@@ -1,7 +1,6 @@
 <? pear::extends('_templates/orange_admin') ?>
 
 <? pear::section('section_container') ?>
-
 <div class="row">
   <div class="col-md-6"><?=pear::title('Dashboard','th') ?></div>
   <div class="col-md-6"></div>
@@ -17,6 +16,9 @@
 	transition:all 0.3s ease;
   opacity:0.9;
   color: white;
+	white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .dashboard a.btn.btn-lg.btn-block:hover {
   -webkit-transform: scale(1.05);
@@ -28,7 +30,6 @@
 <? pear::end() ?>
 
 <? pear::section('page_script') ?>
-
 document.addEventListener("DOMContentLoaded", function(event) {
 	$('#navbar ul.dropdown-menu li a').each(function() {
 		var parent_text = $(this).closest('.dropdown').find('a:first').text();

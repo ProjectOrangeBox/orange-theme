@@ -2,10 +2,10 @@
 <? if (pear::user('has_role',ADMIN_ROLE_ID)) { ?>
 <div class="form-group">
 	<div class="col-md-4 col-md-offset-3">
-		<h4><span class="toggle-collapse collapsed" data-toggle="collapse" data-target="#record-access">Record Access</span></h4>
+		<h4>Record Access</h4>
 	</div>
 </div>
-<div id="record-access" class="collapse">
+<div>
 	<!-- Select Basic -->
 	<div class="form-group">
 		<?=pear::label('Read','read_role_id',['class'=>'col-md-3 control-label']) ?>
@@ -30,9 +30,3 @@
 </div>
 <? } ?>
 <!-- End Record Roles -->
-
-<? pear::section('page_style') ?>
-<? pear::parent() ?>
-.toggle-collapse:after{font-family:'FontAwesome';content:"\f151";float:right}
-.toggle-collapse.collapsed:after{content:"\f150"}
-<? pear::end() ?>
