@@ -147,12 +147,6 @@ class O_nav_model extends Database_model {
 
 	/* migration */
 	public function migration_add($url=null,$text=null,$migration=null,$optional=[]) {
-		foreach (func_get_args() as $v) {
-			if (empty($v)) {
-				throw new exception(__METHOD__.' Required Field Empty.'.chr(10));
-			}
-		}
-
 		$this->skip_rules = true;
 
 		$columns = [
