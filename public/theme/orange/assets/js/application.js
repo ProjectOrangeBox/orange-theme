@@ -2,6 +2,17 @@ var orange = (orange) || {};
 var messages = (messages) || [];
 var plugins = (plugins) || [];
 
+/**
+ * 
+ * example:
+ * text field search with debounce
+ * 
+ * table_search_field.field.on('keyup',debounce(function(){
+ *   table_search_field.search(table_search_field.get_field());
+ * },500));
+ *
+ */
+
 function debounce(func, wait, immediate) {
 	var timeout;
 	return function() {
@@ -17,19 +28,26 @@ function debounce(func, wait, immediate) {
 	};
 };
 
-/*
-hide / show modals
-pleaseWaitDiv.modal('show');
-pleaseWaitDiv.modal('hide');
-*/
-var pleaseWaitDiv = $('<div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"role="dialog" aria-hidden="true" data-backdrop="static"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-time"></span> Processing</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only"></span></div></div></div></div></div></div>');
+/**
+ * 
+ * hide / show modals
+ * pleaseWaitDiv.modal('show');
+ * pleaseWaitDiv.modal('hide');
+ *
+ */
+ var pleaseWaitDiv = $('<div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"role="dialog" aria-hidden="true" data-backdrop="static"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-time"></span> Processing</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only"></span></div></div></div></div></div></div>');
 
-/*
-data-widget="url to call"
-data-template="javascript template to use"
-
-*/
-orange.widget_minipipe = function(that) {
+/**
+ * 
+ * data-widget="url to call"
+ * data-template="javascript template to use"
+ * 
+ * if you use a js template remember you need to remember to include the handlebars library
+ * 
+ * <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+ *
+ */
+ orange.widget_minipipe = function(that) {
 	$.ajax({
 		type: 'POST',
 		url: $(that).data('widget'),
@@ -60,6 +78,11 @@ orange.widget_minipipe = function(that) {
 	});
 }
 
+/**
+ * 
+ * Javascript / JQuery to replace if it's a single element tag or "insert" if it's a pair
+ *
+ */
 orange.widget_replace = function(that,input) {
 	if (/^(?:area|br|col|embed|hr|img|input|link|meta|param)$/i.test($(that)[0].tagName)) {
 		$(that).replaceWith(input);
@@ -68,6 +91,11 @@ orange.widget_replace = function(that,input) {
 	}
 }
 
+/**
+ * 
+ * Javascript / JQuery Wrappers to POST, PATCH, and PUT
+ *
+ */
 orange.post = function(url,data,success) {
 	$.ajax({type:'POST',url:url,data:data,success:success,dataType:'json'});
 }
@@ -78,7 +106,12 @@ orange.put = function(url,data,success) {
 	$.ajax({type:'PUT',url:url,data:data,success:success,dataType:'json'});
 }
 
-orange.get = function(that) {
+/**
+ * 
+ * Preform a HTTP Get with optional message, type, and stay values for notice on complete
+ *
+ */
+ orange.get = function(that) {
 	$.get($(that).attr('href'), function(data) {
 		var msg_default = ($(that).data('msg')) ? $(that).data('msg') : 'Complete';
 		var type_default = ($(that).data('type')) ? $(that).data('type') : 'info';
