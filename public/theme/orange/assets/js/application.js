@@ -3,10 +3,10 @@ var messages = (messages) || [];
 var plugins = (plugins) || [];
 
 /**
- * 
+ *
  * example:
  * text field search with debounce
- * 
+ *
  * table_search_field.field.on('keyup',debounce(function(){
  *   table_search_field.search(table_search_field.get_field());
  * },500));
@@ -29,25 +29,25 @@ function debounce(func, wait, immediate) {
 };
 
 /**
- * 
+ *
  * hide / show modals
  * pleaseWaitDiv.modal('show');
  * pleaseWaitDiv.modal('hide');
  *
  */
- var pleaseWaitDiv = $('<div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"role="dialog" aria-hidden="true" data-backdrop="static"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-time"></span> Processing</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only"></span></div></div></div></div></div></div>');
+var pleaseWaitDiv = $('<div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"role="dialog" aria-hidden="true" data-backdrop="static"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 class="modal-title"><span class="glyphicon glyphicon-time"></span> Processing</h4></div><div class="modal-body"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only"></span></div></div></div></div></div></div>');
 
 /**
- * 
+ *
  * data-widget="url to call"
  * data-template="javascript template to use"
- * 
+ *
  * if you use a js template remember you need to remember to include the handlebars library
- * 
+ *
  * <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
  *
  */
- orange.widget_minipipe = function(that) {
+orange.widget_minipipe = function(that) {
 	$.ajax({
 		type: 'POST',
 		url: $(that).data('widget'),
@@ -60,7 +60,7 @@ function debounce(func, wait, immediate) {
 				orange.widget_replace(that,data.html);
 			} else if (data.json) {
 				var template_id = $(that).data('handlebars');
-				
+
 				if (document.getElementById(template_id)) {
 					orange.widget_replace(that,Handlebars.compile(document.getElementById(template_id).innerHTML)(data.json));
 				} else {
@@ -79,7 +79,7 @@ function debounce(func, wait, immediate) {
 }
 
 /**
- * 
+ *
  * Javascript / JQuery to replace if it's a single element tag or "insert" if it's a pair
  *
  */
@@ -92,7 +92,7 @@ orange.widget_replace = function(that,input) {
 }
 
 /**
- * 
+ *
  * Javascript / JQuery Wrappers to POST, PATCH, and PUT
  *
  */
@@ -105,38 +105,49 @@ orange.patch = function(url,data,success) {
 orange.put = function(url,data,success) {
 	$.ajax({type:'PUT',url:url,data:data,success:success,dataType:'json'});
 }
+orange.get = function(url,data,success) {
+	$.ajax({type:'GET',url:url,data:data,success:success,dataType:'json'});
+}
 
-/**
- * 
- * Preform a HTTP Get with optional message, type, and stay values for notice on complete
- *
- */
- orange.get = function(that) {
-	$.get($(that).attr('href'), function(data) {
-		var msg_default = ($(that).data('msg')) ? $(that).data('msg') : 'Complete';
-		var type_default = ($(that).data('type')) ? $(that).data('type') : 'info';
-		var stay_default = ($(that).data('stay')) ? ($(that).data('stay') == 'true') : false;
-		
-		var msg = (data.msg) ? data.msg : msg_default;
-		var type = (data.type) ? data.type : type_default;
-		var stay = (data.stay) ? data.stay : stay_default;
+orange.notice_off_element = function(element,options) {
+	var data = element.data();
 	
-		$.noticeAdd({text: msg, type: type, stay: stay});
-	});
+	$.extend(data,options);
+
+	if (data.msg) {
+		var type = (data.type) ? data.type : 'info';
+		var stay = (data.stay) ? (data.stay == 'true') : false;
+
+		$.noticeAdd({text: data.msg, type: type, stay: stay});
+	}
 }
 
 document.addEventListener("DOMContentLoaded",function(e){
-	/* handle ajax widgets */
+	/**
+	 *
+	 * handle ajax widgets
+	 *
+	 */
 	$('[data-widget]').each(function() {
 		orange.widget_minipipe(this);
 	});
 
-	/* make a GET method call */
+	/**
+	 *
+	 * Make a GET method call
+	 *
+	 */
 	$('.js-get').click(function(e) {
 		e.preventDefault();
+		
+		/* save this for the success function */
+		orange.js_get_that = $(this);
 
-		orange.get(this);
+		orange.get($(this).attr('href'),$(this).data(),function(data) {
+			/* call this on success */
+			orange.notice_off_element(orange.js_get_that,data);
+		});
 	});
-	
+
 	$('.hide-until-domready').show();
 });

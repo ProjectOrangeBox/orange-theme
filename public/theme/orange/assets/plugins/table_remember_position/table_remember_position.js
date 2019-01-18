@@ -1,3 +1,8 @@
+/**
+ * 
+ * Once the table is loaded (updated) then move to the last saved window position
+ *
+ */
 $(document).on('orange_table_updated',{},function(tbody){
 	var ypos = $.jStorage.get(controller_path+'scrollTop',null);
 	
@@ -6,6 +11,11 @@ $(document).on('orange_table_updated',{},function(tbody){
 	}
 });
 
-$(window).scroll(function() {
+/**
+ * 
+ * Save the Windows Scroll Location
+ *
+ */
+ $(window).scroll(function() {
 	$.jStorage.set(controller_path+'scrollTop',$(window).scrollTop());
 });

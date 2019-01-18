@@ -1,7 +1,22 @@
+/**
+ * 
+ * Create the object to hold the properties and methods
+ *
+ */
 var table_sort = {};
 
+/**
+ * 
+ * Default direction
+ *
+ */
 table_sort.dir = 'desc';
 
+/**
+ * 
+ * Do the actual sort
+ *
+ */
 table_sort.sort = function(index,dir) {
 	/* remove all previous arrows and such */
 	$('table.table-sort thead tr th i').removeClass('fa-sort-asc').removeClass('fa-sort-desc').addClass('fa-sort');
@@ -20,7 +35,13 @@ table_sort.sort = function(index,dir) {
 	table_sort.save(index,dir);
 }
 
-table_sort.load = function() {
+/**
+ * 
+ * Load the last sort if any
+ * 
+ *
+ */
+ table_sort.load = function() {
 	var saved = $.jStorage.get(controller_path+'saved_sort_column','');
 
 	if (saved != '') {
@@ -30,12 +51,22 @@ table_sort.load = function() {
 	}
 }
 
-table_sort.save = function(index,dir) {
+/**
+ * 
+ * Save the Last Sort
+ * 
+ *
+ */
+ table_sort.save = function(index,dir) {
 	$.jStorage.set(controller_path+'saved_sort_column',index + "\t" + dir);
 }
 
-/* handle click */
-$('table.table-sort thead tr th:not(.nosort)').prepend('<i class="fa fa-sort"></i> ').on('click',function() {
+/**
+ * 
+ * handle clicks
+ *
+ */
+ $('table.table-sort thead tr th:not(.nosort)').prepend('<i class="fa fa-sort"></i> ').on('click',function() {
 	/* which direction are we going now? */
 	table_sort.dir = (table_sort.dir == 'asc') ? 'desc' : 'asc';
 
@@ -43,7 +74,11 @@ $('table.table-sort thead tr th:not(.nosort)').prepend('<i class="fa fa-sort"></
 	table_sort.sort($('table.table-sort thead tr th').index(this) + 1,table_sort.dir);
 });
 
-/* or sort if it's dynamically loaded */
-$(document).on('orange_table_updated',{},function(tbody){
+/**
+ * 
+ * or sort if it's dynamically loaded
+ *
+ */
+ $(document).on('orange_table_updated',{},function(tbody){
 	table_sort.load();
 });

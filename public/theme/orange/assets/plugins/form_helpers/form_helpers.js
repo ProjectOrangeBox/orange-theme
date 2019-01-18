@@ -1,4 +1,8 @@
-/* handle shift when selecting group access */
+/**
+ * 
+ * handle shift when selecting group access
+ *
+ */
 $('input').click(function(event) {
 	if (event.shiftKey) {
 		/* data-group="group name" */
@@ -6,22 +10,47 @@ $('input').click(function(event) {
 	}
 });
 
-/* handle shift in a tab group */
+/**
+ * 
+ * handle shift in a tab group
+ *
+ */
 $('div.tab-content :checkbox').click(function(event) {
 	if (event.shiftKey) {
 		$('div.tab-pane.active :checkbox').prop('checked',($(this).prop('checked') || false));
 	}
 });
 
-$('.js-human-input').on('keyup blur',function(index) {
-	/* on new always replace or always */
-	if ($('#id').val() == '-1' || $('.js-computer-input').data('always') == true) {
+/**
+ * 
+ * attach to a field to link to another field (probably readonly) 
+ * to create a computer safe value
+ * <input class="js-human-input" data="computer-input"...
+ * other options include:
+ * data-always="true"
+ * 
+ * Note: on Post this is always filled in since it is a new record
+ *
+ */
+$('.js-human-input').on('keyup blur',function(e) {
+	var always = $(this).data('always');
+	
+	if ($(this).closest('form').attr('method').toLowerCase() == 'post') {
+		always = true;
+	}
+
+	if (always) {
 		/* uses tool.js url_title function */
-		$('.js-computer-input').val(url_title($(this).val()));
+		$("input[name='"+$(this).data('computer-input')+"']").val(url_title($(this).val()));
 	}
 });
 
-/* add max length to textareas pre-html5 */
+/**
+ * 
+ * add max length to textareas pre-html5
+ * <textarea maxlength="255"...
+ *
+ */
 $('textarea[maxlength]').bind('input propertychange', function() {
 	var maxLength = $(this).attr('maxlength');
 
@@ -30,7 +59,12 @@ $('textarea[maxlength]').bind('input propertychange', function() {
 	}
 });
 
-/* this adds json syntax checking to textareas */
+/**
+ * 
+ * this adds json syntax checking to textareas
+ * <textarea class="js-validate-json"...
+ *
+ */
 $(document).on('keyup focus','.js-validate-json',function(e){
 	if (IsJsonString($(this).val())) {
 		/* is good */
@@ -42,6 +76,11 @@ $(document).on('keyup focus','.js-validate-json',function(e){
 
 });
 
+/**
+ * 
+ * Test if the input is JSON
+ *
+ */
 function IsJsonString(str) {
 	try { JSON.parse(str); } catch (e) { return false; }
 	

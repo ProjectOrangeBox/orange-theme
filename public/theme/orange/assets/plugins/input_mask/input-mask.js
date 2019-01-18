@@ -99,6 +99,11 @@ var masks = {
 	'phone': /[0-9\-\(\)x ]/
 };
 
+/**
+ * 
+ * attach to any html element with data-mask=""
+ *
+ */
 jQuery('input[data-mask]').each(function(idx) {
 	var mask = jQuery(this).data('mask');
 	var regex = (masks[mask]) ? masks[mask] : mask;

@@ -1,7 +1,11 @@
 var orange = (orange) || {};
 
-/* client based redirect */
-orange.redirect = function (url) {
+/**
+ * 
+ * client based redirect
+ *
+ */
+ orange.redirect = function (url) {
 	if (true) { /* debug set to false */
 		if (url == '#back') {
 			window.history.back();
@@ -132,17 +136,20 @@ url_title = function(s, separator, lowercase, limit) {
 };
 
 /**
+ * 
  * Browser Position
  * copyright Stephen Chapman, 3rd Jan 2005, 8th Dec 2005
+ *
  */
 posTop = function() {
 	return typeof window.pageYOffset != 'undefined' ?  window.pageYOffset : document.documentElement && document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop ? document.body.scrollTop : 0;
 };
 
-/*************************************
-general purpose javascript functions
-**************************************/
-
+/**
+ * 
+ * general purpose javascript functions
+ *
+ */
 stripTrailingSlash = function (str) {
 	return (str.substr(-1) === '/') ? str.substr(0, str.length - 1) : str;
 };
