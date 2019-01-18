@@ -1,9 +1,15 @@
 <?php
-
-/* once the plug in called this will be attached to the page */
-/* this adds the datalist method to pear */
-
-class Pear_datalist {
+/**
+ * 
+ * ComboBox 
+ * 
+ * pear::datalist($name,$value,$options,$extras)
+ *
+ * there are no extras supported by datalist 
+ * so this is currently just passed to pear::dropdown(...) 
+ *
+ */
+ class Pear_datalist {
 
 	public function __construct() {
 	ci('page')

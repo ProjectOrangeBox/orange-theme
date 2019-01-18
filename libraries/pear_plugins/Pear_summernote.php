@@ -1,5 +1,16 @@
 <?php
-
+/**
+ * 
+ * WYSIWYG editor
+ * 
+ * extras are just attributes added to the textarea
+ *
+ * https://cdnjs.com/libraries/summernote
+ * https://cdnjs.com/libraries/codemirror
+ *
+ * @help WYSIWYG editor
+ *
+ */
 class Pear_summernote extends Pear_plugin {
 
 	public function __construct() {

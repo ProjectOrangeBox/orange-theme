@@ -1,3 +1,15 @@
+/**
+ * 
+ * WYSIWYG editor
+ * 
+ * used in conjunction with pear::summernote($name,$value,$extras)
+ * 
+ * extras are just attributes added to the textarea
+ *
+ * https://cdnjs.com/libraries/summernote
+ * https://cdnjs.com/libraries/codemirror
+ *
+ */
 summernote_init = function(that) {
 	
 	var id = $(that).attr('id');

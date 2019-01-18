@@ -1,5 +1,14 @@
-/* https://developer.mozilla.org/en-US/docs/Rich-Text_Editing_in_Mozilla#Executing_Commands */
-/* http://github.com/mindmup/bootstrap-wysiwyg */
+/**
+ * 
+ * https://developer.mozilla.org/en-US/docs/Rich-Text_Editing_in_Mozilla#Executing_Commands
+ * http://github.com/mindmup/bootstrap-wysiwyg
+ *
+ * Used in conjunction with pear::bootstrap_wysiwyg($name,$value,$extra)
+ * 
+ * extra['height'] in pixels
+ * extra['toolbar'] must be available in PHP searchable paths ../libraries/plugins/bootstrap_wysiwyg_toolbars/*
+ *
+ */
 
 /* add the source code modal to the page */
 $('body').append('<div id="wysiwyg-source-modal" style="" class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-body"><p id="wysiwyg-source-modal-body">x</p></div><div class="modal-footer"><button class="btn btn-default js-cancel">Cancel</button><button class="btn btn-primary js-primary">Save</button></div></div></div></div>');

@@ -1,9 +1,17 @@
 <?php
-/*
-
-@help move browser back to the top of the page.
-
-*/
+/**
+ * 
+ * https://developer.mozilla.org/en-US/docs/Rich-Text_Editing_in_Mozilla#Executing_Commands
+ * http://github.com/mindmup/bootstrap-wysiwyg
+ *
+ * Used in conjunction with pear::bootstrap_wysiwyg($name,$value,$extra)
+ * 
+ * extra['height'] in pixels
+ * extra['toolbar'] must be available in PHP searchable paths ../libraries/plugins/bootstrap_wysiwyg_toolbars/*
+ *
+ * @help WYSIWYG editor
+ *
+ */
 class Pear_bootstrap_wysiwyg extends Pear_plugin {
 
 	public function __construct() {
