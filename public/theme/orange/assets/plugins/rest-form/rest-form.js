@@ -9,11 +9,11 @@
  * data-primary_id="id" - default id
  *		This is the form element name of the primary id <input name="id" value="...
  *		This defaults to "id" but some models have "md5" or something else as the primary id
- * 		When this is set the input field is filled with the primary id returned from POST (insert) to make it a PATCH (update) 
+ * 		When this is set the input field is filled with the primary id returned from POST (insert) to make it a PATCH (update)
  *
  * data-success="Text|style|(bool)stay" - stay defaults to false
  *		on success
- *			Text to display in dialog 
+ *			Text to display in dialog
  *			dialog style
  *			should the dialog stay up
  *			pipe separated
@@ -42,15 +42,17 @@
  */
 var orange = (orange) || {};
 
+var orange_form_error_group = (orange_form_error_group) || false;
+
 orange.dialog = (orange.dialog) || {};
 orange.form = orange.form || {};
 
 /**
- * 
+ *
  * handler for the submit button click
  *
  */
- orange.dialog.button_submit_click = function(e,that) {
+orange.dialog.button_submit_click = function(e,that) {
 	/* prevent the default action */
 	e.preventDefault();
 
@@ -80,7 +82,7 @@ orange.form = orange.form || {};
 }
 
 /**
- * 
+ *
  * when Form Ajax Fails Hard
  *
  */
@@ -90,7 +92,7 @@ orange.dialog.request_fail = function() {
 }
 
 /**
- * 
+ *
  * when Form Ajax Success - but could have errors
  *
  */
@@ -109,25 +111,25 @@ orange.dialog.request_done = function(reply) {
 		/* no errors so continue with work */
 
 		/**
-		 * 
+		 *
 		 * is fadeout set for this action highlight in the "info" color
 		 * for a split second until we get lower in the code  where we fade it out
 		 *
 		 */
- 		if (orange.that.closest(orange.form_obj.data('fadeout'))) {
+		if (orange.that.closest(orange.form_obj.data('fadeout'))) {
 			orange.that.closest(orange.form_obj.data('fadeout')).addClass('info');
 		}
 
 		/**
-		 * 
+		 *
 		 * don't forget to merge the primary key hidden on the details form with the returned value from a insert
 		 * get the primary key from the stored value on the form or default to id
 		 *
 		 */
- 		var primary_input_field_name = (orange.form_obj.data('primary_id')) ? orange.form_obj.data('primary_id') : 'id';
+		var primary_input_field_name = (orange.form_obj.data('primary_id')) ? orange.form_obj.data('primary_id') : 'id';
 
 		/**
-		 * 
+		 *
 		 * did the responds have a primary key value? if so put that as the value
 		 *
 		 */
@@ -136,12 +138,12 @@ orange.dialog.request_done = function(reply) {
 		}
 
 		/**
-		 * 
+		 *
 		 * does the form have a data-success attribute
 		 * data-success="message|style|[false|action]"
 		 *
 		 */
- 		if (orange.form_obj.data('success')) {
+		if (orange.form_obj.data('success')) {
 			var parts = orange.form_obj.data('success').split("|");
 
 			/* does redirect contain something? if it does than save msg in browser local storage */
@@ -156,17 +158,17 @@ orange.dialog.request_done = function(reply) {
 		}
 
 	/**
-	 * 
+	 *
 	 * now fade out closet JQuery selector if data-fadeout="" is set
 	 * of course if you are redirecting this doesn't matter
 	 *
 	 */
-	 if (orange.that.closest(orange.form_obj.data('fadeout'))) {
+	if (orange.that.closest(orange.form_obj.data('fadeout'))) {
 			orange.that.closest(orange.form_obj.data('fadeout')).fadeOut();
 		}
 
 	/**
-	 * 
+	 *
 	 * redirect if a redirect exists
 	 *
 	 * options include a URL or "action" which redirect to the forms action attribute value.
@@ -187,7 +189,7 @@ orange.dialog.request_done = function(reply) {
 }
 
 /**
- * 
+ *
  * dialog confirm button or form submit
  *
  */
@@ -220,7 +222,7 @@ orange.dialog.confirm_ok = function() {
 }
 
 /**
- * 
+ *
  * main form submit button
  *
  */
@@ -229,7 +231,7 @@ $('.js-button-submit').on('click',function(e) {
 });
 
 /**
- * 
+ *
  * generic form submit
  * these can be overwritten on the page to provide other actions
  *
@@ -290,9 +292,9 @@ orange.form.has_error = function(errors,from) {
 orange.form.get_errors = function(errors,from,join_with) {
 	var array = [];
 	var from_matched = false;
-	
+
 	/* only count and build from these error groups - if provided */
-	if (orange.form.error_group) {
+	if (orange_form_error_group) {
 		from = orange_form_error_group;
 	}
 
@@ -307,7 +309,7 @@ orange.form.get_errors = function(errors,from,join_with) {
 			}
 		}
 	}
-	
+
 	/* only return the error groups in this array */
 	if (Array.isArray(from)) {
 		from_matched = true;
@@ -331,12 +333,16 @@ orange.form.get_errors = function(errors,from,join_with) {
 
 orange.form.get_error = function(errors,property,join_with) {
 	join_with = (join_with) || '<br>';
-	
+
 	var group = false;
-	
-	if (Array.isArray(errors[property])) {
-		if (errors[property].length > 0) {
-			group = errors[property].join(join_with);
+
+	if (errors[property]) {
+		var g = [];
+		for (var key in errors[property]) {
+			g.push(errors[property][key]);
+		}
+		if (g.length > 0) {
+			group = g.join(join_with);
 		}
 	}
 
