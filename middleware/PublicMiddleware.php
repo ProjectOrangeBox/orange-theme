@@ -19,6 +19,7 @@
  *
  */
 class PublicMiddleware extends Middleware_base {
-	public function request() {
+	public function request() : void
+	{
 	}
 }

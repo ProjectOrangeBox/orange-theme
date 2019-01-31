@@ -21,7 +21,8 @@
 use Whoops\Handler\PrettyPageHandler;
 
 class WhoopsMiddleware extends Middleware_base {
-	public function request() {
+	public function request() : void
+	{
 		if ($_ENV['SERVER_DEBUG'] == 'development') {
 			$whoops = new \Whoops\Run;
 			$whoops->pushHandler(new Whoops\Handler\PrettyPageHandler());
