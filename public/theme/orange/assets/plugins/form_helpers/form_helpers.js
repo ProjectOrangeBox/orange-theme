@@ -1,3 +1,10 @@
+$('body').append('<div class="page-overlay"></div><style>.page-overlay{background:#e9e9e9;display:none;position:absolute;top:0;right:0;bottom:0;left:0;opacity:0.5}</style>');
+
+/**
+ * $('.page-overlay').show();
+ * $('.page-overlay').hide();
+ */
+
 /**
  * 
  * handle shift when selecting group access
