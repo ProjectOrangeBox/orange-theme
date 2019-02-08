@@ -8,7 +8,7 @@
  * @copyright 2018
  * @license http://opensource.org/licenses/MIT MIT License
  * @link https://github.com/ProjectOrangeBox
- * @version 2.0
+ * @version v2.0
  *
  * required
  * core:
@@ -58,7 +58,7 @@ class PublicMiddleware extends Middleware_base {
 
 				if (method_exists($this->$model_name,$model_method)) {
 					if ($model_method == 'catalog') {
-						$this->load->vars($variable_name, $this->$model_name->$model_method(@$args['array_key'],@$args['select'],@$args['where'],@$args['order_by'],@$args['cache'],@$args['with_deleted']));
+						$this->load->vars($variable_name, $this->$model_name->$model_method(@$args['array_key'],@$args['select'],@$args['where'],@$args['order_by'],@$args['cache'],(bool)$args['with_deleted']));
 					} else {
 						$this->load->vars($variable_name, $this->$model_name->$model_method($args));
 					}

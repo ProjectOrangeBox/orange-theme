@@ -41,12 +41,15 @@
 			<?php } ?>
 		</div>
 	</div>
+	
 	<?=pear::include('_templates/access',['record'=>$record]) ?>
+
 	<div class="form-group">
 		<div class="col-md-4 col-md-offset-3">
-			<h4>Save Record Roles <small>(umask)</small></h4>
+			<h4>When Creating New Records Assign These Roles.</h4>
 		</div>
 	</div>
+	
 	<!-- Select Basic -->
 	<div class="form-group">
 		<?=pear::label('Read','user_read_role_id',['class'=>'col-md-3 control-label']) ?>
