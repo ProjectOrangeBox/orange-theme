@@ -1,12 +1,14 @@
 <?php
 
-class Pear_table_search_field extends Pear_plugin {
-
-	public function __construct() {
+class Pear_table_search_field extends Pear_plugin
+{
+	public function __construct()
+	{
 		ci('page')->js('/theme/orange/assets/plugins/table_search_field/table_search_field'.PAGE_MIN.'.js');
 	}
 
-	public function render($options=[]) {
+	public function render($options=[])
+	{
 		$id = (isset($options['id'])) ? $options['id'] : 'table-search-field';
 		$length = (isset($options['length'])) ? $options['length'] : 222;
 		$url = (isset($options['url'])) ? $options['url'] : false;
@@ -19,5 +21,4 @@ class Pear_table_search_field extends Pear_plugin {
 		<i class="fa fa-search form-control-feedback"></i>
 		</div>';
 	}
-
 }

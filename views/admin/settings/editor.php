@@ -1,8 +1,8 @@
-<? pear::extends('_templates/orange_admin') ?>
+<?php pear::extends('_templates/orange_admin') ?>
 
-<? pear::section('section_container') ?>
+<?php pear::section('section_container') ?>
 
-<?=pear::open_multipart($controller_path,['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'],['id'=>$record->id]) ?>
+<?=pear::open_multipart($controller_path, ['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'], ['id'=>$record->id]) ?>
 	<div class="row">
 		<div class="col-md-6"><h3><?=$ci_title_prefix ?> <?=$controller_title ?></h3></div>
 	  <div class="col-md-6">
@@ -14,20 +14,20 @@
 	<hr>
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::field_label('o_setting_model','group') ?>
+		<?=pear::field_label('o_setting_model', 'group') ?>
 		<div class="col-md-6"><?=pear::form_static($record->group) ?></div>
 	</div>
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::field_label('o_setting_model','name') ?>
+		<?=pear::field_label('o_setting_model', 'name') ?>
 		<div class="col-md-6"><?=pear::form_static($record->name) ?></div>
 	</div>
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::field_label('o_setting_model','value') ?>
+		<?=pear::field_label('o_setting_model', 'value') ?>
 	  <div class="col-md-6">
 			<?php
-			switch($options['type']) {
+			switch ($options['type']) {
 				case 'radio':
 					foreach ($options['options'] as $value=>$copy) {
 						echo '<div class="radio">';
@@ -49,11 +49,11 @@
 					echo '</div>';
 				break;
 				case 'select':
-			    	echo '<select name="value" class="form-control select3">';
+					echo '<select name="value" class="form-control select3">';
 						foreach ($options['options'] as $value=>$copy) {
 							echo '<option value="'.$value.'" '.(($record->value == $value) ? 'selected' : '').'>'.$copy.'</option>';
 						}
-			    	echo '</select>';
+					echo '</select>';
 				break;
 				case 'text':
 				 echo '<input name="value" type="text" data-mask="'.$options['mask'].'" value="'.$record->value.'" class="form-control" style="width:'.$options['width'].'%" autocomplete="off">';
@@ -79,10 +79,10 @@
 	<div class="form-group">
 		<div class="col-md-12">
 			<div class="pull-right">
-				<?=pear::button(null,'Save',['class'=>'js-button-submit keymaster-s btn btn-primary']) ?>
+				<?=pear::button(null, 'Save', ['class'=>'js-button-submit keymaster-s btn btn-primary']) ?>
 			</div>
 		</div>
 	</div>
 <?=pear::close() ?>
 
-<? pear::end() ?>
+<?php pear::end() ?>

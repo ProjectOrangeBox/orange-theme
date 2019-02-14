@@ -13,13 +13,13 @@ pear::asset('/folder/folder/styles.css',['extra'=>'foobar']) will return <link r
 @details
 
 */
-class Pear_asset extends Pear_plugin {
-
-	public function render($url=null,$attributes=null)
+class Pear_asset extends Pear_plugin
+{
+	public function render($url=null, $attributes=null)
 	{
 		$html = '';
 
-		switch (pathinfo($url,PATHINFO_EXTENSION)) {
+		switch (pathinfo($url, PATHINFO_EXTENSION)) {
 			case 'jpg':
 			case 'jpeg':
 			case 'png':
@@ -58,5 +58,4 @@ class Pear_asset extends Pear_plugin {
 
 		return $attr;
 	}
-
 }

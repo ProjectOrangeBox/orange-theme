@@ -18,7 +18,8 @@
  * functions:
  *
  */
-class SettingsController extends MY_Controller {
+class SettingsController extends MY_Controller
+{
 	use admin_controller_trait;
 
 	public $controller        = 'settings';
@@ -31,24 +32,25 @@ class SettingsController extends MY_Controller {
 		'settings_group_catalog'=>['model'=>'o_setting_model','array_key'=>'group','select'=>'group'],
 	];
 
-/**
- * editorAction
- * Insert description here
- *
- * @param $id
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
-	public function editorAction($id=null) {
+	/**
+	 * editorAction
+	 * Insert description here
+	 *
+	 * @param $id
+	 *
+	 * @return
+	 *
+	 * @access
+	 * @static
+	 * @throws
+	 * @example
+	 */
+	public function editorAction($id=null)
+	{
 		$data = $this->_edit_record($id);
 
-		$data['options'] = json_decode($data['record']->options,true);
+		$data['options'] = json_decode($data['record']->options, true);
 
-		ci('page')->render(null,$data);
+		ci('page')->render(null, $data);
 	}
 }

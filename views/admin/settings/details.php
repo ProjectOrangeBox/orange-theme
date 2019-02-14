@@ -1,6 +1,6 @@
 <?php pear::extends('_templates/orange_admin') ?>
 <?php pear::section('section_container') ?>
-<?=pear::open_multipart($controller_path,['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'],['id'=>$record->id]) ?>
+<?=pear::open_multipart($controller_path, ['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'], ['id'=>$record->id]) ?>
 	<div class="row">
 		<div class="col-md-6"><h3><?=$ci_title_prefix ?> <?=$controller_title ?></h3></div>
 	  <div class="col-md-6">
@@ -18,33 +18,33 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::field_label('o_setting_model','group') ?>
+		<?=pear::field_label('o_setting_model', 'group') ?>
 		<div class="col-md-4">
-			<?=pear::datalist('group',$record->group,$settings_group_catalog,['class'=>'form-control']) ?>
+			<?=pear::datalist('group', $record->group, $settings_group_catalog, ['class'=>'form-control']) ?>
 		</div>
 	</div>
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::field_label('o_setting_model','name') ?>
+		<?=pear::field_label('o_setting_model', 'name') ?>
 		<div class="col-md-4">
-			<?=pear::input('name',$record->name,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
+			<?=pear::input('name', $record->name, ['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
 	</div>
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::field_label('o_setting_model','value') ?>
+		<?=pear::field_label('o_setting_model', 'value') ?>
 		<div class="col-md-4">
-			<?=pear::input('value',$record->value,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
+			<?=pear::input('value', $record->value, ['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
 	</div>
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::field_label('o_setting_model','help') ?>
+		<?=pear::field_label('o_setting_model', 'help') ?>
 		<div class="col-md-4">
-			<?=pear::input('help',$record->help,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
+			<?=pear::input('help', $record->help, ['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
 	</div>
 
@@ -53,27 +53,27 @@
 		<div class="col-md-offset-3 col-md-4">
 			<div class="checkbox">
 				<label>
-					<?=pear::checker('enabled', 1,$record->enabled) ?> Enabled
+					<?=pear::checker('enabled', 1, $record->enabled) ?> Enabled
 				</label>
 			</div>
 		</div>
 	</div>
 
-	<?=pear::include('_templates/access',['record'=>$record]) ?>
+	<?=pear::include('_templates/access', ['record'=>$record]) ?>
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::field_label('o_setting_model','internal') ?>
+		<?=pear::field_label('o_setting_model', 'internal') ?>
 		<div class="col-md-4">
-			<?=pear::input('internal',$record->internal,['readonly'=>'readonly','class'=>'form-control input-md']) ?>
+			<?=pear::input('internal', $record->internal, ['readonly'=>'readonly','class'=>'form-control input-md']) ?>
 		</div>
 	</div>
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::label('Options','options',['class'=>'col-md-3 control-label']) ?>
+		<?=pear::label('Options', 'options', ['class'=>'col-md-3 control-label']) ?>
 	  <div class="col-md-7">
-			<?=pear::textarea('options',$record->options,['class'=>'form-control fixed-font','cols'=>66,'rows'=>4]) ?>
+			<?=pear::textarea('options', $record->options, ['class'=>'form-control fixed-font','cols'=>66,'rows'=>4]) ?>
 			<h5>Example Options:</h5>
 			<pre>{"type":"radio","options":{"1":"Red","2":"Green","3":"Yellow","4":"Blue"}}
 {"type":"textarea","rows":5}
@@ -87,10 +87,10 @@
 	<div class="form-group">
 		<div class="col-md-12">
 			<div class="pull-right">
-				<?=pear::button(null,'Save',['class'=>'js-button-submit keymaster-s btn btn-primary']) ?>
+				<?=pear::button(null, 'Save', ['class'=>'js-button-submit keymaster-s btn btn-primary']) ?>
 			</div>
 		</div>
 	</div>
 <?=pear::close() ?>
 
-<? pear::end() ?>
+<?php pear::end() ?>

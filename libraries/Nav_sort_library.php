@@ -1,21 +1,24 @@
 <?php
 
-class Nav_sort_library {
+class Nav_sort_library
+{
 	protected $sort = 0;
 	protected $config = [];
 
-	public function __construct(&$config) {
+	public function __construct(&$config)
+	{
 	}
 
 	/* convert tree into sort values */
-	public function process_tree_sort($orders,$parent_id) {
+	public function process_tree_sort($orders, $parent_id)
+	{
 		foreach ($orders as $order) {
 			$this->sort = $this->sort + 3;
 
 			ci('o_nav_model')->update(['id'=>$order['id'],'sort'=>$this->sort,'parent_id'=>$parent_id]);
 
 			if (isset($order['children'])) {
-				$this->process_tree_sort($order['children'],$order['id']);
+				$this->process_tree_sort($order['children'], $order['id']);
 			}
 		}
 
@@ -23,22 +26,24 @@ class Nav_sort_library {
 	}
 
 	/* wrapper to return list */
-	public function create_list($list,$config) {
+	public function create_list($list, $config)
+	{
 		$this->config = $config;
 
-		return $this->level($list,1);
+		return $this->level($list, 1);
 	}
 
-	protected function level($list,$level) 	{
+	protected function level($list, $level)
+	{
 		$html .= $this->config['navigation_open'];
 
 		foreach ($list as $value) {
 			$value['disabled'] = ($value['active'] == 0) ? $this->config['item_inactive_class'] : $this->config['item_active_class'];
 
-			$html .= quick_merge($this->config['item_open'].$this->config['content'],$value);
+			$html .= quick_merge($this->config['item_open'].$this->config['content'], $value);
 
 			if (is_array($value['children'])) {
-				$html .= $this->level($value['children'],($level + 1));
+				$html .= $this->level($value['children'], ($level + 1));
 			}
 
 			$html .= $this->config['item_close'];
@@ -48,5 +53,4 @@ class Nav_sort_library {
 
 		return $html;
 	}
-
 } /* end class */

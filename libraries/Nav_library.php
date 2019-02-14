@@ -1,15 +1,18 @@
 <?php
 
-class Nav_library {
+class Nav_library
+{
 	protected $base_url;
 	protected $config = [];
 
-	public function __construct(&$config) {
+	public function __construct(&$config)
+	{
 		$this->config = &$config;
 	}
 
 	/* build HTML for main menu */
-	public function build_bootstrap_nav($parent_id,$config,$filter=true) {
+	public function build_bootstrap_nav($parent_id, $config, $filter=true)
+	{
 		$cache_key = (ci('o_nav_model')->get_cache_prefix()).'.build_bootstrap_nav.'.md5(json_encode(func_get_args()));
 
 		if ($filter) {
@@ -21,29 +24,30 @@ class Nav_library {
 		if (!$html = ci('cache')->get($cache_key)) {
 			$this->config = $config;
 
-			$this->base_url = trim(base_url(),'/');
+			$this->base_url = trim(base_url(), '/');
 
 			$html = $this->config['navigation_open'];
 
-			$menus = ($filter) ? ci('o_nav_model')->get_filtered($parent_id,$user_permissions) : ci('o_nav_model')->get_unfiltered($parent_id);
+			$menus = ($filter) ? ci('o_nav_model')->get_filtered($parent_id, $user_permissions) : ci('o_nav_model')->get_unfiltered($parent_id);
 
 			if (is_array($menus)) {
 				foreach ($menus as $menu) {
-					$html .= $this->item($menu,1);
+					$html .= $this->item($menu, 1);
 				}
 			}
 
 			$html .= $this->config['navigation_close'];
 
-			ci('cache')->save($cache_key,$html,ci('cache')->ttl());
+			ci('cache')->save($cache_key, $html, ci('cache')->ttl());
 		}
 
-		ci('event')->trigger('nav.library.html',$html);
+		ci('event')->trigger('nav.library.html', $html);
 
 		return $html;
 	}
 
-	protected function item($item,$level) {
+	protected function item($item, $level)
+	{
 		$html = '';
 
 		/* does this menu have any children? */
@@ -54,12 +58,12 @@ class Nav_library {
 				$html .= $this->config['item_open_dropdown_sub'];
 			}
 
-			$html .= quick_merge($this->config['anchor_dropdown'],$item);
+			$html .= quick_merge($this->config['anchor_dropdown'], $item);
 
 			$html .= $this->config['dropdown_open'];
 
 			foreach ($item['children'] as $i) {
-				$html .= $this->item($i,($level + 1));
+				$html .= $this->item($i, ($level + 1));
 			}
 
 			$html .= $this->config['dropdown_close'];
@@ -70,7 +74,7 @@ class Nav_library {
 				$html .= $this->config['hr'];
 			} else {
 				$html .= $this->config['item_open'];
-				$html .= quick_merge($this->config['anchor'],$item);
+				$html .= quick_merge($this->config['anchor'], $item);
 				$html .= $this->config['item_close'];
 			}
 		}
@@ -78,8 +82,7 @@ class Nav_library {
 		return $html;
 	}
 
-	protected function merge($html,$items) {
-
+	protected function merge($html, $items)
+	{
 	}
-
 } /* end class */

@@ -45,7 +45,8 @@ CREATE TABLE `orange_nav` (
  * functions: setting
  *
  */
-class O_nav_model extends Database_model {
+class O_nav_model extends Database_model
+{
 	protected $table = 'orange_nav';
 	protected $rules = [
 		'id'           => ['field' => 'id', 'label' => 'Id', 'rules' => 'required|integer|max_length[10]|less_than[4294967295]|filter_int[10]'],
@@ -73,14 +74,16 @@ class O_nav_model extends Database_model {
 	];
 	protected $order_by = 'url sort';
 
-	public function get_all() {
+	public function get_all()
+	{
 		/* starting at root (1) get all */
-		return $this->_children(1,false,1,false,false);
+		return $this->_children(1, false, 1, false, false);
 	}
 
-	public function get_filtered($parent_id,$access) {
+	public function get_filtered($parent_id, $access)
+	{
 		/* merge 0 (everyone) and the rest of your permissions */
-		$access = (is_array($access)) ? array_merge([0],$access) : [0];
+		$access = (is_array($access)) ? array_merge([0], $access) : [0];
 
 		/* the cache key based on the menu parent id & permissions */
 		$key = $this->cache_prefix.'.get_filtered.'.md5(json_encode(func_get_args()));
@@ -88,38 +91,40 @@ class O_nav_model extends Database_model {
 		/* is this cached? */
 		if (!$cache = $this->cache->get($key)) {
 			/* no - therefore we need to create the cache */
-			$cache = $this->_children($parent_id,$access,1,true,true);
+			$cache = $this->_children($parent_id, $access, 1, true, true);
 
 			/* save the cache */
-			$this->cache->save($key,$cache,ci('cache')->ttl());
+			$this->cache->save($key, $cache, ci('cache')->ttl());
 		}
 
 		/* return the cached array */
 		return $cache;
 	}
 
-	public function get_unfiltered($parent_id) {
+	public function get_unfiltered($parent_id)
+	{
 		/* the cache key based on the menu parent id & permissions */
 		$key = $this->cache_prefix.'.get_unfiltered.'.$parent_id;
 
 		/* is this cached? */
 		if (!$cache = $this->cache->get($key)) {
 			/* no - therefore we need to create the cache */
-			$cache = $this->_children($parent_id,false,1,false,true);
+			$cache = $this->_children($parent_id, false, 1, false, true);
 
 			/* save the cache */
-			$this->cache->save($key,$cache,ci('cache')->ttl());
+			$this->cache->save($key, $cache, ci('cache')->ttl());
 		}
 
 		/* return the cached array */
 		return $cache;
 	}
 
-	protected function _children($parent_id,$access,$level,$remove_empty_parents,$active) {
+	protected function _children($parent_id, $access, $level, $remove_empty_parents, $active)
+	{
 		$array = false;
 
 		if ($access) {
-			$this->where_in('access',$access);
+			$this->where_in('access', $access);
 		}
 
 		$where_clause = ($active) ? ['parent_id'=>$parent_id,'active'=>1] : ['parent_id'=>$parent_id];
@@ -127,7 +132,7 @@ class O_nav_model extends Database_model {
 		$records = $this->as_array()->where($where_clause)->order_by('sort')->get_many();
 
 		foreach ($records as $record) {
-			if ($children = $this->_children($record['id'],$access,($level + 1),$remove_empty_parents,$active)) {
+			if ($children = $this->_children($record['id'], $access, ($level + 1), $remove_empty_parents, $active)) {
 				$record['children'] = $children;
 			}
 
@@ -146,7 +151,8 @@ class O_nav_model extends Database_model {
 	}
 
 	/* migration */
-	public function migration_add($url=null,$text=null,$migration=null,$optional=[]) {
+	public function migration_add($url=null, $text=null, $migration=null, $optional=[])
+	{
 		$this->skip_rules = true;
 
 		$columns = [
@@ -177,7 +183,8 @@ class O_nav_model extends Database_model {
 		return (!$this->exists(['url'=>$url,'text'=>$text])) ? $this->insert($columns) : false;
 	}
 
-	public function migration_remove($where=null) {
+	public function migration_remove($where=null)
+	{
 		foreach (func_get_args() as $v) {
 			if (empty($v)) {
 				throw new exception(__METHOD__.' Required Field Empty.'.chr(10));
@@ -192,5 +199,4 @@ class O_nav_model extends Database_model {
 
 		return $this->delete_by($where);
 	}
-
 } /* end class */

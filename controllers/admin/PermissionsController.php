@@ -18,7 +18,8 @@
  * functions:
  *
  */
-class PermissionsController extends MY_Controller {
+class PermissionsController extends MY_Controller
+{
 	use admin_controller_trait;
 	
 	public $controller        = 'permissions';
@@ -30,5 +31,4 @@ class PermissionsController extends MY_Controller {
 	public $catalogs = [
 		'permissions_group_catalog'=>['model'=>'o_permission_model','array_key'=>'group','select'=>'group'],
 	];
-
 }

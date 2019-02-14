@@ -1,9 +1,9 @@
-<? pear::extends('_templates/orange_default') ?>
-<? pear::plugins('flash_msg,form_helpers') ?>
+<?php pear::extends('_templates/orange_default') ?>
+<?php pear::plugins('flash_msg,form_helpers') ?>
 
-<? pear::section('section_container') ?>
+<?php pear::section('section_container') ?>
 
-	<?=pear::open_multipart('/login',['method'=>'post','class'=>'form-signin']) ?>
+	<?=pear::open_multipart('/login', ['method'=>'post','class'=>'form-signin']) ?>
   <h2><?=config('auth.login h2') ?></h2>
   <label for="inputEmail" class="sr-only"><?=config('auth.username field') ?></label>
   <input type="text" name="email" id="inputEmail" class="form-control" placeholder="<?=config('auth.username field') ?>" autofocus>
@@ -31,8 +31,8 @@ body {
   position: relative;
   height: auto;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+	 -moz-box-sizing: border-box;
+		  box-sizing: border-box;
   padding: 10px;
   font-size: 16px;
 }
@@ -49,4 +49,4 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-<? pear::end() ?>
+<?php pear::end() ?>

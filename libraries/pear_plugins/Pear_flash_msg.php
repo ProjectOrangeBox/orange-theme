@@ -1,8 +1,9 @@
 <?php
 
-class Pear_flash_msg {
-
-	public function __construct() {
+class Pear_flash_msg
+{
+	public function __construct()
+	{
 		ci('page')
 			->css('/theme/orange/assets/plugins/flash-msg/flash-msg.css')
 			->js('/theme/orange/assets/plugins/flash-msg/jquery.bootstrap.flash-msg.js');
@@ -40,11 +41,8 @@ class Pear_flash_msg {
 			}
 		}
 
-		ci('page')->js_variable('messages',$msgs);
+		ci('page')->js_variable('messages', $msgs);
 
 		return $msgs;
 	}
-
 }
-
-

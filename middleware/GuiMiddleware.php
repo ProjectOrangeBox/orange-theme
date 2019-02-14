@@ -18,7 +18,8 @@
  * functions:
  *
  */
-class GuiMiddleware extends Middleware_base {
+class GuiMiddleware extends Middleware_base
+{
 	public function request() : void
 	{
 		$this->load->library('page');
@@ -28,7 +29,7 @@ class GuiMiddleware extends Middleware_base {
 
 		$route = $this->router->fetch_route();
 
-		$controller_path = '/'.str_replace('/index','',$route);
+		$controller_path = '/'.str_replace('/index', '', $route);
 				
 		/* is the user object setup? */
 		if (is_object($this->user)) {
@@ -39,11 +40,11 @@ class GuiMiddleware extends Middleware_base {
 			$is = 'is-not-logged-in';
 		}
 
-		$base_url = trim(base_url(),'/');		
+		$base_url = trim(base_url(), '/');
 		
 		$this->page
-			->set_default_view(str_replace('-','_',$route))
-			->body_class([str_replace('/',' uri-',str_replace('_','-',$controller_path)).' '.$uid.' '.$is])
+			->set_default_view(str_replace('-', '_', $route))
+			->body_class([str_replace('/', ' uri-', str_replace('_', '-', $controller_path)).' '.$uid.' '.$is])
 			->js_variables([
 				'base_url'				=> $base_url,
 				'app_id'					=> md5($base_url),

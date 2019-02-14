@@ -1,8 +1,9 @@
 <?php
 
-class Pear_html_tag extends Pear_plugin {
-
-	public function render($tag=null,$attr=[],$content=false) {
+class Pear_html_tag extends Pear_plugin
+{
+	public function render($tag=null, $attr=[], $content=false)
+	{
 		if (!empty($tag)) {
 			/* list of void elements (tags that can not have content) */
 			$void_elements = [
@@ -32,5 +33,4 @@ class Pear_html_tag extends Pear_plugin {
 
 		return $html;
 	}
-
 }

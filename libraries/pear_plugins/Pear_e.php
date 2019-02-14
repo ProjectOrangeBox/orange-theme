@@ -1,12 +1,13 @@
 <?php
 
-class Pear_e {
-
-	public function render($string=null,$functions=null) {
+class Pear_e
+{
+	public function render($string=null, $functions=null)
+	{
 		$html = htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
 
 		if ($functions) {
-			$functions = explode('|',$functions);
+			$functions = explode('|', $functions);
 
 			foreach ($functions as $function) {
 				if (function_exists($function)) {

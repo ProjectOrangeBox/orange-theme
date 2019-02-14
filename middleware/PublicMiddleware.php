@@ -18,7 +18,8 @@
  * functions:
  *
  */
-class PublicMiddleware extends Middleware_base {
+class PublicMiddleware extends Middleware_base
+{
 	public function request() : void
 	{
 		/**
@@ -56,9 +57,9 @@ class PublicMiddleware extends Middleware_base {
 
 				$model_method = (isset($args['method'])) ? $args['method'] : 'catalog';
 
-				if (method_exists($this->$model_name,$model_method)) {
+				if (method_exists($this->$model_name, $model_method)) {
 					if ($model_method == 'catalog') {
-						$this->load->vars($variable_name, $this->$model_name->$model_method(@$args['array_key'],@$args['select'],@$args['where'],@$args['order_by'],@$args['cache'],(bool)$args['with_deleted']));
+						$this->load->vars($variable_name, $this->$model_name->$model_method(@$args['array_key'], @$args['select'], @$args['where'], @$args['order_by'], @$args['cache'], (bool)$args['with_deleted']));
 					} else {
 						$this->load->vars($variable_name, $this->$model_name->$model_method($args));
 					}
@@ -71,6 +72,5 @@ class PublicMiddleware extends Middleware_base {
 		if ($this->controller_model) {
 			$this->load->model(strtolower($this->controller_model));
 		}
-
 	}
 }

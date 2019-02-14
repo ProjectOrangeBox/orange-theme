@@ -1,8 +1,8 @@
 <?php
 /**
- * 
+ *
  * WYSIWYG editor
- * 
+ *
  * extras are just attributes added to the textarea
  *
  * https://cdnjs.com/libraries/summernote
@@ -11,9 +11,10 @@
  * @help WYSIWYG editor
  *
  */
-class Pear_summernote extends Pear_plugin {
-
-	public function __construct() {
+class Pear_summernote extends Pear_plugin
+{
+	public function __construct()
+	{
 		ci('page')->js([
 				'//cdnjs.cloudflare.com/ajax/libs/codemirror/5.12.0/codemirror.min.js',
 				'//cdnjs.cloudflare.com/ajax/libs/codemirror/5.12.0/mode/xml/xml.min.js',
@@ -27,10 +28,10 @@ class Pear_summernote extends Pear_plugin {
 			]);
 	}
 
-	public function render($name=null,$value=null,$extra=[]) {
+	public function render($name=null, $value=null, $extra=[])
+	{
 		$extra['class'] .= ' form-control summernote';
 
 		return '<textarea id="'.$name.'" name="'.$name.'" '._stringify_attributes($extra).'>'.$value.'</textarea>';
 	}
-
 }

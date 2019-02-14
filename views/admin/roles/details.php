@@ -1,8 +1,8 @@
-<? pear::extends('_templates/orange_admin') ?>
+<?php pear::extends('_templates/orange_admin') ?>
 
-<? pear::section('section_container') ?>
+<?php pear::section('section_container') ?>
 
-<?=pear::open_multipart($controller_path,['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'],['id'=>$record->id]) ?>
+<?=pear::open_multipart($controller_path, ['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'], ['id'=>$record->id]) ?>
 	<div class="row">
 		<div class="col-md-6"><h3><?=$ci_title_prefix ?> <?=$controller_title ?></h3></div>
 		<div class="col-md-6">
@@ -16,57 +16,63 @@
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::field_label('o_role_model','name') ?>
+		<?=pear::field_label('o_role_model', 'name') ?>
 		<div class="col-md-4">
-			<?=pear::input('name',$record->name,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
+			<?=pear::input('name', $record->name, ['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
 	</div>
 
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::field_label('o_role_model','description') ?>
+		<?=pear::field_label('o_role_model', 'description') ?>
 		<div class="col-md-4">
-			<?=pear::input('description',$record->description,['class'=>'form-control input-md','autocomplete'=>'off']) ?>
+			<?=pear::input('description', $record->description, ['class'=>'form-control input-md','autocomplete'=>'off']) ?>
 		</div>
 	</div>
 
 	<!-- permissions -->
-	<? $tabs = pear::tab_prepare($catalog_permissions,'group','description') ?>
+	<?php $tabs = pear::tab_prepare($catalog_permissions, 'group', 'description') ?>
 
 	<!-- Nav tabs -->
 	<ul class="nav nav-pills js-tabs">
-		<? foreach (pear::tabs($tabs) as $tn) { ?>
+		<?php foreach (pear::tabs($tabs) as $tn) {
+	?>
 		<li>
 			<a href="#<?=pear::tab_id($tn) ?>" data-toggle="pill"><?=pear::tab_title($tn) ?></a>
 		</li>
-		<? } ?>
+		<?php
+} ?>
 	</ul>
 
 	<hr class="shadow">
 	<!-- tab panels -->
 	<div class="tab-content">
-		<? foreach ($tabs as $tn=>$tab_set) { ?>
+		<?php foreach ($tabs as $tn=>$tab_set) {
+		?>
 		<div class="tab-pane" id="<?=pear::tab_id($tn) ?>">
-			<? foreach ($tab_set as $row) { ?>
+			<?php foreach ($tab_set as $row) {
+			?>
 				<!-- Checkbox -->
 				<div class="col-md-4">
 					<div class="checkbox">
-						<label><?=pear::checkbox('permissions[]', $row->id, (array_key_exists($row->id,$permissions))) ?> <?=$row->description ?></label>
+						<label><?=pear::checkbox('permissions[]', $row->id, (array_key_exists($row->id, $permissions))) ?> <?=$row->description ?></label>
 					</div>
 				</div>
-			<? } ?>
+			<?php
+		} ?>
 		</div>
-		<? } ?>
+		<?php
+	} ?>
 	</div>
 
 	<!-- Submit Button -->
 	<div class="form-group">
 		<div class="col-md-12">
 			<div class="pull-right">
-				<?=pear::button(null,'Save',['class'=>'js-button-submit keymaster-s btn btn-primary']) ?>
+				<?=pear::button(null, 'Save', ['class'=>'js-button-submit keymaster-s btn btn-primary']) ?>
 			</div>
 		</div>
 	</div>
 <?=pear::close() ?>
 
-<? pear::end() ?>
+<?php pear::end() ?>

@@ -21,14 +21,15 @@ https://github.com/RubaXa/Sortable#cdn
 </div>
 
 */
-class Pear_sortable extends Pear_plugin {
-
-	public function __construct() {
+class Pear_sortable extends Pear_plugin
+{
+	public function __construct()
+	{
 		ci('page')->js('//cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js');
 	}
 
-	public function render($id=null) {
+	public function render($id=null)
+	{
 		ci('page')->domready('Sortable.create('.$id.',{});');
 	}
-
 }

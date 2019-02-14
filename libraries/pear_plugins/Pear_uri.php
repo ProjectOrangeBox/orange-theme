@@ -2,11 +2,13 @@
 
 // @help The URI extension is designed to make URI checks within templates easier. http://platesphp.com/v3/extensions/uri/
 
-class Pear_uri  extends Pear_plugin {
+class Pear_uri extends Pear_plugin
+{
 	protected $uri;
 	protected $parts;
 
-	public function render($var1 = null, $var2 = null, $var3 = null, $var4 = null) {
+	public function render($var1 = null, $var2 = null, $var3 = null, $var4 = null)
+	{
 		$this->uri = '/'.ci('uri')->uri_string();
 		$this->parts = explode('/', $this->uri);
 
@@ -38,11 +40,10 @@ class Pear_uri  extends Pear_plugin {
 
 	protected function checkUriRegexMatch($regex, $returnOnTrue = null, $returnOnFalse = null)
 	{
-		if (preg_match('#^'.$regex.'$#',$this->uri) === 1) {
+		if (preg_match('#^'.$regex.'$#', $this->uri) === 1) {
 			return is_null($returnOnTrue) ? true : $returnOnTrue;
 		}
 
 		return is_null($returnOnFalse) ? false : $returnOnFalse;
 	}
-
 }

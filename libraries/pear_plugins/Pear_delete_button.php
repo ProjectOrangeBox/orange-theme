@@ -1,8 +1,9 @@
 <?php
 
-class Pear_delete_button {
-
-	public function render($uri='',$attributes=[]) {
+class Pear_delete_button
+{
+	public function render($uri='', $attributes=[])
+	{
 		$name = (isset($attributes['primary_key'])) ? $attributes['primary_key'] : 'id';
 		
 		$html  = '<form action="'.$uri.'" method="delete" data-confirm="true" data-fadeout="tr">';

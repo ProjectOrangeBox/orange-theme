@@ -1,8 +1,9 @@
 <?php
 
-class Pear_table_sort extends Pear_plugin {
-
-	public function __construct() {
+class Pear_table_sort extends Pear_plugin
+{
+	public function __construct()
+	{
 		ci('page')
 			->js([
 				'/theme/orange/assets/plugins/table_sort/table_sort'.PAGE_MIN.'.js',
@@ -10,5 +11,4 @@ class Pear_table_sort extends Pear_plugin {
 			])
 			->css('/theme/orange/assets/plugins/table_sort/table_sort'.PAGE_MIN.'.css');
 	}
-
 }

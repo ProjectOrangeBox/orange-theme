@@ -18,49 +18,52 @@
  * functions:
  *
  */
-class UsersController extends MY_Controller {
+class UsersController extends MY_Controller
+{
 	public $controller        = 'users';
 	public $controller_title  = 'User';
 	public $controller_titles = 'Users';
 	public $controller_path   = '/users';
 	public $controller_model  = 'o_user_model';
 
-/**
- * edit_profileAction
- * Insert description here
- *
- * @param $id
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
-	public function edit_profileAction($id=null) {
-		ci('validate')->variable(ci('o_user_model')->rule(ci('o_user_model')->get_primary_key(),'rules'),$id)->die_on_fail();
+	/**
+	 * edit_profileAction
+	 * Insert description here
+	 *
+	 * @param $id
+	 *
+	 * @return
+	 *
+	 * @access
+	 * @static
+	 * @throws
+	 * @example
+	 */
+	public function edit_profileAction($id=null)
+	{
+		ci('validate')->variable(ci('o_user_model')->rule(ci('o_user_model')->get_primary_key(), 'rules'), $id)->die_on_fail();
 		
 		if (ci('user')->id !== $id) {
-			ci('errors')->display('general',['heading'=>'Error','message'=>'The User ID is unknown.']);
+			ci('errors')->display('general', ['heading'=>'Error','message'=>'The User ID is unknown.']);
 		}
 		
 		ci('page')->data(['record'=>ci('o_user_model')->get($id),'form_method'=>'patch'])->render();
 	}
 
-/**
- * indexPatchAction
- * Insert description here
- *
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
-	public function indexPatchAction() {
+	/**
+	 * indexPatchAction
+	 * Insert description here
+	 *
+	 *
+	 * @return
+	 *
+	 * @access
+	 * @static
+	 * @throws
+	 * @example
+	 */
+	public function indexPatchAction()
+	{
 		$data = ci('input')->request();
 		
 		if (ci('input')->request('confirm_password') != ci('input')->request('password')) {

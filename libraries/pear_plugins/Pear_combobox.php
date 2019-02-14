@@ -1,6 +1,6 @@
 <?php
 /**
- * 
+ *
  * https://cdnjs.com/libraries/bootstrap-3-typeahead
  *
  * NOTE: This will add has-feedback to your form element wrapper
@@ -10,13 +10,15 @@
  * this will position the icon inside on the right of the input field
  *
  */
-class Pear_combobox {
-
-	public function __construct() {
+class Pear_combobox
+{
+	public function __construct()
+	{
 		ci('page')->js('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js');
 	}
 
-	public function render($name=null,$value=null,$options=[],$extra=[]) {
+	public function render($name=null, $value=null, $options=[], $extra=[])
+	{
 		if (is_array($options)) {
 			sort($options);
 			$source = json_encode($options);
@@ -39,4 +41,3 @@ class Pear_combobox {
 		return $html;
 	}
 }
-

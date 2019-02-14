@@ -1,8 +1,9 @@
 <?php
 
-class Pear_textarea extends Pear_plugin {
-
-	public function render($name=null,$value=null,$options=null) {
+class Pear_textarea extends Pear_plugin
+{
+	public function render($name=null, $value=null, $options=null)
+	{
 		if (is_array($name)) {
 			$value = $options['value'];
 			$options = $name;
@@ -19,6 +20,6 @@ class Pear_textarea extends Pear_plugin {
 			'id'=>$name,
 		];
 
-		return '<textarea '._stringify_attributes(array_merge($defaults,$options)).'>'.$value."</textarea>\n";
+		return '<textarea '._stringify_attributes(array_merge($defaults, $options)).'>'.$value."</textarea>\n";
 	}
 }

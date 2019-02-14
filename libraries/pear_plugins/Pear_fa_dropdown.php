@@ -1,7 +1,8 @@
 <?php
-class Pear_fa_dropdown {
-
-	public function render($name='',$value=null,$extra=[]) {
+class Pear_fa_dropdown
+{
+	public function render($name='', $value=null, $extra=[])
+	{
 		$defaults = ['name' => $name, 'style' => '', 'id' => $name, 'class' => ''];
 
 		$list = array_merge($defaults, $extra);
@@ -12,7 +13,7 @@ class Pear_fa_dropdown {
 
 		$awesome = $this->awesomeness();
 
-		$fa_list = array_combine($awesome,$awesome);
+		$fa_list = array_combine($awesome, $awesome);
 		$html = '<select name="'.$name.'" class="form-control select3" data-live-search="true">';
 
 		if ($empty) {
@@ -20,7 +21,7 @@ class Pear_fa_dropdown {
 		}
 
 		foreach ($fa_list as $fa) {
-			$html .= '<option '.(($value == $fa && $empty == FALSE) ? ' selected' : '').' value="'.$fa.'" data-icon="fa fa-'.$fa.'">'.ucwords(str_replace(['fa-', '-o'], '', $fa)).'</option>';
+			$html .= '<option '.(($value == $fa && $empty == false) ? ' selected' : '').' value="'.$fa.'" data-icon="fa fa-'.$fa.'">'.ucwords(str_replace(['fa-', '-o'], '', $fa)).'</option>';
 		}
 
 		$html .= '</select>';
@@ -28,7 +29,8 @@ class Pear_fa_dropdown {
 		return $html;
 	}
 
-	public function awesomeness() {
+	public function awesomeness()
+	{
 		return [
 			'adjust',
 			'adn',
@@ -625,5 +627,4 @@ class Pear_fa_dropdown {
 			'youtube-square',
 		];
 	}
-
 }

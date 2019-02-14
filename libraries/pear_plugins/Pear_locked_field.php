@@ -1,13 +1,15 @@
 <?php
 
-class Pear_locked_field extends Pear_plugin {
-
-	public function __construct() {
+class Pear_locked_field extends Pear_plugin
+{
+	public function __construct()
+	{
 		ci('page')->js('/theme/orange/assets/plugins/plugin-locked-field/plugin_locked_field.js');
 	}
 
-	public function render($name=null,$value=null,$extra=[]) {
-		$extra = array_merge(['default'=>'lock','can'=>'####','class'=>''],$extra);
+	public function render($name=null, $value=null, $extra=[])
+	{
+		$extra = array_merge(['default'=>'lock','can'=>'####','class'=>''], $extra);
 
 		$show_lock = true;
 		
@@ -27,5 +29,4 @@ class Pear_locked_field extends Pear_plugin {
 
 		return $html;
 	}
-
 }

@@ -9,33 +9,35 @@
 	<hr>
 	<!-- Text input-->
 	<div class="form-group">
-		<?=pear::field_label('o_user_model','email') ?>
+		<?=pear::field_label('o_user_model', 'email') ?>
 		<div class="col-md-4">
 			<input name="email" type="text" value="<?=$record->email ?>" class="form-control input-md" required="" autocomplete="off">
 		</div>
 	</div>
 	<div class="form-group">
-		<?=pear::field_label('o_user_model','username') ?>
+		<?=pear::field_label('o_user_model', 'username') ?>
 		<div class="col-md-4">
 			<input name="username" type="text" value="<?=$record->username ?>" class="form-control input-md" required="" autocomplete="off">
 		</div>
 	</div>
 	<!-- Password input-->
 	<div class="form-group">
-		<?=pear::label('Password','password',['class'=>'col-md-3 control-label '.(($form_method != 'post') ? '' : 'required')]) ?>
+		<?=pear::label('Password', 'password', ['class'=>'col-md-3 control-label '.(($form_method != 'post') ? '' : 'required')]) ?>
 		<div class="col-md-4">
-			<?=pear::password('password','',['class'=>'form-control input-md','autocomplete'=>'off']) ?>
-			<?=pear::form_help(config('auth.password copy','Password must be at least: 8 characters, 1 upper, 1 lower case letter, 1 number, Less than 32 characters')) ?>
+			<?=pear::password('password', '', ['class'=>'form-control input-md','autocomplete'=>'off']) ?>
+			<?=pear::form_help(config('auth.password copy', 'Password must be at least: 8 characters, 1 upper, 1 lower case letter, 1 number, Less than 32 characters')) ?>
 		</div>
 	</div>
 	<!-- Password input-->
 	<div class="form-group">
-		<?=pear::label('Confirm Password','confirm_password',['class'=>'col-md-3 control-label '.(($form_method != 'post') ? '' : 'required')]) ?>
+		<?=pear::label('Confirm Password', 'confirm_password', ['class'=>'col-md-3 control-label '.(($form_method != 'post') ? '' : 'required')]) ?>
 		<div class="col-md-4">
-			<?=pear::password('confirm_password','',['class'=>'form-control input-md','autocomplete'=>'off']) ?>
-			<?php if ($form_method != 'post') { ?>
+			<?=pear::password('confirm_password', '', ['class'=>'form-control input-md','autocomplete'=>'off']) ?>
+			<?php if ($form_method != 'post') {
+	?>
 				<?=pear::form_help('Leave password fields blank to leave password unchanged.') ?>
-			<?php } ?>
+			<?php
+} ?>
 		</div>
 	</div>
 	<!-- Button -->

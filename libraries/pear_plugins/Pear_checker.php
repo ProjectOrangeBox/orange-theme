@@ -1,8 +1,9 @@
 <?php
 
-class Pear_checker extends Pear_plugin {
-
-	public function render($name=null,$value=null,$checked=false,$extra=[]) {
+class Pear_checker extends Pear_plugin
+{
+	public function render($name=null, $value=null, $checked=false, $extra=[])
+	{
 		$unchecked = ($extra['unchecked']) ? $extra['unchecked'] : 0;
 
 		unset($extra['unchecked']);
@@ -13,5 +14,4 @@ class Pear_checker extends Pear_plugin {
 
 		return '<input type="hidden" name="'.$name.'" value="'.$unchecked.'"><input type="checkbox" name="'.$name.'" value="'.$value.'" '._stringify_attributes($extra).' '.(($checked) ? 'checked' : '').'>';
 	}
-
 }

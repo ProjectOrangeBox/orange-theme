@@ -18,7 +18,8 @@
  * functions:
  *
  */
-class UsersController extends MY_Controller {
+class UsersController extends MY_Controller
+{
 	use admin_controller_trait;
 	public $controller        = 'users';
 	public $controller_title  = 'User';
@@ -30,78 +31,82 @@ class UsersController extends MY_Controller {
 		'roles_catalog'=>['model'=>'o_role_model','array_key'=>'id','select'=>'name'],
 	];
 
-/**
- * indexPostAction
- * Insert description here
- *
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
-	public function indexPostAction() {
+	/**
+	 * indexPostAction
+	 * Insert description here
+	 *
+	 *
+	 * @return
+	 *
+	 * @access
+	 * @static
+	 * @throws
+	 * @example
+	 */
+	public function indexPostAction()
+	{
 		$posted = ci('input')->request();
 		$this->data['primary_key'] = ci('o_user_model')->insert($posted);
 		$this->_add_roles($this->data['primary_key']);
 		$this->_rest_output();
 	}
 
-/**
- * indexPatchAction
- * Insert description here
- *
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
-	public function indexPatchAction() {
+	/**
+	 * indexPatchAction
+	 * Insert description here
+	 *
+	 *
+	 * @return
+	 *
+	 * @access
+	 * @static
+	 * @throws
+	 * @example
+	 */
+	public function indexPatchAction()
+	{
 		$posted = ci('input')->request();
 		ci('o_user_model')->update($posted);
 		$this->_add_roles($posted['id']);
 		$this->_rest_output();
 	}
 
-/**
- * indexDeleteAction
- * Insert description here
- *
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
-	public function indexDeleteAction() {
+	/**
+	 * indexDeleteAction
+	 * Insert description here
+	 *
+	 *
+	 * @return
+	 *
+	 * @access
+	 * @static
+	 * @throws
+	 * @example
+	 */
+	public function indexDeleteAction()
+	{
 		ci('o_user_model')->delete(hex2bin(ci('input')->request('id')));
 		$this->_rest_output();
 	}
 
-/**
- * _add_roles
- * Insert description here
- *
- * @param $user_id
- *
- * @return
- *
- * @access
- * @static
- * @throws
- * @example
- */
-	protected function _add_roles($user_id) {
+	/**
+	 * _add_roles
+	 * Insert description here
+	 *
+	 * @param $user_id
+	 *
+	 * @return
+	 *
+	 * @access
+	 * @static
+	 * @throws
+	 * @example
+	 */
+	protected function _add_roles($user_id)
+	{
 		if (!ci('errors')->has()) {
-			ci('o_user_model')->remove_role($user_id,null);
-			ci('o_user_model')->add_role($user_id,ci('input')->request('roles'));
+			ci('o_user_model')->remove_role($user_id, null);
+			ci('o_user_model')->add_role($user_id, ci('input')->request('roles'));
 		}
 	}
 }
