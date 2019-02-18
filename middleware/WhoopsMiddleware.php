@@ -24,7 +24,7 @@ class WhoopsMiddleware extends Middleware_base
 {
 	public function request() : void
 	{
-		if ($_ENV['SERVER_DEBUG'] == 'development') {
+		if ($_ENV['DEBUG'] == 'development') {
 			$whoops = new \Whoops\Run;
 			$whoops->pushHandler(new Whoops\Handler\PrettyPageHandler());
 			$whoops->register();

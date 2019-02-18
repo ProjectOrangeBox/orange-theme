@@ -183,20 +183,10 @@ class O_nav_model extends Database_model
 		return (!$this->exists(['url'=>$url,'text'=>$text])) ? $this->insert($columns) : false;
 	}
 
-	public function migration_remove($where=null)
+	public function migration_remove(string $migration=null) : bool
 	{
-		foreach (func_get_args() as $v) {
-			if (empty($v)) {
-				throw new exception(__METHOD__.' Required Field Empty.'.chr(10));
-			}
-		}
-
 		$this->skip_rules = true;
 
-		if (!is_array($where)) {
-			$where = ['migration'=>$where];
-		}
-
-		return $this->delete_by($where);
+		return $this->delete_by(['migration'=>$migration]);
 	}
 } /* end class */
