@@ -64,8 +64,8 @@
 	<!-- Text input-->
 	<div class="form-group">
 		<?=pear::field_label('o_setting_model', 'internal') ?>
-		<div class="col-md-4">
-			<?=pear::input('internal', $record->internal, ['readonly'=>'readonly','class'=>'form-control input-md']) ?>
+		<div class="col-md-7">
+			<?=pear::input('migration', $record->migration, ['readonly'=>'readonly','class'=>'form-control input-md']) ?>
 		</div>
 	</div>
 
