@@ -23,10 +23,10 @@ class Migration_003_add_navigation extends Migration_base {
 		ci('o_nav_model')->migration_add('/admin/dashboard','Dashboard',$hash,['icon'=>'rebel','color'=>'E36B2A']);
 		
 		/* Admin Nav */
-		ci('o_nav_model')->migration_add('/admin/nav','Nav',$hash['icon'=>'rebel','color'=>'E36B2A']);
+		ci('o_nav_model')->migration_add('/admin/nav','Nav',$hash,['icon'=>'rebel','color'=>'E36B2A']);
 		
 		/* Admin Permissions */
-		ci('o_nav_model')->migration_add('/admin/permissions','Permissions',$hash['icon'=>'rebel','color'=>'E36B2A']);
+		ci('o_nav_model')->migration_add('/admin/permissions','Permissions',$hash,['icon'=>'rebel','color'=>'E36B2A']);
 		
 		/* Admin Roles */
 		ci('o_nav_model')->migration_add('/admin/roles','Roles',$hash,['icon'=>'rebel','color'=>'E36B2A']);
