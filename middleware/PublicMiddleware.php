@@ -64,7 +64,7 @@ class PublicMiddleware extends \Middleware_base
 						$this->load->vars($variable_name, $this->$model_name->$model_method($args));
 					}
 				} else {
-					throw new Exception('Method "'.$model_method.'" doesn\'t exist on "'.$model_name.'"');
+					throw new \Exception('Method "'.$model_method.'" doesn\'t exist on "'.$model_name.'"');
 				}
 			}
 		}

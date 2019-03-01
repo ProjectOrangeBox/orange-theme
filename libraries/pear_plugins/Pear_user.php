@@ -9,7 +9,7 @@ class Pear_user extends \Pear_plugin
 		} elseif (property_exists(ci('user'), $name)) {
 			return ci('user')->$name;
 		} else {
-			throw new Exception('User property or method '.$name.' not available on user entity.');
+			throw new \Exception('User property or method '.$name.' not available on user entity.');
 		}
 	}
 }
