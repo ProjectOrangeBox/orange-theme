@@ -1,6 +1,6 @@
 <?php
 
-class Pear_field_label
+class Pear_field_label extends \Pear_plugin
 {
 	public function render($model=null, $field=null, $override_text=null)
 	{

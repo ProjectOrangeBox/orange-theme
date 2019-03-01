@@ -1,6 +1,6 @@
 <?php
 
-class Pear_checker extends Pear_plugin
+class Pear_checker extends \Pear_plugin
 {
 	public function render($name=null, $value=null, $checked=false, $extra=[])
 	{

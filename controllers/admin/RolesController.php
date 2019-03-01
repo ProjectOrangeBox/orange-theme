@@ -18,7 +18,7 @@
  * functions:
  *
  */
-class RolesController extends MY_Controller
+class RolesController extends \MY_Controller
 {
 	use admin_controller_trait;
 
@@ -45,7 +45,7 @@ class RolesController extends MY_Controller
 	 * @throws
 	 * @example
 	 */
-	public function detailsAction($id=null)
+	public function detailsAction(string $id = null) : void
 	{
 		if ($id) {
 			$this->data = $this->_edit_record($id);
@@ -69,7 +69,7 @@ class RolesController extends MY_Controller
 	 * @throws
 	 * @example
 	 */
-	public function indexPostAction()
+	public function indexPostAction() : void
 	{
 		$this->data['primary_key'] = ci('o_role_model')->insert(ci('input')->request());
 		$this->_add_permissions($this->data['primary_key']);
@@ -88,7 +88,7 @@ class RolesController extends MY_Controller
 	 * @throws
 	 * @example
 	 */
-	public function indexPatchAction()
+	public function indexPatchAction() : void
 	{
 		$data = ci('input')->request();
 		ci('o_role_model')->update($data);
@@ -108,7 +108,7 @@ class RolesController extends MY_Controller
 	 * @throws
 	 * @example
 	 */
-	public function indexDeleteAction()
+	public function indexDeleteAction() : void
 	{
 		ci('o_role_model')->delete(hex2bin(ci('input')->request('id')));
 		$this->_rest_output();
@@ -127,11 +127,12 @@ class RolesController extends MY_Controller
 	 * @throws
 	 * @example
 	 */
-	protected function _add_permissions($role_id)
+	protected function _add_permissions(int $role_id) : void
 	{
 		if (!ci('errors')->has()) {
 			ci('o_role_model')->remove_permission($role_id, null);
 			ci('o_role_model')->add_permission($role_id, ci('input')->request('permissions'));
 		}
 	}
-}
+
+} /* end class */

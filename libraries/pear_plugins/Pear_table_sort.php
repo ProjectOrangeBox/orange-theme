@@ -1,6 +1,6 @@
 <?php
 
-class Pear_table_sort extends Pear_plugin
+class Pear_table_sort extends \Pear_plugin
 {
 	public function __construct()
 	{

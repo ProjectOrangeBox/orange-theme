@@ -1,6 +1,6 @@
 <?php
 
-class Pear_tab_prepare extends Pear_plugin
+class Pear_tab_prepare extends \Pear_plugin
 {
 	public function render($records=null, $key=null, $sort_key=null)
 	{

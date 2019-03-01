@@ -1,6 +1,6 @@
 <?php
 
-class Pear_color_block extends Pear_plugin
+class Pear_color_block extends \Pear_plugin
 {
 	public function render($color_hex=null)
 	{

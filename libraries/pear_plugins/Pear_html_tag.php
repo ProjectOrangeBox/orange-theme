@@ -1,6 +1,6 @@
 <?php
 
-class Pear_html_tag extends Pear_plugin
+class Pear_html_tag extends \Pear_plugin
 {
 	public function render($tag=null, $attr=[], $content=false)
 	{

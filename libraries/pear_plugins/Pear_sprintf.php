@@ -1,6 +1,6 @@
 <?php
 
-class Pear_sprintf extends Pear_plugin
+class Pear_sprintf extends \Pear_plugin
 {
 	public function render($value=null, $format='', $empty_is='')
 	{

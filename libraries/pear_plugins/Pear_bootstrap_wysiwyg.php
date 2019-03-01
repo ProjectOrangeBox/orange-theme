@@ -12,7 +12,7 @@
  * @help WYSIWYG editor
  *
  */
-class Pear_bootstrap_wysiwyg extends Pear_plugin
+class Pear_bootstrap_wysiwyg extends \Pear_plugin
 {
 	public function __construct()
 	{

@@ -23,7 +23,7 @@
  * @uses # load - CodeIgniter Loader
  *
  */
-class AdminMiddleware extends Middleware_base
+class AdminMiddleware extends \Middleware_base
 {
 	public function request() : void
 	{

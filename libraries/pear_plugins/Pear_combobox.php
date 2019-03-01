@@ -10,7 +10,7 @@
  * this will position the icon inside on the right of the input field
  *
  */
-class Pear_combobox
+class Pear_combobox extends \Pear_plugin
 {
 	public function __construct()
 	{

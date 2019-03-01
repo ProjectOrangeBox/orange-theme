@@ -1,11 +1,11 @@
 <?php
 
-class Pear_delete_button
+class Pear_delete_button extends \Pear_plugin
 {
 	public function render($uri='', $attributes=[])
 	{
 		$name = (isset($attributes['primary_key'])) ? $attributes['primary_key'] : 'id';
-		
+
 		$html  = '<form action="'.$uri.'" method="delete" data-confirm="true" data-fadeout="tr">';
 		$html .= '<input type="hidden" name="'.$name.'" value="'.bin2hex($attributes[$name]).'">';
 		$html .= '<a href="#" class="js-button-submit">';

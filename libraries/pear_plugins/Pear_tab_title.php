@@ -1,7 +1,6 @@
 <?php
 
-
-class Pear_tab_title extends Pear_plugin
+class Pear_tab_title extends \Pear_plugin
 {
 	public function render($string=null)
 	{

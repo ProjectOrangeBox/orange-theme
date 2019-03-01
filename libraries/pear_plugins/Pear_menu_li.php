@@ -1,6 +1,6 @@
 <?php
 
-class Pear_menu_li extends Pear_plugin
+class Pear_menu_li extends \Pear_plugin
 {
 	public function render($permission=null, $url=null, $text=null)
 	{

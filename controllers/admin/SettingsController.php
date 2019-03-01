@@ -18,7 +18,7 @@
  * functions:
  *
  */
-class SettingsController extends MY_Controller
+class SettingsController extends \MY_Controller
 {
 	use admin_controller_trait;
 
@@ -45,7 +45,7 @@ class SettingsController extends MY_Controller
 	 * @throws
 	 * @example
 	 */
-	public function editorAction($id=null)
+	public function editorAction(string $id = null) : void
 	{
 		$data = $this->_edit_record($id);
 

@@ -1,5 +1,6 @@
 <?php
-class Pear_fa_enum_icon
+
+class Pear_fa_enum_icon extends \Pear_plugin
 {
 	public function render($value=-1, $string = 'circle-o|check-circle-o', $extra='fa-lg', $delimiter = '|')
 	{

@@ -20,7 +20,7 @@
  */
 use Whoops\Handler\PrettyPageHandler;
 
-class WhoopsMiddleware extends Middleware_base
+class WhoopsMiddleware extends \Middleware_base
 {
 	public function request() : void
 	{

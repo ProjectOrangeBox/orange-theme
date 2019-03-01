@@ -7,6 +7,7 @@ class Nav_sort_library
 
 	public function __construct(&$config)
 	{
+		$this->config = &$config;
 	}
 
 	/* convert tree into sort values */

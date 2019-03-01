@@ -1,6 +1,6 @@
 <?php
 
-class Pear_html_list extends Pear_plugin
+class Pear_html_list extends \Pear_plugin
 {
 	public function render($type='ul', $list=[], $attr=[], $indent='')
 	{

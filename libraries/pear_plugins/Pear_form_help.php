@@ -1,6 +1,6 @@
 <?php
 
-class Pear_form_help
+class Pear_form_help extends \Pear_plugin
 {
 	public function render($string='')
 	{

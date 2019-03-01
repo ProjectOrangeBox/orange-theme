@@ -1,6 +1,6 @@
 <?php
 
-class Pear_goback_button
+class Pear_goback_button extends \Pear_plugin
 {
 	public function render($uri='', $title='Go Back', $attributes=[])
 	{

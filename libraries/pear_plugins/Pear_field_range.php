@@ -1,6 +1,6 @@
 <?php
 
-class Pear_field_range extends Pear_plugin
+class Pear_field_range extends \Pear_plugin
 {
 	public function __construct()
 	{

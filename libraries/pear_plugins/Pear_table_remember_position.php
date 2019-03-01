@@ -1,6 +1,6 @@
 <?php
 
-class Pear_table_remember_position extends Pear_plugin
+class Pear_table_remember_position extends \Pear_plugin
 {
 	public function __construct()
 	{

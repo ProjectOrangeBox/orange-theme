@@ -1,6 +1,6 @@
 <?php
 
-class Pear_money extends Pear_plugin
+class Pear_money extends \Pear_plugin
 {
 	public function render($number=null)
 	{

@@ -1,5 +1,6 @@
 <?php
-class Pear_fa_dropdown
+
+class Pear_fa_dropdown extends \Pear_plugin
 {
 	public function render($name='', $value=null, $extra=[])
 	{

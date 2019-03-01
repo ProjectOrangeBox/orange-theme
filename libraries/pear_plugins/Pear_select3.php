@@ -1,7 +1,6 @@
 <?php
 
-
-class Pear_select3 extends Pear_plugin
+class Pear_select3 extends \Pear_plugin
 {
 	public function __construct()
 	{

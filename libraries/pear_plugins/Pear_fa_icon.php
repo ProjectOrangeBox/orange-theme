@@ -1,5 +1,6 @@
 <?php
-class Pear_fa_icon
+
+class Pear_fa_icon extends \Pear_plugin
 {
 	public function render($name='')
 	{

@@ -1,6 +1,6 @@
 <?php
 
-class Pear_date_picker
+class Pear_date_picker extends \Pear_plugin
 {
 	public function render($name='', $value=null, $extra=[])
 	{

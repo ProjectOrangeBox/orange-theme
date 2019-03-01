@@ -1,6 +1,6 @@
 <?php
 
-class Pear_form_helpers
+class Pear_form_helpers extends \Pear_plugin
 {
 	public function __construct()
 	{

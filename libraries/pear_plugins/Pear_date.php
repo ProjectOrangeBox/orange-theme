@@ -1,6 +1,6 @@
 <?php
 
-class Pear_date
+class Pear_date extends \Pear_plugin
 {
 	public function render($timestamp=null, $format=null)
 	{

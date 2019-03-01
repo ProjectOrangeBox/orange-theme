@@ -1,6 +1,6 @@
 <?php
 
-class Pear_catalog_lookup extends Pear_plugin
+class Pear_catalog_lookup extends \Pear_plugin
 {
 	public function render($model=null, $value=null, $human_column=null, $primary_key='id')
 	{

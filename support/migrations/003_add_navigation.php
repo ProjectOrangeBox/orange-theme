@@ -2,7 +2,7 @@
 
 /* 003_add_navigation.php */
 
-class Migration_003_add_navigation extends Migration_base
+class Migration_003_add_navigation extends \Migration_base
 {
 	public function up()
 	{
@@ -22,22 +22,22 @@ class Migration_003_add_navigation extends Migration_base
 
 		/* Admin Dashboard */
 		ci('o_nav_model')->migration_add('/admin/dashboard', 'Dashboard', $hash, ['icon'=>'rebel','color'=>'E36B2A']);
-		
+
 		/* Admin Nav */
 		ci('o_nav_model')->migration_add('/admin/nav', 'Nav', $hash, ['icon'=>'rebel','color'=>'E36B2A']);
-		
+
 		/* Admin Permissions */
 		ci('o_nav_model')->migration_add('/admin/permissions', 'Permissions', $hash, ['icon'=>'rebel','color'=>'E36B2A']);
-		
+
 		/* Admin Roles */
 		ci('o_nav_model')->migration_add('/admin/roles', 'Roles', $hash, ['icon'=>'rebel','color'=>'E36B2A']);
-		
+
 		/* Admin Settings */
 		ci('o_nav_model')->migration_add('/admin/settings', 'Settings', $hash, ['icon'=>'rebel','color'=>'E36B2A']);
-		
+
 		/* Admin Users */
 		ci('o_nav_model')->migration_add('/admin/users', 'Users', $hash, ['icon'=>'rebel','color'=>'E36B2A']);
-		
+
 		return true;
 	}
 
@@ -47,7 +47,7 @@ class Migration_003_add_navigation extends Migration_base
 		echo $hash.' down'.chr(10);
 
 		ci('o_nav_model')->migration_remove($hash);
-		
+
 		return true;
 	}
 } /* end migration */

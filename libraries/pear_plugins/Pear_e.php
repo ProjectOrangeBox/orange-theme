@@ -1,6 +1,6 @@
 <?php
 
-class Pear_e
+class Pear_e extends \Pear_plugin
 {
 	public function render($string=null, $functions=null)
 	{

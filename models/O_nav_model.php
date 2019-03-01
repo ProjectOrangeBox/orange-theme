@@ -45,7 +45,7 @@ CREATE TABLE `orange_nav` (
  * functions: setting
  *
  */
-class O_nav_model extends Database_model
+class O_nav_model extends \Database_model
 {
 	protected $table = 'orange_nav';
 	protected $rules = [

@@ -18,7 +18,7 @@
  * functions:
  *
  */
-class PublicMiddleware extends Middleware_base
+class PublicMiddleware extends \Middleware_base
 {
 	public function request() : void
 	{

@@ -1,6 +1,6 @@
 <?php
 
-class Pear_edit_button
+class Pear_edit_button extends \Pear_plugin
 {
 	public function render($uri='', $attributes=[])
 	{

@@ -18,7 +18,7 @@
  * functions:
  *
  */
-class LoginController extends MY_Controller
+class LoginController extends \MY_Controller
 {
 	public $controller_path   = '/login';
 

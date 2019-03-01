@@ -18,7 +18,7 @@
  * functions:
  *
  */
-class UsersController extends MY_Controller
+class UsersController extends \MY_Controller
 {
 	use admin_controller_trait;
 	public $controller        = 'users';
@@ -43,7 +43,7 @@ class UsersController extends MY_Controller
 	 * @throws
 	 * @example
 	 */
-	public function indexPostAction()
+	public function indexPostAction() : void
 	{
 		$posted = ci('input')->request();
 		$this->data['primary_key'] = ci('o_user_model')->insert($posted);
@@ -63,7 +63,7 @@ class UsersController extends MY_Controller
 	 * @throws
 	 * @example
 	 */
-	public function indexPatchAction()
+	public function indexPatchAction() : void
 	{
 		$posted = ci('input')->request();
 		ci('o_user_model')->update($posted);
@@ -83,7 +83,7 @@ class UsersController extends MY_Controller
 	 * @throws
 	 * @example
 	 */
-	public function indexDeleteAction()
+	public function indexDeleteAction() : void
 	{
 		ci('o_user_model')->delete(hex2bin(ci('input')->request('id')));
 		$this->_rest_output();
@@ -102,7 +102,7 @@ class UsersController extends MY_Controller
 	 * @throws
 	 * @example
 	 */
-	protected function _add_roles($user_id)
+	protected function _add_roles($user_id) : void
 	{
 		if (!ci('errors')->has()) {
 			ci('o_user_model')->remove_role($user_id, null);

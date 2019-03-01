@@ -1,6 +1,6 @@
 <?php
 
-class Pear_color_fa_icon extends Pear_plugin
+class Pear_color_fa_icon extends \Pear_plugin
 {
 	public function render($color=null, $icon=null)
 	{

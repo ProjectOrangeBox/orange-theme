@@ -1,6 +1,6 @@
 <?php
 
-class Pear_index_row_button extends Pear_plugin
+class Pear_index_row_button extends \Pear_plugin
 {
 	public function render($uri='', $icon='', $attributes=[])
 	{

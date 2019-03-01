@@ -2,7 +2,7 @@
 
 /* 002_add_permission.php */
 
-class Migration_002_add_permission extends Migration_base
+class Migration_002_add_permission extends \Migration_base
 {
 
 	/* example up function */
@@ -40,7 +40,7 @@ class Migration_002_add_permission extends Migration_base
 		ci('o_permission_model')->migration_add('url::/admin/permissions::index~post', 'Admin Permissions', 'Admin Permissions Index Post', $hash);
 		ci('o_permission_model')->migration_add('url::/admin/permissions::index~patch', 'Admin Permissions', 'Admin Permissions Index Patch', $hash);
 		ci('o_permission_model')->migration_add('url::/admin/permissions::index~delete', 'Admin Permissions', 'Admin Permissions Index Delete', $hash);
-		
+
 		/* Admin Nav */
 		ci('o_permission_model')->migration_add('url::/admin/nav::sort~get', 'Admin Nav', 'Admin Nav Sort Get', $hash);
 		ci('o_permission_model')->migration_add('url::/admin/nav::sort~post', 'Admin Nav', 'Admin Nav Sort Post', $hash);

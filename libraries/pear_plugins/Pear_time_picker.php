@@ -1,6 +1,6 @@
 <?php
 
-class Pear_time_picker extends Pear_plugin
+class Pear_time_picker extends \Pear_plugin
 {
 	public function render($name='', $value=null, $extra=[])
 	{

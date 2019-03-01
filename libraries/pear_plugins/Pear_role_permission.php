@@ -1,6 +1,6 @@
 <?php
 
-class Pear_role_permission extends Pear_plugin
+class Pear_role_permission extends \Pear_plugin
 {
 	public function render($name=null, $value=null)
 	{

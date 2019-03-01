@@ -1,6 +1,6 @@
 <?php
 
-class Pear_rest_form extends Pear_plugin
+class Pear_rest_form extends \Pear_plugin
 {
 	public function __construct()
 	{

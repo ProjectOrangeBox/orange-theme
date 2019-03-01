@@ -1,6 +1,6 @@
 <?php
 
-class Pear_header_button extends Pear_plugin
+class Pear_header_button extends \Pear_plugin
 {
 	public function render($uri='', $title='', $attributes=[])
 	{

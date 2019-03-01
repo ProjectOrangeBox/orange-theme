@@ -1,6 +1,6 @@
 <?php
 
-class Pear_color_picker extends Pear_plugin
+class Pear_color_picker extends \Pear_plugin
 {
 	public function __construct()
 	{

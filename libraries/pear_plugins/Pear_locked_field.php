@@ -1,6 +1,6 @@
 <?php
 
-class Pear_locked_field extends Pear_plugin
+class Pear_locked_field extends \Pear_plugin
 {
 	public function __construct()
 	{

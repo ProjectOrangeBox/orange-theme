@@ -21,7 +21,7 @@ https://github.com/RubaXa/Sortable#cdn
 </div>
 
 */
-class Pear_sortable extends Pear_plugin
+class Pear_sortable extends \Pear_plugin
 {
 	public function __construct()
 	{

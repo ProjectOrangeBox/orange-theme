@@ -1,6 +1,6 @@
 <?php
 
-class Pear_title extends Pear_plugin
+class Pear_title extends \Pear_plugin
 {
 	public function render($title='', $icon=null, $help='')
 	{

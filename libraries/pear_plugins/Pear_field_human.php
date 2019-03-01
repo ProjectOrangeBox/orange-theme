@@ -1,6 +1,6 @@
 <?php
 
-class Pear_field_human
+class Pear_field_human extends \Pear_plugin
 {
 	public function render($model=null, $field=null)
 	{

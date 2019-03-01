@@ -11,7 +11,7 @@
  * @help WYSIWYG editor
  *
  */
-class Pear_summernote extends Pear_plugin
+class Pear_summernote extends \Pear_plugin
 {
 	public function __construct()
 	{

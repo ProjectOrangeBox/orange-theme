@@ -9,7 +9,7 @@
  * so this is currently just passed to pear::dropdown(...)
  *
  */
- class Pear_datalist
+ class Pear_datalist extends \Pear_plugin
  {
 	 public function __construct()
 	 {

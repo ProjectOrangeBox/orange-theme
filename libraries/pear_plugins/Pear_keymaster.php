@@ -1,6 +1,6 @@
 <?php
 
-class Pear_keymaster extends Pear_plugin
+class Pear_keymaster extends \Pear_plugin
 {
 	public function __construct()
 	{

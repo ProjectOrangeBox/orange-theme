@@ -1,6 +1,6 @@
 <?php
 
-class NavbarMiddleware extends Middleware_base
+class NavbarMiddleware extends \Middleware_base
 {
 	public function request() : void
 	{

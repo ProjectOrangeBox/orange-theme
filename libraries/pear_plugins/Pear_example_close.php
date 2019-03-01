@@ -1,6 +1,6 @@
 <?php
 
-class Pear_example_close extends Pear_plugin
+class Pear_example_close extends \Pear_plugin
 {
 	public function render()
 	{

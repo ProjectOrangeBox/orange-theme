@@ -1,6 +1,6 @@
 <?php
 
-class Pear_tabs extends Pear_plugin
+class Pear_tabs extends \Pear_plugin
 {
 	public function render($array=[])
 	{

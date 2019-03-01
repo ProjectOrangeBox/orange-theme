@@ -1,6 +1,6 @@
 <?php
 
-class Pear_confirm_dialog
+class Pear_confirm_dialog extends \Pear_plugin
 {
 	public function __construct()
 	{
