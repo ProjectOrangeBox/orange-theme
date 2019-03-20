@@ -60,6 +60,7 @@ class O_nav_model extends \Database_model
 		'color'        => ['field' => 'color', 'label' => 'Color', 'rules' => 'if_empty[d28445]|filter_hex[6]|max_length[6]|filter_input[6]'],
 		'icon'         => ['field' => 'icon', 'label' => 'Icon', 'rules' => 'if_empty[square]|max_length[32]|filter_input[32]'],
 		'target'       => ['field' => 'target', 'label' => 'Target', 'rules' => 'filter_input[128]'],
+		'migration'   => ['field' => 'migration', 'label' => 'Migration', 'rules' => 'max_length[255]'],
 	];
 	protected $has = [
 		'read_role'=>'read_role_id',
@@ -151,7 +152,7 @@ class O_nav_model extends \Database_model
 	}
 
 	/* migration */
-	public function migration_add($url=null, $text=null, $migration=null, $optional=[])
+	public function migration_add(string $url,string $text,string $migration,array $optional=[])
 	{
 		$this->skip_rules = true;
 
@@ -183,9 +184,11 @@ class O_nav_model extends \Database_model
 		return (!$this->exists(['url'=>$url,'text'=>$text])) ? $this->insert($columns) : false;
 	}
 
-	public function migration_remove(string $migration=null) : bool
+	public function migration_remove(string $migration) : bool
 	{
 		$this->skip_rules = true;
+
+		unset($this->has['delete_role']);
 
 		return $this->delete_by(['migration'=>$migration]);
 	}

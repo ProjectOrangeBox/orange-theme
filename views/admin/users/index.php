@@ -33,16 +33,12 @@
 					<td><?=e($row->email) ?></td>
 					<td class="text-center"><?=pear::fa_enum_icon($row->is_active) ?></td>
 					<td class="text-center actions">
-						<?php if (pear::user('has_role', $row->edit_role_id)) {
-				?>
+						<?php if (pear::user('has_role', $row->edit_role_id)) { ?>
 							<?=pear::edit_button($controller_path.'/details/'.bin2hex($row->id)) ?>
-						<?php
-			} ?>
-						<?php if (pear::user('has_role', $row->delete_role_id)) {
-				?>
+						<?php } ?>
+						<?php if (pear::user('has_role', $row->delete_role_id)) { ?>
 							<?=pear::delete_button($controller_path, ['id'=>$row->id]) ?>
-						<?php
-			} ?>
+						<?php } ?>
 					</td>
 				</tr>
 			<?php

@@ -35,10 +35,14 @@ class NavController extends \MY_Controller
 
 	public function detailsAction(string $id = null) : void
 	{
-		$nav_options[1] = '~ Root';
+		$nav_options[1] = '~ Root ~';
 
-		foreach (ci('o_nav_model')->catalog('id', '*', null, 'text') as $rec_id=>$obj) {
-			$nav_options[$rec_id] = $obj->text.' ~ '.$obj->url;
+		$records = ci('o_nav_model')->catalog('id', '*', null, 'text');
+
+		foreach ($records as $record) {
+			$text = (empty($record['url'])) ? $record['text'] : $record['text'].' ~ '.$record['url'];
+
+			$nav_options[$record['id']] = $text;
 		}
 
 		ci('page')->data('nav_options', $nav_options);
