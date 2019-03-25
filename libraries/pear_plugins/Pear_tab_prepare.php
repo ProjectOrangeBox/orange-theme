@@ -7,7 +7,13 @@ class Pear_tab_prepare extends \Pear_plugin
 		$tabs = [];
 
 		foreach ($records as $row) {
-			$tabs[$row[$key]][$row[$sort_key]] = $row;
+			if (is_object($row)) {
+				$tabs[$row->$key][$row->$sort_key] = $row;
+			} elseif (is_array($row)) {
+				$tabs[$row[$key]][$row[$sort_key]] = $row;
+			} else {
+				throw new exception('Pear Tab Prepare records not a object or array.',404);
+			}
 		}
 
 		ksort($tabs);
