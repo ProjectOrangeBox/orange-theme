@@ -7,7 +7,7 @@ class Pear_tab_prepare extends \Pear_plugin
 		$tabs = [];
 
 		foreach ($records as $row) {
-			$tabs[$row->$key][$row->$sort_key] = $row;
+			$tabs[$row[$key]][$row[$sort_key]] = $row;
 		}
 
 		ksort($tabs);

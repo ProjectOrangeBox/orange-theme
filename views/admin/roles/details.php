@@ -35,34 +35,28 @@
 
 	<!-- Nav tabs -->
 	<ul class="nav nav-pills js-tabs">
-		<?php foreach (pear::tabs($tabs) as $tn) {
-	?>
+		<?php foreach (pear::tabs($tabs) as $tn) { ?>
 		<li>
 			<a href="#<?=pear::tab_id($tn) ?>" data-toggle="pill"><?=pear::tab_title($tn) ?></a>
 		</li>
-		<?php
-} ?>
+		<?php } ?>
 	</ul>
 
 	<hr class="shadow">
 	<!-- tab panels -->
 	<div class="tab-content">
-		<?php foreach ($tabs as $tn=>$tab_set) {
-		?>
+		<?php foreach ($tabs as $tn=>$tab_set) { ?>
 		<div class="tab-pane" id="<?=pear::tab_id($tn) ?>">
-			<?php foreach ($tab_set as $row) {
-			?>
+			<?php foreach ($tab_set as $row) { ?>
 				<!-- Checkbox -->
 				<div class="col-md-4">
 					<div class="checkbox">
-						<label><?=pear::checkbox('permissions[]', $row->id, (array_key_exists($row->id, $permissions))) ?> <?=$row->description ?></label>
+						<label><?=pear::checkbox('permissions[]', $row['id'], (array_key_exists($row['id'], $permissions))) ?> <?=$row['description'] ?></label>
 					</div>
 				</div>
-			<?php
-		} ?>
+			<?php } ?>
 		</div>
-		<?php
-	} ?>
+		<?php } ?>
 	</div>
 
 	<!-- Submit Button -->
