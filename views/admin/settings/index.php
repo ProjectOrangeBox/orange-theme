@@ -29,7 +29,6 @@
 					<tr class="panel-default">
 						<th class="panel-heading text-center">&nbsp;</th>
 						<th class="panel-heading">Name</th>
-						<th class="panel-heading">Group</th>
 						<th class="panel-heading text-center">Actions</th>
 					</tr>
 				</thead>
@@ -39,7 +38,6 @@
 						<tr>
 							<td class="text-center"><?=pear::fa_enum_icon($row->enabled) ?></td>
 							<td><?=e($row->name) ?></td>
-							<td><?=e($row->group) ?></td>
 							<td class="text-center actions">
 								<?php if (pear::user('has_role', $row->edit_role_id)) { ?>
 									<?=pear::edit_button($controller_path.'/editor/'.bin2hex($row->id)) ?>
