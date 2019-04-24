@@ -111,7 +111,7 @@ orange.get = function(url,data,success) {
 
 orange.notice_off_element = function(element,options) {
 	var data = element.data();
-	
+
 	$.extend(data,options);
 
 	if (data.msg) {
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded",function(e){
 	 */
 	$('.js-get').click(function(e) {
 		e.preventDefault();
-		
+
 		/* save this for the success function */
 		orange.js_get_that = $(this);
 
@@ -151,3 +151,29 @@ document.addEventListener("DOMContentLoaded",function(e){
 
 	$('.hide-until-domready').show();
 });
+
+function orangejax(method,url,data,handlers) {
+	var statusCodeDefaults = {
+		200: function(response) { notify.addSuccess('200 OK') }, /* 200 OK */
+		201: function(response) { notify.addSuccess('201 Created') }, /* 201 Created after insert/post */
+		202: function(response) { notify.addSuccess('202 Accepted') }, /* 202 Accepted after update/patch */
+
+		401: function(response) { notify.addError('401 Unauthorized') }, /* 401 Unauthorized - no access to resource */
+
+		404: function(response) { notify.addError('404 Not Found') }, /* 404 Not Found - resource not found update/patch read/get */
+		406: function(response) { notify.addError('406 Not Acceptable') }, /* 406 Not Acceptable - input error on update/patch insert/post delete/delete */
+
+		500: function(response) { notify.addError('500 Internal Server Error') }, /* 500 Internal Server Error */
+	};
+
+	jQuery.ajax({
+		method: method,
+		url: url,
+		data: data,
+		dataType: 'json',
+		cache: false,
+		timeout: 5000, /* 5 seconds */
+		async: true,
+		statusCode: Object.assign(statusCodeDefaults,handlers),
+	});
+}

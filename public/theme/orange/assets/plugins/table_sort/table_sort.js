@@ -1,19 +1,19 @@
 /**
- * 
+ *
  * Create the object to hold the properties and methods
  *
  */
 var table_sort = {};
 
 /**
- * 
+ *
  * Default direction
  *
  */
 table_sort.dir = 'desc';
 
 /**
- * 
+ *
  * Do the actual sort
  *
  */
@@ -36,9 +36,9 @@ table_sort.sort = function(index,dir) {
 }
 
 /**
- * 
+ *
  * Load the last sort if any
- * 
+ *
  *
  */
  table_sort.load = function() {
@@ -52,9 +52,9 @@ table_sort.sort = function(index,dir) {
 }
 
 /**
- * 
+ *
  * Save the Last Sort
- * 
+ *
  *
  */
  table_sort.save = function(index,dir) {
@@ -62,23 +62,23 @@ table_sort.sort = function(index,dir) {
 }
 
 /**
- * 
- * handle clicks
  *
- */
- $('table.table-sort thead tr th:not(.nosort)').prepend('<i class="fa fa-sort"></i> ').on('click',function() {
-	/* which direction are we going now? */
-	table_sort.dir = (table_sort.dir == 'asc') ? 'desc' : 'asc';
-
-	/* find out which column we clicked and send in the dir */
-	table_sort.sort($('table.table-sort thead tr th').index(this) + 1,table_sort.dir);
-});
-
-/**
- * 
  * or sort if it's dynamically loaded
  *
  */
  $(document).on('orange_table_updated',{},function(tbody){
+	/**
+	 *
+	 * handle clicks
+	 *
+	 */
+	$('table.table-sort thead tr th:not(.nosort)').prepend('<i class="fa fa-sort"></i> ').on('click',function() {
+		/* which direction are we going now? */
+		table_sort.dir = (table_sort.dir == 'asc') ? 'desc' : 'asc';
+
+		/* find out which column we clicked and send in the dir */
+		table_sort.sort($('table.table-sort thead tr th').index(this) + 1,table_sort.dir);
+	});
+
 	table_sort.load();
 });
