@@ -20,7 +20,7 @@ var app = {
 				/* now let's bind it */
 				if (!app.isattached) {
 					/* we only bind once! every thing else we just change app object directly */
-					tinybind.bind(document.getElementById('app'),app);
+					tinybind.bind(jQuery('#app'),app);
 					app.isattached = true;
 				}
 
@@ -28,7 +28,11 @@ var app = {
 			},
 		}
 
-		orangejax('get',document.getElementById('app').getAttribute('data-url'),{},handlers);
+		var appObject = jQuery('#app');
+
+		if (appObject) {
+			orangejax('get',appObject.data('url'),{},handlers);
+		}
 	},
 	events: {
 		goback(event) {

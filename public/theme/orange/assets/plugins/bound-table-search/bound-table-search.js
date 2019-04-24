@@ -14,20 +14,22 @@ BoundTableSearch.search = function() {
 BoundTableSearch.regular_expression_search = function(searchTerm) {
 	BoundTableSearch.determineIcons(searchTerm);
 
-	if (searchTerm.length > 0) {
-		console.log('filtering: ' + $(BoundTableSearch.table_class).length);
-		/* run filter */
-		var rex = new RegExp(searchTerm, 'i');
+	if (searchTerm) {
+		if (searchTerm.length > 0) {
+			console.log('filtering: ' + $(BoundTableSearch.table_class).length);
+			/* run filter */
+			var rex = new RegExp(searchTerm, 'i');
 
-		/* hide the tr's */
-		$(BoundTableSearch.table_class).hide();
+			/* hide the tr's */
+			$(BoundTableSearch.table_class).hide();
 
-		/* filter them */
-		$(BoundTableSearch.table_class).filter(function () { return rex.test($(this).text()); }).show(); /* show them again */
-	} else {
-		console.log('filtering: show all');
-		/* show all */
-		$(BoundTableSearch.table_class).show();
+			/* filter them */
+			$(BoundTableSearch.table_class).filter(function () { return rex.test($(this).text()); }).show(); /* show them again */
+		} else {
+			console.log('filtering: show all');
+			/* show all */
+			$(BoundTableSearch.table_class).show();
+		}
 	}
 
 	BoundTableSearch.updateCount();
@@ -61,13 +63,15 @@ BoundTableSearch.save = function(searchTerm) { $.jStorage.set(controller_path+'s
 BoundTableSearch.setField = function(searchTerm) { BoundTableSearch.currentSearch = searchTerm; BoundTableSearch.field.val(searchTerm); }
 BoundTableSearch.getField = function() { return BoundTableSearch.field.val(); }
 
-BoundTableSearch.determineIcons = function(search_term) {
-	if (search_term.length > 0) {
-		BoundTableSearch.field.css({'background-color':'#F0F2F7'});
-		BoundTableSearch.field.next().addClass('text-info');
-	} else {
-		BoundTableSearch.field.css({'background-color':''});
-		BoundTableSearch.field.next().removeClass('text-info');
+BoundTableSearch.determineIcons = function(searchTerm) {
+	if (searchTerm) {
+		if (searchTerm.length > 0) {
+			BoundTableSearch.field.css({'background-color':'#F0F2F7'});
+			BoundTableSearch.field.next().addClass('text-info');
+		} else {
+			BoundTableSearch.field.css({'background-color':''});
+			BoundTableSearch.field.next().removeClass('text-info');
+		}
 	}
 }
 
