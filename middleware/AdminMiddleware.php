@@ -25,19 +25,21 @@
  */
 class AdminMiddleware extends \Middleware_base
 {
-	public function request() : void
+	public function request(array $request) : array
 	{
 		/**
 		 * Create the URL key and test if they have permissions
 		 */
-		$this->load->library('auth');
+		ci('load')->library('auth');
 
-		$key = 'url::/'.strtolower($this->router->fetch_directory().$this->router->fetch_class(true).'::'.$this->router->fetch_method(true).'~'.$this->router->fetch_request_method());
+		$key = 'url::/'.strtolower(ci('router')->fetch_directory().ci('router')->fetch_class(true).'::'.ci('router')->fetch_method(true).'~'.ci('router')->fetch_request_method());
 
 		log_message('debug', $key);
 
-		if ($this->user->cannot($key)) {
-			$this->errors->display(403);
+		if (ci('user')->cannot($key)) {
+			ci('errors')->display(403);
 		}
+
+		return $request;
 	}
 }

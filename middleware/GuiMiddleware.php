@@ -20,21 +20,21 @@
  */
 class GuiMiddleware extends \Middleware_base
 {
-	public function request() : void
+	public function request(array $request) : array
 	{
-		$this->load->library('page');
+		ci('load')->library('page');
 
 		/* this will speed it up a little bit */
-		$this->output->parse_exec_vars = false;
+		ci('output')->parse_exec_vars = false;
 
-		$route = $this->router->fetch_route();
+		$route = ci('router')->fetch_route();
 
 		$controller_path = '/'.str_replace('/index', '', $route);
 
 		/* is the user object setup? */
-		if (is_object($this->user)) {
-			$uid = 'uid-'.md5($this->user->id.config('config.encryption_key'));
-			$is = ($this->user->logged_in()) ? 'is-logged-in' : 'is-not-logged-in';
+		if (is_object(ci('user'))) {
+			$uid = 'uid-'.md5(ci('user')->id.config('config.encryption_key'));
+			$is = (ci('user')->logged_in()) ? 'is-logged-in' : 'is-not-logged-in';
 		} else {
 			$uid = 'uid-guest';
 			$is = 'is-not-logged-in';
@@ -42,7 +42,7 @@ class GuiMiddleware extends \Middleware_base
 
 		$base_url = trim(base_url(), '/');
 
-		$this->page
+		ci('page')
 			->set_default_view(str_replace('-', '_', $route))
 			->body_class([str_replace('/', ' uri-', str_replace('_', '-', $controller_path)).' '.$uid.' '.$is])
 			->js_variables([
@@ -52,10 +52,12 @@ class GuiMiddleware extends \Middleware_base
 				'user_id'					=> $uid,
 			])
 			->data([
-				'controller'        => $this->controller,
-				'controller_path'   => $this->controller_path,
-				'controller_title'  => $this->controller_title,
-				'controller_titles' => $this->controller_titles,
+				'controller'        => ci()->controller,
+				'controller_path'   => ci()->controller_path,
+				'controller_title'  => ci()->controller_title,
+				'controller_titles' => ci()->controller_titles,
 			]);
+
+		return $request;
 	}
 }

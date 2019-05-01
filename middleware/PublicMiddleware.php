@@ -20,7 +20,7 @@
  */
 class PublicMiddleware extends \Middleware_base
 {
-	public function request() : void
+	public function request(array $request) : array
 	{
 		/**
 		 * Autoload:
@@ -32,20 +32,20 @@ class PublicMiddleware extends \Middleware_base
 		 *
 		 * This really isn't needed anymore with the use of ci() which will autoload if it's not already loaded
 		 */
-		if ($this->libraries) {
-			$this->load->library((array) $this->libraries);
+		if (ci()->libraries) {
+			ci('load')->library((array) ci()->libraries);
 		}
 
-		if ($this->models) {
-			$this->load->model((array) $this->models);
+		if (ci()->models) {
+			ci('load')->model((array) ci()->models);
 		}
 
-		if ($this->helpers) {
-			$this->load->helpers((array) $this->helpers);
+		if (ci()->helpers) {
+			ci('load')->helpers((array) ci()->helpers);
 		}
 
-		if ($this->catalogs) {
-			foreach ($this->catalogs as $variable_name=>$args) {
+		if (ci()->catalogs) {
+			foreach (ci()->catalogs as $variable_name=>$args) {
 				if (!is_array($args)) {
 					$model_name = $args;
 					$args = [];
@@ -53,15 +53,23 @@ class PublicMiddleware extends \Middleware_base
 					$model_name = $args['model'];
 				}
 
-				$this->load->model($model_name);
+				ci('load')->model($model_name);
 
 				$model_method = (isset($args['method'])) ? $args['method'] : 'catalog';
 
-				if (method_exists($this->$model_name, $model_method)) {
+				if (method_exists(ci()->$model_name, $model_method)) {
+					/* Are they calling the standard catalog for which we know all of the parameters to pass */
 					if ($model_method == 'catalog') {
-						$this->load->vars($variable_name, $this->$model_name->$model_method(@$args['array_key'], @$args['select'], @$args['where'], @$args['order_by'], @$args['cache'], (bool)$args['with_deleted']));
+						/* we know the parameters */
+						$with_deleted = @$args['with_deleted'];
+						$ignore_read = @$args['ignore_read'];
+
+						$catalog = ci()->$model_name->catalog(@$args['array_key'],@$args['select'],@$args['where'],@$args['order_by'],@$args['cache'],(bool)$with_deleted,(bool)$ignore_read);
+
+						ci('load')->vars($variable_name,$catalog);
 					} else {
-						$this->load->vars($variable_name, $this->$model_name->$model_method($args));
+						/* they are calling different method on the model to create the catalog - so we pass all of the parameters as an array */
+						ci('load')->vars($variable_name, ci()->$model_name->$model_method($args));
 					}
 				} else {
 					throw new \Exception('Method "'.$model_method.'" doesn\'t exist on "'.$model_name.'"');
@@ -69,8 +77,10 @@ class PublicMiddleware extends \Middleware_base
 			}
 		}
 
-		if ($this->controller_model) {
-			$this->load->model(strtolower($this->controller_model));
+		if (ci()->controller_model) {
+			ci('load')->model(strtolower(ci()->controller_model));
 		}
+
+		return $request;
 	}
 }

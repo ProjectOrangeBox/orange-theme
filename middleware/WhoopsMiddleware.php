@@ -22,12 +22,14 @@ use Whoops\Handler\PrettyPageHandler;
 
 class WhoopsMiddleware extends \Middleware_base
 {
-	public function request() : void
+	public function request(array $request) : array
 	{
 		if ($_ENV['DEBUG'] == 'development') {
 			$whoops = new \Whoops\Run;
 			$whoops->pushHandler(new Whoops\Handler\PrettyPageHandler());
 			$whoops->register();
 		}
+
+		return $request;
 	}
 }

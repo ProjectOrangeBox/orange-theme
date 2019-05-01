@@ -2,11 +2,17 @@
 
 class NavbarMiddleware extends \Middleware_base
 {
-	public function request() : void
+	public function responds(string $output = '') : string
 	{
-		$this->event->register('nav_library.html', function (&$html) {
-			$html = str_replace('{username}', $this->user->username, $html);
-			$html = str_replace('{email}', $this->user->email, $html);
-		});
+		if (preg_match_all('/<li(.*){username}(.*)<\/li>/m', $output, $matches, PREG_SET_ORDER, 0)) {
+			$output = str_replace($matches[1].'{username}'.$matches[2], ci('user')->username, $output);
+		}
+
+		if (preg_match_all('/<li(.*){email}(.*)<\/li>/m', $output, $matches, PREG_SET_ORDER, 0)) {
+			$output = str_replace($matches[1].'{email}'.$matches[2], ci('user')->email, $output);
+		}
+
+		return $output;
 	}
+
 }
