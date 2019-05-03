@@ -74,5 +74,5 @@ document.addEventListener("DOMContentLoaded",function(e){
 	BoundTableSearch.field.on('keyup',debounce(function(){ BoundTableSearch.search(); },500));
 
 	BoundTableSearch.load();
-	//BoundTableSearch.search();
+	BoundTableSearch.search();
 });

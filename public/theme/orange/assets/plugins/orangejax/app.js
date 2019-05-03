@@ -109,6 +109,8 @@ var app = {
 	}
 };
 
+/*
 document.addEventListener('DOMContentLoaded',function(){
-	app.init();
+	//app.init();
 });
+*/
