@@ -18,7 +18,6 @@ BoundTableSearch.search = function() {
 		$(BoundTableSearch.table_class).filter(function () {
 			return rex.test($(this).text().replace(/(\r\n|\n|\r)/gm," "));
 		}).show(); /* show this row again */
-
 	} else {
 		/* show all */
 		$(BoundTableSearch.table_class).show();
