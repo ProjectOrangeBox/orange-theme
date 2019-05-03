@@ -24,9 +24,9 @@ BoundTableSearch.search = function() {
 		$(BoundTableSearch.table_class).show();
 	}
 
-	BoundTableSearch.updateCount(searchTerm);
-	BoundTableSearch.determineIcons(searchTerm);
 	BoundTableSearch.save(searchTerm);
+	BoundTableSearch.determineIcons(searchTerm);
+	BoundTableSearch.updateCount(searchTerm);
 }
 
 BoundTableSearch.updateCount = function(searchTerm) {
