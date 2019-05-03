@@ -76,5 +76,5 @@ document.addEventListener("DOMContentLoaded",function(e){
 		tableSort.sort(tableSort.index,tableSort.dir);
 	});
 
-	tableSort.load();
+	//tableSort.load();
 });

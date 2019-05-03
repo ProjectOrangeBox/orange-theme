@@ -1,67 +1,52 @@
 /* Create the object to hold the search properties and methods */
 var BoundTableSearch = {};
 
-BoundTableSearch.currentSearch = '';
-
 /* Do the actual search */
 BoundTableSearch.search = function() {
-	BoundTableSearch.currentSearch = BoundTableSearch.getField();
-	BoundTableSearch.regular_expression_search(BoundTableSearch.currentSearch);
-	BoundTableSearch.save(BoundTableSearch.currentSearch);
-}
-
-/* Do a regular expression search on the table */
-BoundTableSearch.regular_expression_search = function(searchTerm) {
-	BoundTableSearch.determineIcons(searchTerm);
+	var searchTerm = BoundTableSearch.getField();
 
 	if (searchTerm.length > 0) {
-		/* run filter */
-		var rex = new RegExp(searchTerm, 'img');
+		/* run regular expression search on table text */
 
 		/* hide the tr's */
 		$(BoundTableSearch.table_class).hide();
 
-		/* filter them */
-		$(BoundTableSearch.table_class).not(':first').filter(function () {
-			return rex.test($(this).text().replace(/(\r\n|\n|\r)/gm," "));
-		}).show(); /* show them again */
+		/* build javascript regular expression object */
+		var rex = new RegExp(searchTerm,'img');
 
-		console.log('bound table search filtering on "'+searchTerm+'" showing ' + $(BoundTableSearch.table_class+':visible').length);
+		/* filter them */
+		$(BoundTableSearch.table_class).filter(function () {
+			return rex.test($(this).text().replace(/(\r\n|\n|\r)/gm," "));
+		}).show(); /* show this row again */
+
 	} else {
-		console.log('bound table search showing all');
 		/* show all */
 		$(BoundTableSearch.table_class).show();
 	}
 
-	BoundTableSearch.updateCount();
+	BoundTableSearch.updateCount(searchTerm);
+	BoundTableSearch.determineIcons(searchTerm);
+	BoundTableSearch.save(searchTerm);
 }
 
-BoundTableSearch.updateCount = function() {
+BoundTableSearch.updateCount = function(searchTerm) {
 	var vis = $(BoundTableSearch.table_class+':visible').length;
 	var all = $(BoundTableSearch.table_class).length;
 	var shown = (vis != all) ? vis + ' of ' + all : all;
 
 	BoundTableSearch.count_element.html(shown);
+
+	console.log('bound table search filtering on "'+searchTerm+'" showing ' + shown);
 }
 
 /* Load the search term into the input field and do the search */
-BoundTableSearch.load = function() {
-	BoundTableSearch.currentSearch = $.jStorage.get(controller_path+'bts','');
-
-	if (BoundTableSearch.currentSearch != '') {
-		/* put it back in the field */
-		BoundTableSearch.setField(BoundTableSearch.currentSearch);
-
-		/* do the search */
-		BoundTableSearch.search();
-	}
-}
+BoundTableSearch.load = function() { BoundTableSearch.setField($.jStorage.get(controller_path+'bts','')); }
 
 /* Place the last search into the search box change the background color as needed */
 BoundTableSearch.save = function(searchTerm) { $.jStorage.set(controller_path+'bts',searchTerm); }
 
 /* Set and Get the search from the search field */
-BoundTableSearch.setField = function(searchTerm) { BoundTableSearch.currentSearch = searchTerm; BoundTableSearch.field.val(searchTerm); }
+BoundTableSearch.setField = function(searchTerm) { BoundTableSearch.field.val(searchTerm); }
 BoundTableSearch.getField = function() { return BoundTableSearch.field.val(); }
 
 BoundTableSearch.determineIcons = function(searchTerm) {
@@ -89,4 +74,5 @@ document.addEventListener("DOMContentLoaded",function(e){
 	BoundTableSearch.field.on('keyup',debounce(function(){ BoundTableSearch.search(); },500));
 
 	BoundTableSearch.load();
+	//BoundTableSearch.search();
 });
