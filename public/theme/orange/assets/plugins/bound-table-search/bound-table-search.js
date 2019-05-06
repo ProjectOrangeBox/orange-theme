@@ -59,7 +59,9 @@ BoundTableSearch.determineIcons = function(searchTerm) {
 }
 
 /* Update Trigger Handler */
-$(document).on('orange_table_updated',{},function() { BoundTableSearch.search(); });
+$(document).on('orange_table_updated',{},function() {
+	BoundTableSearch.search();
+});
 
 /* After the page is loaded load a search */
 document.addEventListener("DOMContentLoaded",function(e){
@@ -73,5 +75,6 @@ document.addEventListener("DOMContentLoaded",function(e){
 	BoundTableSearch.field.on('keyup',debounce(function(){ BoundTableSearch.search(); },500));
 
 	BoundTableSearch.load();
-	BoundTableSearch.search();
+	//BoundTableSearch.search();
+	$(document).trigger('orange_table_updated');
 });
