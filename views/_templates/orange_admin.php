@@ -1,4 +1,4 @@
-<?php pear::plugins('confirm_dialog,flash_msg,form_helpers,input_mask,keymaster,rest_form,select3,table_sticky_header,tab_save,table_sort,table_remember_position,bind,notify,bootbox') ?>
+<?php pear::plugins('confirm_dialog,flash_msg,form_helpers,input_mask,keymaster,rest_form,select3,table_sticky_header,tab_save,table_sort,table_remember_position,notify,bootbox') ?>
 
 <?php pear::section('page_js') ?>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
