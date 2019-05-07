@@ -11,8 +11,9 @@ BoundTableSearch.search = function() {
 		/* hide the tr's */
 		$(BoundTableSearch.table_class).hide();
 
+		/* wildcard - still needs to be in order of the columns */
 		/* build javascript regular expression object */
-		var rex = new RegExp(searchTerm,'img');
+		var rex = new RegExp(searchTerm.replace('*','(.*)'),'img');
 
 		/* filter them */
 		$(BoundTableSearch.table_class).filter(function () {
