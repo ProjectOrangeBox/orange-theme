@@ -13,7 +13,13 @@ BoundTableSearch.search = function() {
 
 		/* wildcard - still needs to be in order of the columns */
 		/* build javascript regular expression object */
-		var rex = new RegExp(searchTerm.replace(/\*/gi,'(.*)'),'img');
+
+		var searchReg = searchTerm.replace(/[-[\]{}()+?.,\\^$|#\s]/g, '\\$&');
+		searchReg = searchReg.replace(/\*/gi,'(.*)');
+
+		console.log('filter regular expression '+searchReg);
+
+		var rex = new RegExp(searchReg,'img');
 
 		/* filter them */
 		$(BoundTableSearch.table_class).filter(function () {
