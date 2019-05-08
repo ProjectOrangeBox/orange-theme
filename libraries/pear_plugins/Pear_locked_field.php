@@ -4,7 +4,7 @@ class Pear_locked_field extends \Pear_plugin
 {
 	public function __construct()
 	{
-		ci('page')->js('/theme/orange/assets/plugins/plugin-locked-field/plugin_locked_field.js');
+		ci('page')->js('/theme/orange/assets/plugins/plugin-locked-field/plugin_locked_field'.PAGE_MIN.'.js');
 	}
 
 	public function render($name=null, $value=null, $extra=[])
@@ -12,7 +12,7 @@ class Pear_locked_field extends \Pear_plugin
 		$extra = array_merge(['default'=>'lock','can'=>'####','class'=>''], $extra);
 
 		$show_lock = true;
-		
+
 		/* if this is a post (ie. new record) don't show the lock / unlock */
 		if (strtolower($extra['method']) == 'post') {
 			$extra['default'] = '';

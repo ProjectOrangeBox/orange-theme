@@ -154,16 +154,16 @@ document.addEventListener("DOMContentLoaded",function(e){
 
 function orangejax(method,url,data,handlers) {
 	var statusCodeDefaults = {
-		200: function(response) { notify.addSuccess('200 OK') }, /* 200 OK */
-		201: function(response) { notify.addSuccess('201 Created') }, /* 201 Created after insert/post */
-		202: function(response) { notify.addSuccess('202 Accepted') }, /* 202 Accepted after update/patch */
+		200: function(data, textStatus, jqXHR) { notify.addSuccess('200 OK') }, /* 200 OK */
+		201: function(data, textStatus, jqXHR) { notify.addSuccess('201 Created') }, /* 201 Created after insert/post */
+		202: function(data, textStatus, jqXHR) { notify.addSuccess('202 Accepted') }, /* 202 Accepted after update/patch */
 
-		401: function(response) { notify.addError('401 Unauthorized') }, /* 401 Unauthorized - no access to resource */
+		401: function(jqXHR, textStatus, errorThrown) { notify.addError('401 Unauthorized') }, /* 401 Unauthorized - no access to resource */
 
-		404: function(response) { notify.addError('404 Not Found') }, /* 404 Not Found - resource not found update/patch read/get */
-		406: function(response) { notify.addError('406 Not Acceptable') }, /* 406 Not Acceptable - input error on update/patch insert/post delete/delete */
+		404: function(jqXHR, textStatus, errorThrown) { notify.addError('404 Not Found') }, /* 404 Not Found - resource not found update/patch read/get */
+		406: function(jqXHR, textStatus, errorThrown) { notify.addError('406 Not Acceptable') }, /* 406 Not Acceptable - input error on update/patch insert/post delete/delete */
 
-		500: function(response) { notify.addError('500 Internal Server Error') }, /* 500 Internal Server Error */
+		500: function(jqXHR, textStatus, errorThrown) { notify.addError('500 Internal Server Error') }, /* 500 Internal Server Error */
 	};
 
 	jQuery.ajax({

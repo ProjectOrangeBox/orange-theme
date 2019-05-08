@@ -18,11 +18,11 @@ class Pear_bootstrap_wysiwyg extends \Pear_plugin
 	{
 		ci('page')
 		->js([
-			'/theme/orange/assets/plugins/bootstrap_wysiwyg/vendor/jquery.hotkeys.js',
-			'/theme/orange/assets/plugins/bootstrap_wysiwyg/vendor/bootstrap-wysiwyg.js',
-			'/theme/orange/assets/plugins/bootstrap_wysiwyg/plugin_bootstrap_wysiwyg.min.js',
+			'/theme/orange/assets/plugins/bootstrap_wysiwyg/vendor/jquery.hotkeys'.PAGE_MIN.'.js',
+			'/theme/orange/assets/plugins/bootstrap_wysiwyg/vendor/bootstrap-wysiwyg'.PAGE_MIN.'.js',
+			'/theme/orange/assets/plugins/bootstrap_wysiwyg/plugin_bootstrap_wysiwyg'.PAGE_MIN.'.js',
 		])
-		->css('/theme/orange/assets/plugins/bootstrap_wysiwyg/plugin_bootstrap_wysiwyg.min.css');
+		->css('/theme/orange/assets/plugins/bootstrap_wysiwyg/plugin_bootstrap_wysiwyg'.PAGE_MIN.'.css');
 	}
 
 	public function render($name=null, $value=null, $extra=[])

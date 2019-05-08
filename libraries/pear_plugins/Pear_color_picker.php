@@ -6,8 +6,8 @@ class Pear_color_picker extends \Pear_plugin
 	{
 		ci('page')
 			->domready("$('.js-colorpicker').colorpicker();")
-			->css('//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.1.0/css/bootstrap-colorpicker.min.css')
-			->js('//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.1.0/js/bootstrap-colorpicker.min.js');
+			->css('//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.1.0/css/bootstrap-colorpicker'.PAGE_MIN.'.css')
+			->js('//cdnjs.cloudflare.com/ajax/libs/bootstrap-colorpicker/2.1.0/js/bootstrap-colorpicker'.PAGE_MIN.'.js');
 	}
 
 	public function render($name=null, $value=null, $extra=[])
