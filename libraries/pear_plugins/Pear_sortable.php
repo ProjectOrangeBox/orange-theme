@@ -25,7 +25,9 @@ class Pear_sortable extends \Pear_plugin
 {
 	public function __construct()
 	{
-		ci('page')->js('//cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js');
+		if (config('page.usingCDNs')) {
+			ci('page')->js('//cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js');
+		}
 	}
 
 	public function render($id=null)

@@ -4,9 +4,11 @@ class Pear_flash_msg extends \Pear_plugin
 {
 	public function __construct()
 	{
-		ci('page')
-			->css('/theme/orange/assets/plugins/flash-msg/flash-msg'.PAGE_MIN.'.css')
-			->js('/theme/orange/assets/plugins/flash-msg/jquery.bootstrap.flash-msg'.PAGE_MIN.'.js');
+		if (!config('page.usingWebPackMix')) {
+			ci('page')
+				->css('/theme/orange/assets/plugins/flash-msg/flash-msg'.PAGE_MIN.'.css')
+				->js('/theme/orange/assets/plugins/flash-msg/jquery.bootstrap.flash-msg'.PAGE_MIN.'.js');
+		}
 
 		$msgs = [];
 

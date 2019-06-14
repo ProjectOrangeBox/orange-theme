@@ -13,10 +13,13 @@
  {
 	 public function __construct()
 	 {
+		if (config('page.usingCDNs')) {
 		 ci('page')
-		->js('//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js')
-		->css('//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css')
-		->domready("$('.datalist').editableSelect({effects:'fade'});");
+			->js('//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.js')
+			->css('//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css');
+		}
+
+		ci('page')->domready("$('.datalist').editableSelect({effects:'fade'});");
 	 }
 
 	 public function render($name='', $value='', $options=[], $extras=[])

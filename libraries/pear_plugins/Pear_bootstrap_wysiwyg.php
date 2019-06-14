@@ -16,13 +16,15 @@ class Pear_bootstrap_wysiwyg extends \Pear_plugin
 {
 	public function __construct()
 	{
-		ci('page')
-		->js([
-			'/theme/orange/assets/plugins/bootstrap_wysiwyg/vendor/jquery.hotkeys'.PAGE_MIN.'.js',
-			'/theme/orange/assets/plugins/bootstrap_wysiwyg/vendor/bootstrap-wysiwyg'.PAGE_MIN.'.js',
-			'/theme/orange/assets/plugins/bootstrap_wysiwyg/plugin_bootstrap_wysiwyg'.PAGE_MIN.'.js',
-		])
-		->css('/theme/orange/assets/plugins/bootstrap_wysiwyg/plugin_bootstrap_wysiwyg'.PAGE_MIN.'.css');
+		if (!config('page.usingWebPackMix')) {
+			ci('page')
+			->js([
+				'/theme/orange/assets/plugins/bootstrap_wysiwyg/vendor/jquery.hotkeys'.PAGE_MIN.'.js',
+				'/theme/orange/assets/plugins/bootstrap_wysiwyg/vendor/bootstrap-wysiwyg'.PAGE_MIN.'.js',
+				'/theme/orange/assets/plugins/bootstrap_wysiwyg/plugin_bootstrap_wysiwyg'.PAGE_MIN.'.js',
+			])
+			->css('/theme/orange/assets/plugins/bootstrap_wysiwyg/plugin_bootstrap_wysiwyg'.PAGE_MIN.'.css');
+		}
 	}
 
 	public function render($name=null, $value=null, $extra=[])

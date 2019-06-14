@@ -81,8 +81,4 @@ class Nav_library
 
 		return $html;
 	}
-
-	protected function merge($html, $items)
-	{
-	}
 } /* end class */

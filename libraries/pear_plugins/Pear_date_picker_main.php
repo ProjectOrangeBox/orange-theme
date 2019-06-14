@@ -4,10 +4,12 @@ class Pear_date_picker_main extends \Pear_plugin
 {
 	public function __construct()
 	{
-		ci('page')
-			->js('//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js', PAGE::PRIORITY_HIGHEST)
-			->js(['//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js'])
-			->css('//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css');
+		if (config('page.usingCDNs')) {
+			ci('page')
+				->js('//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js', PAGE::PRIORITY_HIGHEST)
+				->js(['//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js'])
+				->css('//cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css');
+		}
 	}
 
 	public function render($name=null, $value=null, $extra=[])

@@ -14,7 +14,9 @@ class Pear_combobox extends \Pear_plugin
 {
 	public function __construct()
 	{
-		ci('page')->js('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js');
+		if (config('page.usingCDNs')) {
+			ci('page')->js('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js');
+		}
 	}
 
 	public function render($name=null, $value=null, $options=[], $extra=[])

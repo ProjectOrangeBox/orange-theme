@@ -4,10 +4,13 @@ class Pear_select3 extends \Pear_plugin
 {
 	public function __construct()
 	{
-		ci('page')
-			->js('//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js')
-			->css('//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css')
-			->domready("$('.select3').selectpicker();");
+		if (config('page.usingCDNs')) {
+			ci('page')
+				->js('//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js')
+				->css('//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css');
+		}
+
+		ci('page')->domready("$('.select3').selectpicker();");
 	}
 
 	public function render($name=null, $options=null, $value=null, $extras=[])

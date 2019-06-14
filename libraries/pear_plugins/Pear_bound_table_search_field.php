@@ -4,7 +4,9 @@ class Pear_bound_table_search_field extends \Pear_plugin
 {
 	public function __construct()
 	{
-		ci('page')->js('/theme/orange/assets/plugins/bound-table-search/bound-table-search'.PAGE_MIN.'.js');
+		if (!config('page.usingWebPackMix')) {
+			ci('page')->js('/theme/orange/assets/plugins/bound-table-search/bound-table-search'.PAGE_MIN.'.js');
+		}
 	}
 
 	public function render($options=[])

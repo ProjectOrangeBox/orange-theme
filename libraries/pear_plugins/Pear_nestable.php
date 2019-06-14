@@ -6,10 +6,16 @@ class Pear_nestable extends \Pear_plugin
 	{
 		ci('page')
 			->js_variable('nestable_handler', ci('page')->data('nestable_handler'))
-			->domready('plugins.nestable.init();')
-			->js([
-				'/theme/orange/assets/plugins/nestable/nestable'.PAGE_MIN.'.js',
-				'//cdnjs.cloudflare.com/ajax/libs/Nestable/2012-10-15/jquery.nestable.min.js'
-				])->css('/theme/orange/assets/plugins/nestable/nestable'.PAGE_MIN.'.css');
+			->domready('plugins.nestable.init();');
+
+		if (config('page.usingCDNs')) {
+			ci('page')->js('//cdnjs.cloudflare.com/ajax/libs/Nestable/2012-10-15/jquery.nestable.min.js');
+		}
+
+		if (!config('page.usingWebPackMix')) {
+			ci('page')
+				->js('/theme/orange/assets/plugins/nestable/nestable'.PAGE_MIN.'.js')
+				->css('/theme/orange/assets/plugins/nestable/nestable'.PAGE_MIN.'.css');
+		}
 	}
 }
