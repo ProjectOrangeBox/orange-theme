@@ -2,12 +2,12 @@
 
 class Pear_asset_merge extends \Pear_plugin
 {
-	public function render()
+	public function __construct()
 	{
-		$routes = config('page.assets_merge',false);
+		$routes = config('page.asset_merge',false);
 
 		if (is_array($routes)) {
-			$uri = '/'.str_replace('/index', '',ci('router')->fetch_route());
+			$uri = trim(str_replace('/index', '',ci('router')->fetch_route()),'/');
 
 			$match = false;
 
@@ -15,6 +15,7 @@ class Pear_asset_merge extends \Pear_plugin
 				if (preg_match('#^'.$match.'$#im', $uri, $params, PREG_OFFSET_CAPTURE, 0)) {
 					/* match found! */
 					$match = $assets;
+					/* leave for each loop */
 					break;
 				}
 			}
@@ -36,6 +37,15 @@ class Pear_asset_merge extends \Pear_plugin
 						ci('page')->js($js);
 					}
 				}
+
+				/* does it contain any route plugins? */
+				if (is_array($match['plugins'])) {
+					foreach ($match['plugins'] as $plugin) {
+						/* add it to the page */
+						pear::plugin($plugin);
+					}
+				}
+
 			}
 		}
 	} /* end render */
