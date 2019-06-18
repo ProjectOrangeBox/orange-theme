@@ -5,7 +5,7 @@ var BoundTableSearch = {};
 BoundTableSearch.search = function() {
 	var searchTerm = BoundTableSearch.getField();
 
-	if (searchTerm.length > 0) {
+	if (searchTerm != undefined && searchTerm.length > 0) {
 		/* run regular expression search on table text */
 
 		/* hide the tr's */
@@ -56,7 +56,7 @@ BoundTableSearch.setField = function(searchTerm) { BoundTableSearch.field.val(se
 BoundTableSearch.getField = function() { return BoundTableSearch.field.val(); }
 
 BoundTableSearch.determineIcons = function(searchTerm) {
-	if (searchTerm.length > 0) {
+	if (searchTerm != undefined && searchTerm.length > 0) {
 		BoundTableSearch.field.css({'background-color':'#F0F2F7'});
 		BoundTableSearch.field.next().addClass('text-info');
 	} else {
