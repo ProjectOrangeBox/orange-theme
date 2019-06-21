@@ -25,20 +25,22 @@ notify.addError = function(text,redirect) {
 };
 
 notify.add = function(text,style,redirect) {
-	var msg = notify.buildMsg(text,style);
+	if (text && style) {
+		var msg = notify.buildMsg(text,style);
 
-	if (redirect == undefined) {
-		notify.show(msg);
-	} else {
-		notify.save(msg);
+		if (redirect == undefined) {
+			notify.show(msg);
+		} else {
+			notify.save(msg);
 
-		/* special @ redirects? we only have 1 right now */
-		switch(redirect) {
-			case '@back':
-				window.history.back();
-			break;
-			default:
-				window.location.href = redirect;
+			/* special @ redirects? we only have 1 right now */
+			switch(redirect) {
+				case '@back':
+					window.history.back();
+				break;
+				default:
+					window.location.href = redirect;
+			}
 		}
 	}
 };
@@ -134,7 +136,7 @@ notify.buildMsg = function(text,style) {
 
 	var msg = {};
 
-	msg.text = (text != undefined) ? text : 'No Message Giving.';
+	msg.text = (text != undefined) ? text : 'No Message Given.';
 	msg.style = (style != undefined) ? map[style] : 'info';
 	msg.stay = (msg.style == 'danger');
 
