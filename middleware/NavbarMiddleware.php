@@ -1,5 +1,23 @@
 <?php
-
+/**
+ * NavMiddleware
+ * Do the find and replace on the navigation html
+ *
+ * @package CodeIgniter / Orange
+ * @author Don Myers
+ * @copyright 2018
+ * @license http://opensource.org/licenses/MIT MIT License
+ * @link https://github.com/ProjectOrangeBox
+ * @version v2.0
+ *
+ * required
+ * core:
+ * libraries:
+ * models:
+ * helpers:
+ * functions:
+ *
+ */
 class NavbarMiddleware extends \Middleware_base
 {
 	public function response(string $output = '') : string

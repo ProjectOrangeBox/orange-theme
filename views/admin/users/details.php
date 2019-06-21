@@ -1,4 +1,5 @@
 <?php pear::extends('_templates/orange_admin') ?>
+
 <?php pear::section('section_container') ?>
 <?=pear::open_multipart($controller_path, ['class'=>'form-horizontal','method'=>$form_method,'data-success'=>'Record Saved|blue'], ['id'=>$record->id]) ?>
 	<div class="row">
@@ -36,11 +37,9 @@
 		<?=pear::label('Confirm Password', 'confirm_password', ['class'=>'col-md-3 control-label '.(($form_method != 'post') ? '' : 'required')]) ?>
 		<div class="col-md-4">
 			<?=pear::password('confirm_password', '', ['class'=>'form-control input-md','autocomplete'=>'off']) ?>
-			<?php if ($form_method != 'post') {
-	?>
+			<?php if ($form_method != 'post') { ?>
 				<?=pear::form_help('Leave password fields blank to leave password unchanged.') ?>
-			<?php
-} ?>
+			<?php } ?>
 		</div>
 	</div>
 	
@@ -104,4 +103,5 @@
 		</div>
 	</div>
 <?=pear::close() ?>
+
 <?php pear::end() ?>

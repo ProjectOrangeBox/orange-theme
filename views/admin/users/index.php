@@ -1,15 +1,14 @@
 <?php pear::extends('_templates/orange_admin') ?>
+
 <?php pear::section('section_container') ?>
 <div class="row">
   <div class="col-md-6"><?=pear::title($controller_titles, 'user') ?></div>
   <div class="col-md-6">
   	<div class="pull-right">
   		<?=pear::table_search_field() ?>
-			<?php if (pear::user('can', 'url::/admin/users::index~post')) {
-	?>
-				<?=pear::new_button($controller_path.'/details', 'New '.$controller_title) ?>
-  		<?php
-} ?>
+			<?php if (pear::user('can', 'url::/admin/users::index~post')) { ?>
+			<?=pear::new_button($controller_path.'/details', 'New '.$controller_title) ?>
+  		<?php } ?>
   	</div>
   </div>
 </div>
@@ -24,10 +23,8 @@
 				</tr>
 			</thead>
 		<tbody>
-		<?php foreach ($records as $row) {
-		?>
-			<?php if (pear::user('has_role', $row->read_role_id)) {
-			?>
+		<?php foreach ($records as $row) { ?>
+			<?php if (pear::user('has_role', $row->read_role_id)) { ?>
 				<tr>
 					<td><?=e($row->username) ?></td>
 					<td><?=e($row->email) ?></td>
@@ -41,10 +38,8 @@
 						<?php } ?>
 					</td>
 				</tr>
-			<?php
-		} ?>
-		<?php
-	} ?>
+			<?php } ?>
+		<?php } ?>
 		</tbody>
 	</table>
 </div>
