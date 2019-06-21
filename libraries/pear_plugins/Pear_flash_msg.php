@@ -4,7 +4,7 @@ class Pear_flash_msg extends \Pear_plugin
 {
 	public function __construct()
 	{
-		if (!config('page.usingWebPackMix')) {
+		if (!config('page.usingBundle')) {
 			ci('page')
 				->css('/theme/orange/assets/plugins/flash-msg/flash-msg'.PAGE_MIN.'.css')
 				->js('/theme/orange/assets/plugins/flash-msg/jquery.bootstrap.flash-msg'.PAGE_MIN.'.js');

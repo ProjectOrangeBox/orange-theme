@@ -4,7 +4,7 @@ class Pear_table_sticky_header extends \Pear_plugin
 {
 	public function __construct()
 	{
-		if (!config('page.usingWebPackMix')) {
+		if (!config('page.usingBundle')) {
 			ci('page')->js('/theme/orange/assets/plugins/table_sticky_header/jquery.stickytableheaders'.PAGE_MIN.'.js');
 		}
 		

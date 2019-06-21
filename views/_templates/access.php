@@ -1,6 +1,5 @@
 <!-- Start Record Roles -->
-<?php if (pear::user('has_role', ADMIN_ROLE_ID)) {
-	?>
+<?php if (pear::user('has_role', ADMIN_ROLE_ID)) { ?>
 <div class="form-group">
 	<div class="col-md-4 col-md-offset-3">
 		<h4>Record Access</h4>
@@ -29,6 +28,5 @@
 		</div>
 	</div>
 </div>
-<?php
-} ?>
+<?php } ?>
 <!-- End Record Roles -->

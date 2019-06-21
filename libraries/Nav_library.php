@@ -13,13 +13,13 @@ class Nav_library
 	/* build HTML for main menu */
 	public function build_bootstrap_nav($parent_id, $config, $filter=true)
 	{
-		$cache_key = (ci('o_nav_model')->get_cache_prefix()).'.build_bootstrap_nav.'.md5(json_encode(func_get_args()));
+		$arguments = func_get_args();
 
 		if ($filter) {
-			$user_permissions = array_keys(ci('user')->permissions());
-
-			$cache_key .= '.'.md5(json_encode($user_permissions));
+			$arguments[] = $user_permissions = array_keys(ci('user')->permissions());
 		}
+
+		$cache_key = (ci('o_nav_model')->get_cache_prefix()).'.build_bootstrap_nav.'.sha1(json_encode($arguments),false);
 
 		if (!$html = ci('cache')->get($cache_key)) {
 			$this->config = $config;

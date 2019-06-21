@@ -6,6 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 	<meta content="width=device-width, initial-scale=1" name="viewport"/>
 	<?=pear::page('meta') ?>
+	<link href="/dist/bundle.css" type="text/css" rel="stylesheet"/>
 	<?=pear::page('css') ?>
 	<style>
 	<?=pear::page('style') ?>

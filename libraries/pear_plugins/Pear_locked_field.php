@@ -4,7 +4,7 @@ class Pear_locked_field extends \Pear_plugin
 {
 	public function __construct()
 	{
-		if (!config('page.usingWebPackMix')) {
+		if (!config('page.usingBundle')) {
 			ci('page')->js('/theme/orange/assets/plugins/plugin-locked-field/plugin_locked_field'.PAGE_MIN.'.js');
 		}
 	}

@@ -4,7 +4,7 @@ class Pear_table_search_field extends \Pear_plugin
 {
 	public function __construct()
 	{
-		if (!config('page.usingWebPackMix')) {
+		if (!config('page.usingBundle')) {
 			ci('page')->js('/theme/orange/assets/plugins/table_search_field/table_search_field'.PAGE_MIN.'.js');
 		}
 	}

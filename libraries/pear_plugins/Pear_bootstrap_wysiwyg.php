@@ -16,7 +16,7 @@ class Pear_bootstrap_wysiwyg extends \Pear_plugin
 {
 	public function __construct()
 	{
-		if (!config('page.usingWebPackMix')) {
+		if (!config('page.usingBundle')) {
 			ci('page')
 			->js([
 				'/theme/orange/assets/plugins/bootstrap_wysiwyg/vendor/jquery.hotkeys'.PAGE_MIN.'.js',
