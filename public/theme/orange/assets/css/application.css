@@ -40,7 +40,12 @@ body {
 	font-family: 'Roboto', sans-serif;
 }
 .container {
-	width: 99% !important;
+	width: 100% !important;
+}
+
+ul.nav.nav-pills {
+  width: 99% !important;
+  margin: 0 auto;
 }
 
 /* add textarea resize classes */
